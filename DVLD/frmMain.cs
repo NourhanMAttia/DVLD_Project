@@ -17,5 +17,11 @@ namespace DVLD
         {
             InitializeComponent();
         }
+        private frmPeopleManagement ManagePeopleForm = new frmPeopleManagement();
+        private void tsmMangePeople_Click(object sender, EventArgs e)
+        {
+            ManagePeopleForm.Show();
+            ManagePeopleForm.MdiParent = this;
+        }
     }
 }
