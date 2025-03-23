@@ -17,7 +17,7 @@ namespace DVLD
         {
             InitializeComponent();
         }
-        private frmPeopleManagement ManagePeopleForm = new frmPeopleManagement();
+        private frmListPeople ManagePeopleForm = new frmListPeople();
         private void tsmMangePeople_Click(object sender, EventArgs e)
         {
             ManagePeopleForm.Show();

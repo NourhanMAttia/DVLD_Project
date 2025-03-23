@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DVLD.People.Controls
 {
-    public partial class ctrlPersonCard: UserControl
+    public partial class ctrlPersonCardInfoWithFilter: UserControl
     {
-        public ctrlPersonCard()
+        public ctrlPersonCardInfoWithFilter()
         {
             InitializeComponent();
         }

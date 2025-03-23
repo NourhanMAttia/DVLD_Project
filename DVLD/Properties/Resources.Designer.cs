@@ -63,9 +63,29 @@ namespace DVLD.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap addUser {
+        internal static System.Drawing.Bitmap addPerson128 {
             get {
-                object obj = ResourceManager.GetObject("addUser", resourceCulture);
+                object obj = ResourceManager.GetObject("addPerson128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap addPerson24 {
+            get {
+                object obj = ResourceManager.GetObject("addPerson24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap addPerson64 {
+            get {
+                object obj = ResourceManager.GetObject("addPerson64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +133,19 @@ namespace DVLD.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap searchForPerson {
+        internal static System.Drawing.Bitmap search24 {
             get {
-                object obj = ResourceManager.GetObject("searchForPerson", resourceCulture);
+                object obj = ResourceManager.GetObject("search24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search32 {
+            get {
+                object obj = ResourceManager.GetObject("search32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

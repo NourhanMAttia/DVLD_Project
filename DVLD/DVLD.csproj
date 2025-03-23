@@ -52,52 +52,73 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="People\Controls\ctrlPersonCard.cs">
+    <Compile Include="People\Controls\ctrlPersonCardInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="People\Controls\ctrlPersonCard.Designer.cs">
-      <DependentUpon>ctrlPersonCard.cs</DependentUpon>
+    <Compile Include="People\Controls\ctrlPersonCardInfo.Designer.cs">
+      <DependentUpon>ctrlPersonCardInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="People\Controls\ctrlPersonCardWithFilter.cs">
+    <Compile Include="People\Controls\ctrlPersonCardInfoWithFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="People\Controls\ctrlPersonCardWithFilter.Designer.cs">
-      <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
+    <Compile Include="People\Controls\ctrlPersonCardInfoWithFilter.Designer.cs">
+      <DependentUpon>ctrlPersonCardInfoWithFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="People\frmPeopleManagement.cs">
+    <Compile Include="People\frmAddUpdatePerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="People\frmPeopleManagement.Designer.cs">
-      <DependentUpon>frmPeopleManagement.cs</DependentUpon>
+    <Compile Include="People\frmAddUpdatePerson.Designer.cs">
+      <DependentUpon>frmAddUpdatePerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\frmFindPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\frmFindPerson.Designer.cs">
+      <DependentUpon>frmFindPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\frmListPeople.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\frmListPeople.Designer.cs">
+      <DependentUpon>frmListPeople.cs</DependentUpon>
+    </Compile>
+    <Compile Include="People\frmShowPersonInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="People\frmShowPersonInfo.Designer.cs">
+      <DependentUpon>frmShowPersonInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People\Controls\ctrlPersonCard.resx">
-      <DependentUpon>ctrlPersonCard.cs</DependentUpon>
+    <EmbeddedResource Include="People\Controls\ctrlPersonCardInfo.resx">
+      <DependentUpon>ctrlPersonCardInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People\Controls\ctrlPersonCardWithFilter.resx">
-      <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
+    <EmbeddedResource Include="People\Controls\ctrlPersonCardInfoWithFilter.resx">
+      <DependentUpon>ctrlPersonCardInfoWithFilter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="People\frmPeopleManagement.resx">
-      <DependentUpon>frmPeopleManagement.cs</DependentUpon>
+    <EmbeddedResource Include="People\frmAddUpdatePerson.resx">
+      <DependentUpon>frmAddUpdatePerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="People\frmListPeople.resx">
+      <DependentUpon>frmListPeople.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -114,14 +135,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\addUser.png" />
+    <None Include="Resources\addPerson24.png" />
+    <None Include="Resources\addPerson128.png" />
+    <None Include="Resources\addPerson64.png" />
     <Content Include="Resources\doc.png" />
     <Content Include="Resources\female.png" />
     <Content Include="Resources\group.png" />
     <Content Include="Resources\male.png" />
     <None Include="Resources\male1.png" />
     <Content Include="Resources\people.png" />
-    <None Include="Resources\searchForPerson.png" />
+    <None Include="Resources\search32.png" />
+    <None Include="Resources\search24.png" />
     <Content Include="Resources\settings.png" />
     <Content Include="Resources\user.png" />
   </ItemGroup>
