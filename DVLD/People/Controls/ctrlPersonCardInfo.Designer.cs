@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.llblEditPersonInfo = new System.Windows.Forms.LinkLabel();
+            this.lblCountry = new System.Windows.Forms.Label();
+            this.lblDateOfBirth = new System.Windows.Forms.Label();
+            this.pbPersonImage = new System.Windows.Forms.PictureBox();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.lblEmail = new System.Windows.Forms.Label();
+            this.lblGender = new System.Windows.Forms.Label();
+            this.lblNationalNo = new System.Windows.Forms.Label();
+            this.lblName = new System.Windows.Forms.Label();
+            this.lblPersonID = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -47,25 +49,23 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.linkLabel1);
-            this.groupBox1.Controls.Add(this.label18);
-            this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.pictureBox1);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.llblEditPersonInfo);
+            this.groupBox1.Controls.Add(this.lblCountry);
+            this.groupBox1.Controls.Add(this.lblDateOfBirth);
+            this.groupBox1.Controls.Add(this.pbPersonImage);
+            this.groupBox1.Controls.Add(this.lblAddress);
+            this.groupBox1.Controls.Add(this.lblPhone);
+            this.groupBox1.Controls.Add(this.lblEmail);
+            this.groupBox1.Controls.Add(this.lblGender);
+            this.groupBox1.Controls.Add(this.lblNationalNo);
+            this.groupBox1.Controls.Add(this.lblName);
+            this.groupBox1.Controls.Add(this.lblPersonID);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
@@ -83,95 +83,116 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Person Information";
             // 
-            // label18
+            // llblEditPersonInfo
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(390, 170);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(40, 17);
-            this.label18.TabIndex = 18;
-            this.label18.Text = "[???]";
+            this.llblEditPersonInfo.AutoSize = true;
+            this.llblEditPersonInfo.Location = new System.Drawing.Point(530, 39);
+            this.llblEditPersonInfo.Name = "llblEditPersonInfo";
+            this.llblEditPersonInfo.Size = new System.Drawing.Size(111, 17);
+            this.llblEditPersonInfo.TabIndex = 19;
+            this.llblEditPersonInfo.TabStop = true;
+            this.llblEditPersonInfo.Text = "Edit Person Info";
+            this.llblEditPersonInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblEditPersonInfo_LinkClicked);
             // 
-            // label17
+            // lblCountry
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(390, 104);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(40, 17);
-            this.label17.TabIndex = 17;
-            this.label17.Text = "[???]";
+            this.lblCountry.AutoSize = true;
+            this.lblCountry.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCountry.Location = new System.Drawing.Point(390, 170);
+            this.lblCountry.Name = "lblCountry";
+            this.lblCountry.Size = new System.Drawing.Size(40, 17);
+            this.lblCountry.TabIndex = 18;
+            this.lblCountry.Text = "[???]";
             // 
-            // label16
+            // lblDateOfBirth
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(142, 203);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(40, 17);
-            this.label16.TabIndex = 15;
-            this.label16.Text = "[???]";
+            this.lblDateOfBirth.AutoSize = true;
+            this.lblDateOfBirth.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateOfBirth.Location = new System.Drawing.Point(390, 104);
+            this.lblDateOfBirth.Name = "lblDateOfBirth";
+            this.lblDateOfBirth.Size = new System.Drawing.Size(40, 17);
+            this.lblDateOfBirth.TabIndex = 17;
+            this.lblDateOfBirth.Text = "[???]";
             // 
-            // label15
+            // pbPersonImage
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(390, 138);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(40, 17);
-            this.label15.TabIndex = 14;
-            this.label15.Text = "[???]";
+            this.pbPersonImage.Image = global::DVLD.Properties.Resources.male;
+            this.pbPersonImage.Location = new System.Drawing.Point(507, 71);
+            this.pbPersonImage.Name = "pbPersonImage";
+            this.pbPersonImage.Size = new System.Drawing.Size(150, 149);
+            this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbPersonImage.TabIndex = 16;
+            this.pbPersonImage.TabStop = false;
             // 
-            // label14
+            // lblAddress
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(142, 171);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(40, 17);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "[???]";
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddress.Location = new System.Drawing.Point(142, 203);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(40, 17);
+            this.lblAddress.TabIndex = 15;
+            this.lblAddress.Text = "[???]";
             // 
-            // label13
+            // lblPhone
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(142, 137);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(40, 17);
-            this.label13.TabIndex = 12;
-            this.label13.Text = "[???]";
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPhone.Location = new System.Drawing.Point(390, 138);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(40, 17);
+            this.lblPhone.TabIndex = 14;
+            this.lblPhone.Text = "[???]";
             // 
-            // label12
+            // lblEmail
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(142, 104);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(40, 17);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "[???]";
+            this.lblEmail.AutoSize = true;
+            this.lblEmail.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmail.Location = new System.Drawing.Point(142, 171);
+            this.lblEmail.Name = "lblEmail";
+            this.lblEmail.Size = new System.Drawing.Size(40, 17);
+            this.lblEmail.TabIndex = 13;
+            this.lblEmail.Text = "[???]";
             // 
-            // label11
+            // lblGender
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(142, 71);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(40, 17);
-            this.label11.TabIndex = 10;
-            this.label11.Text = "[???]";
+            this.lblGender.AutoSize = true;
+            this.lblGender.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGender.Location = new System.Drawing.Point(142, 137);
+            this.lblGender.Name = "lblGender";
+            this.lblGender.Size = new System.Drawing.Size(40, 17);
+            this.lblGender.TabIndex = 12;
+            this.lblGender.Text = "[???]";
             // 
-            // label10
+            // lblNationalNo
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(142, 38);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(40, 17);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "[???]";
+            this.lblNationalNo.AutoSize = true;
+            this.lblNationalNo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNationalNo.Location = new System.Drawing.Point(142, 104);
+            this.lblNationalNo.Name = "lblNationalNo";
+            this.lblNationalNo.Size = new System.Drawing.Size(40, 17);
+            this.lblNationalNo.TabIndex = 11;
+            this.lblNationalNo.Text = "[???]";
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.Location = new System.Drawing.Point(142, 71);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(40, 17);
+            this.lblName.TabIndex = 10;
+            this.lblName.Text = "[???]";
+            // 
+            // lblPersonID
+            // 
+            this.lblPersonID.AutoSize = true;
+            this.lblPersonID.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPersonID.Location = new System.Drawing.Point(142, 38);
+            this.lblPersonID.Name = "lblPersonID";
+            this.lblPersonID.Size = new System.Drawing.Size(40, 17);
+            this.lblPersonID.TabIndex = 9;
+            this.lblPersonID.Text = "[???]";
             // 
             // label9
             // 
@@ -263,26 +284,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Person ID: ";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DVLD.Properties.Resources.male;
-            this.pictureBox1.Location = new System.Drawing.Point(507, 71);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 149);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(530, 39);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(111, 17);
-            this.linkLabel1.TabIndex = 19;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Edit Person Info";
-            // 
             // ctrlPersonCardInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,7 +293,7 @@
             this.Size = new System.Drawing.Size(746, 312);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -300,7 +301,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblPersonID;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
@@ -310,15 +311,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label lblCountry;
+        private System.Windows.Forms.Label lblDateOfBirth;
+        private System.Windows.Forms.PictureBox pbPersonImage;
+        private System.Windows.Forms.Label lblAddress;
+        private System.Windows.Forms.Label lblPhone;
+        private System.Windows.Forms.Label lblEmail;
+        private System.Windows.Forms.Label lblGender;
+        private System.Windows.Forms.Label lblNationalNo;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.LinkLabel llblEditPersonInfo;
     }
 }

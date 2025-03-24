@@ -1,6 +1,7 @@
 ﻿using DVLD_D;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,10 @@ namespace DVLD_B
             if (clsCountryData.GetCountryInfoByName(ref CountryID, CountryName))
                 return new clsCountry(CountryID, CountryName);
             return null;
+        }
+        public static DataTable GetAllCountries()
+        {
+            return clsCountryData.GetAllCountries();
         }
     }
 }

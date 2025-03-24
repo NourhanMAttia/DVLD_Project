@@ -163,8 +163,6 @@ namespace DVLD
             if (cbFilterPeople.Text == "Person ID")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
-
-
         private void tsmShowDetails_Click(object sender, EventArgs e)
         {
             int PersonID = (int)dgvManagePeople.CurrentRow.Cells[0].Value;
@@ -215,6 +213,11 @@ namespace DVLD
             int PersonID = (int)dgvManagePeople.CurrentRow.Cells[0].Value;
             frmShowPersonInfo form = new frmShowPersonInfo(PersonID);
             form.ShowDialog();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

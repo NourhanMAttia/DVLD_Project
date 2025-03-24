@@ -31,22 +31,23 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvManagePeople = new System.Windows.Forms.DataGridView();
+            this.cmPeopleList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmShowDetails = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmAddNewPerson = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmEditPersonInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmDeletePerson = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmSendEmail = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmPhoneCall = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cbFilterPeople = new System.Windows.Forms.ComboBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
-            this.cmPeopleList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmShowDetails = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmAddNewPerson = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmEditPersonInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmDeletePerson = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmSendEmail = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmPhoneCall = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAddPerson = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagePeople)).BeginInit();
             this.cmPeopleList.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,6 +80,72 @@
             this.dgvManagePeople.Size = new System.Drawing.Size(1190, 214);
             this.dgvManagePeople.TabIndex = 2;
             this.dgvManagePeople.DoubleClick += new System.EventHandler(this.dgvManagePeople_DoubleClick);
+            // 
+            // cmPeopleList
+            // 
+            this.cmPeopleList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmShowDetails,
+            this.toolStripMenuItem1,
+            this.tsmAddNewPerson,
+            this.tsmEditPersonInfo,
+            this.tsmDeletePerson,
+            this.toolStripMenuItem2,
+            this.tsmSendEmail,
+            this.tsmPhoneCall});
+            this.cmPeopleList.Name = "cmPeopleList";
+            this.cmPeopleList.Size = new System.Drawing.Size(163, 148);
+            // 
+            // tsmShowDetails
+            // 
+            this.tsmShowDetails.Name = "tsmShowDetails";
+            this.tsmShowDetails.Size = new System.Drawing.Size(162, 22);
+            this.tsmShowDetails.Text = " Show Details";
+            this.tsmShowDetails.Click += new System.EventHandler(this.tsmShowDetails_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(159, 6);
+            // 
+            // tsmAddNewPerson
+            // 
+            this.tsmAddNewPerson.Name = "tsmAddNewPerson";
+            this.tsmAddNewPerson.Size = new System.Drawing.Size(162, 22);
+            this.tsmAddNewPerson.Text = "Add New Person";
+            this.tsmAddNewPerson.Click += new System.EventHandler(this.tsmAddNewPerson_Click);
+            // 
+            // tsmEditPersonInfo
+            // 
+            this.tsmEditPersonInfo.Name = "tsmEditPersonInfo";
+            this.tsmEditPersonInfo.Size = new System.Drawing.Size(162, 22);
+            this.tsmEditPersonInfo.Text = "Edit";
+            this.tsmEditPersonInfo.Click += new System.EventHandler(this.tsmEditPersonInfo_Click);
+            // 
+            // tsmDeletePerson
+            // 
+            this.tsmDeletePerson.Name = "tsmDeletePerson";
+            this.tsmDeletePerson.Size = new System.Drawing.Size(162, 22);
+            this.tsmDeletePerson.Text = "Delete";
+            this.tsmDeletePerson.Click += new System.EventHandler(this.tsmDeletePerson_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 6);
+            // 
+            // tsmSendEmail
+            // 
+            this.tsmSendEmail.Name = "tsmSendEmail";
+            this.tsmSendEmail.Size = new System.Drawing.Size(162, 22);
+            this.tsmSendEmail.Text = "Send Email";
+            this.tsmSendEmail.Click += new System.EventHandler(this.tsmSendEmail_Click);
+            // 
+            // tsmPhoneCall
+            // 
+            this.tsmPhoneCall.Name = "tsmPhoneCall";
+            this.tsmPhoneCall.Size = new System.Drawing.Size(162, 22);
+            this.tsmPhoneCall.Text = "Phone Call";
+            this.tsmPhoneCall.Click += new System.EventHandler(this.tsmPhoneCall_Click);
             // 
             // label2
             // 
@@ -142,72 +209,6 @@
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
             // 
-            // cmPeopleList
-            // 
-            this.cmPeopleList.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmShowDetails,
-            this.toolStripMenuItem1,
-            this.tsmAddNewPerson,
-            this.tsmEditPersonInfo,
-            this.tsmDeletePerson,
-            this.toolStripMenuItem2,
-            this.tsmSendEmail,
-            this.tsmPhoneCall});
-            this.cmPeopleList.Name = "cmPeopleList";
-            this.cmPeopleList.Size = new System.Drawing.Size(163, 148);
-            // 
-            // tsmShowDetails
-            // 
-            this.tsmShowDetails.Name = "tsmShowDetails";
-            this.tsmShowDetails.Size = new System.Drawing.Size(162, 22);
-            this.tsmShowDetails.Text = " Show Details";
-            this.tsmShowDetails.Click += new System.EventHandler(this.tsmShowDetails_Click);
-            // 
-            // tsmAddNewPerson
-            // 
-            this.tsmAddNewPerson.Name = "tsmAddNewPerson";
-            this.tsmAddNewPerson.Size = new System.Drawing.Size(162, 22);
-            this.tsmAddNewPerson.Text = "Add New Person";
-            this.tsmAddNewPerson.Click += new System.EventHandler(this.tsmAddNewPerson_Click);
-            // 
-            // tsmEditPersonInfo
-            // 
-            this.tsmEditPersonInfo.Name = "tsmEditPersonInfo";
-            this.tsmEditPersonInfo.Size = new System.Drawing.Size(162, 22);
-            this.tsmEditPersonInfo.Text = "Edit";
-            this.tsmEditPersonInfo.Click += new System.EventHandler(this.tsmEditPersonInfo_Click);
-            // 
-            // tsmDeletePerson
-            // 
-            this.tsmDeletePerson.Name = "tsmDeletePerson";
-            this.tsmDeletePerson.Size = new System.Drawing.Size(162, 22);
-            this.tsmDeletePerson.Text = "Delete";
-            this.tsmDeletePerson.Click += new System.EventHandler(this.tsmDeletePerson_Click);
-            // 
-            // tsmSendEmail
-            // 
-            this.tsmSendEmail.Name = "tsmSendEmail";
-            this.tsmSendEmail.Size = new System.Drawing.Size(162, 22);
-            this.tsmSendEmail.Text = "Send Email";
-            this.tsmSendEmail.Click += new System.EventHandler(this.tsmSendEmail_Click);
-            // 
-            // tsmPhoneCall
-            // 
-            this.tsmPhoneCall.Name = "tsmPhoneCall";
-            this.tsmPhoneCall.Size = new System.Drawing.Size(162, 22);
-            this.tsmPhoneCall.Text = "Phone Call";
-            this.tsmPhoneCall.Click += new System.EventHandler(this.tsmPhoneCall_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(159, 6);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(159, 6);
-            // 
             // btnAddPerson
             // 
             this.btnAddPerson.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -230,11 +231,25 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // btnClose
+            // 
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(1132, 467);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(59, 31);
+            this.btnClose.TabIndex = 10;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmListPeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1191, 514);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.btnAddPerson);
             this.Controls.Add(this.cbFilterPeople);
@@ -275,5 +290,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmPhoneCall;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.Button btnClose;
     }
 }

@@ -105,6 +105,9 @@
     <EmbeddedResource Include="People\frmListPeople.resx">
       <DependentUpon>frmListPeople.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="People\frmShowPersonInfo.resx">
+      <DependentUpon>frmShowPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -140,6 +143,7 @@
     <None Include="Resources\addPerson64.png" />
     <Content Include="Resources\doc.png" />
     <Content Include="Resources\female.png" />
+    <None Include="Resources\female1.png" />
     <Content Include="Resources\group.png" />
     <Content Include="Resources\male.png" />
     <None Include="Resources\male1.png" />
