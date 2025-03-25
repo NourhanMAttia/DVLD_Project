@@ -10,16 +10,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Net.Sockets;
+using DVLD.Global_Classes;
 
 namespace DVLD.People
 {
     public partial class frmAddUpdatePerson: Form
     {
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+        public event DataBackEventHandler OnDataBack; 
         public enum enMode { AddNew = 0, Update };
         private enMode _Mode = enMode.AddNew;
         private int _PersonID = -1;
         clsPerson _Person;
-        private void _LoadPersonData()
+        ErrorProvider ep = new ErrorProvider();
+        private void _LoadPersonDataFromDB()
         {
             _Person = clsPerson.Find(_PersonID);
             if (_Person == null)
@@ -44,6 +48,22 @@ namespace DVLD.People
             cbCountries.SelectedIndex = cbCountries.FindString(_Person.CountryInfo.CountryName);
             if (_Person.ImagePath != "") pbPersonImage.ImageLocation = _Person.ImagePath;
             llblRemoveImage.Visible = (_Person.ImagePath != "");
+        }
+        private void _LoadPersonDataFromForm()
+        {
+            int NationalityCountryID = clsCountry.Find(cbCountries.Text).CountryID;
+            _Person.CountryID = NationalityCountryID;
+            _Person.FirstName = txtFirstName.Text.Trim();
+            _Person.SecondName = txtSecondName.Text.Trim();
+            _Person.ThirdName = txtThirdName.Text.Trim();
+            _Person.LastName = txtLastName.Text.Trim();
+            _Person.NationalNo = txtNationalNo.Text.Trim();
+            _Person.Email = txtEmail.Text.Trim();
+            _Person.Phone = txtPhone.Text.Trim();
+            _Person.Address = txtAddress.Text.Trim();
+            _Person.DateOfBirth = dtpDateOfBirth.Value;
+            _Person.Gender = (rbFemale.Checked) ? (short)1 : (short)0;
+            _Person.ImagePath = (pbPersonImage.ImageLocation == null) ? "" : pbPersonImage.ImageLocation;
         }
         public frmAddUpdatePerson()
         {
@@ -90,7 +110,7 @@ namespace DVLD.People
             else if (_Mode == enMode.Update)
             {
                 lblTitle.Text = "Edit Person Info";
-                _LoadPersonData();
+                _LoadPersonDataFromDB();
             }
         }
         private void rbFemale_CheckedChanged(object sender, EventArgs e)
@@ -103,21 +123,12 @@ namespace DVLD.People
             if (pbPersonImage.ImageLocation == null)
                 pbPersonImage.Image = Properties.Resources.male;
         }
-        ///// below is not stable
-        private void _FormValidation(object sender, CancelEventArgs e)
-        {
-            //third name, email and image can be null
-            
-        }
-        ///  
         private bool _HandlePersonImage()
         {
-            const string destFolder = @"C:\DVLD-People-Images";
             if(pbPersonImage.ImageLocation != _Person.ImagePath)
             {
                 if(_Person.ImagePath != "")
                 {
-                    //delete old image from file, copy new to file, update db to new image
                     try
                     {
                         File.Delete(_Person.ImagePath);
@@ -131,7 +142,7 @@ namespace DVLD.People
                 {
                     string SourceImageFile = pbPersonImage.ImageLocation.ToString();
 
-                    if (clsUtil.CopyImageToProjectImagesFolder(ref SourceImageFile))
+                    if (clsUtils.CopyImageToProjectImagesFolder(ref SourceImageFile))
                     {
                         pbPersonImage.ImageLocation = SourceImageFile;
                         return true;
@@ -167,28 +178,80 @@ namespace DVLD.People
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(_Mode == enMode.AddNew)
+            if (!this.ValidateChildren())
             {
-                if (_Person.Save())
-                {
-                    MessageBox.Show($"Person With ID [{_Person.PersonID}] Added Successfuly", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _Mode = enMode.Update;
-                    lblTitle.Text = "Edit Person Info";
-                }
-                else
-                    MessageBox.Show($"Failed To Add Person With ID [{_Person.PersonID}]", "Failure!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("One or more fields are not valid, put mouse over red icon(s) to see error", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else if(_Mode == enMode.Update)
+            if (!_HandlePersonImage()) return;
+            _LoadPersonDataFromForm();
+            if (_Person.Save())
             {
-                if (_Person.Save())
-                    MessageBox.Show($"Person With ID [{_Person.PersonID}] Updated Successfuly", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                    MessageBox.Show($"Failed To Update Person With ID [{_Person.PersonID}]", "Failure!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblTitle.Text = "Update Person";
+                lblPersonID.Text = _Person.PersonID.ToString();
+                _Mode = enMode.Update;
+                MessageBox.Show("Person Info Saved Successfuly", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                OnDataBack?.Invoke(this, _Person.PersonID);
             }
+            else
+                MessageBox.Show("Error Saving Person Info", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void  _ValidateEmptyTextBox(object sender, CancelEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (string.IsNullOrEmpty(tb.Text.Trim()))
+            {
+                e.Cancel = true;
+                ep.SetError(tb, "This Field Is Required!");
+            }
+            else
+                ep.SetError(tb, "");
+        }
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            if (tb.Text.Trim() == "") return;
+            else if (!clsValidation.IsValidEmail(tb.Text.Trim()))
+            {
+                e.Cancel = true;
+                ep.SetError(tb, "Invalid Email Format!");
+            }
+            else
+            {
+                e.Cancel = false;
+                ep.SetError(tb, "");
+            } 
+        }
+        private void txtNationalNo_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNationalNo.Text.Trim()))
+            {
+                ep.SetError(txtNationalNo, "National Number Is A Required Field!");
+                e.Cancel = true;
+                return;
+            }
+            else if (txtNationalNo.Text.Trim() == _Person.NationalNo) 
+            {
+                e.Cancel = false;
+                ep.SetError(txtNationalNo, "");
+                return;
+            }
+            else if (clsPerson.IsPersonExist(txtNationalNo.Text.Trim()) && txtNationalNo.Text.Trim() != _Person.NationalNo)
+            {
+                ep.SetError(txtNationalNo, "This National Number Is Used For Someone Else!");
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                e.Cancel = false;
+                ep.SetError(txtNationalNo, null);
+                return;
+            }
         }
     }
 }

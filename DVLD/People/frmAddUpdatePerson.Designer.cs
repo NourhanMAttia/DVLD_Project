@@ -142,7 +142,6 @@
             this.cbCountries.Name = "cbCountries";
             this.cbCountries.Size = new System.Drawing.Size(141, 21);
             this.cbCountries.TabIndex = 28;
-            this.cbCountries.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
             // 
             // rbMale
             // 
@@ -155,7 +154,6 @@
             this.rbMale.Text = "Male";
             this.rbMale.UseVisualStyleBackColor = true;
             this.rbMale.CheckedChanged += new System.EventHandler(this.rbMale_CheckedChanged);
-            this.rbMale.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
             // 
             // rbFemale
             // 
@@ -168,7 +166,6 @@
             this.rbFemale.Text = "Female";
             this.rbFemale.UseVisualStyleBackColor = true;
             this.rbFemale.CheckedChanged += new System.EventHandler(this.rbFemale_CheckedChanged);
-            this.rbFemale.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
             // 
             // label12
             // 
@@ -255,7 +252,6 @@
             this.pbPersonImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPersonImage.TabIndex = 21;
             this.pbPersonImage.TabStop = false;
-            this.pbPersonImage.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
             // 
             // dtpDateOfBirth
             // 
@@ -264,7 +260,6 @@
             this.dtpDateOfBirth.Name = "dtpDateOfBirth";
             this.dtpDateOfBirth.Size = new System.Drawing.Size(141, 20);
             this.dtpDateOfBirth.TabIndex = 20;
-            this.dtpDateOfBirth.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
             // 
             // txtPhone
             // 
@@ -272,7 +267,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(141, 20);
             this.txtPhone.TabIndex = 18;
-            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
+            this.txtPhone.Validating += new System.ComponentModel.CancelEventHandler(this._ValidateEmptyTextBox);
             // 
             // txtAddress
             // 
@@ -281,7 +276,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(427, 79);
             this.txtAddress.TabIndex = 17;
-            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
+            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this._ValidateEmptyTextBox);
             // 
             // txtEmail
             // 
@@ -289,7 +284,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(141, 20);
             this.txtEmail.TabIndex = 16;
-            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // txtNationalNo
             // 
@@ -297,7 +292,7 @@
             this.txtNationalNo.Name = "txtNationalNo";
             this.txtNationalNo.Size = new System.Drawing.Size(141, 20);
             this.txtNationalNo.TabIndex = 14;
-            this.txtNationalNo.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
+            this.txtNationalNo.Validating += new System.ComponentModel.CancelEventHandler(this.txtNationalNo_Validating);
             // 
             // txtLastName
             // 
@@ -305,7 +300,7 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(141, 20);
             this.txtLastName.TabIndex = 13;
-            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this._ValidateEmptyTextBox);
             // 
             // txtThirdName
             // 
@@ -313,7 +308,6 @@
             this.txtThirdName.Name = "txtThirdName";
             this.txtThirdName.Size = new System.Drawing.Size(141, 20);
             this.txtThirdName.TabIndex = 12;
-            this.txtThirdName.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
             // 
             // txtSecondName
             // 
@@ -321,7 +315,7 @@
             this.txtSecondName.Name = "txtSecondName";
             this.txtSecondName.Size = new System.Drawing.Size(141, 20);
             this.txtSecondName.TabIndex = 11;
-            this.txtSecondName.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
+            this.txtSecondName.Validating += new System.ComponentModel.CancelEventHandler(this._ValidateEmptyTextBox);
             // 
             // txtFirstName
             // 
@@ -329,7 +323,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(141, 20);
             this.txtFirstName.TabIndex = 10;
-            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this._FormValidation);
+            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this._ValidateEmptyTextBox);
             // 
             // label11
             // 
@@ -425,6 +419,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lblPersonID);
             this.Controls.Add(this.groupBox1);

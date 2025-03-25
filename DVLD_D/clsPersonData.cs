@@ -170,7 +170,7 @@ namespace DVLD_D
             {
                 Connection.Open();
                 object res = Command.ExecuteScalar();
-                if (res != null && int.TryParse(PersonID.ToString(), out int PID))
+                if (res != null && int.TryParse(res.ToString(), out int PID))
                     PersonID = PID;
             }
             catch (Exception) { }

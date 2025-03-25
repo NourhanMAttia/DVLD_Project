@@ -47,8 +47,8 @@ namespace DVLD_B
             Address = "";
             _ImagePath = "";
             DateOfBirth = DateTime.Now;
-            CountryInfo.CountryID = -1;
-            CountryInfo.CountryName = "";
+            //CountryInfo.CountryID = -1;
+            //CountryInfo.CountryName = "";
         }
         private clsPerson(int PersonID, int CountryID, short Gender, string NationalNo, string FirstName,
                           string SecondName, string ThirdName, string LastName, string Email, string Phone,
@@ -152,11 +152,11 @@ namespace DVLD_B
             }
             return false;
         }
-        public bool IsPersonExist(int PersonID)
+        public static bool IsPersonExist(int PersonID)
         {
             return clsPersonData.IsPersonExist(PersonID);
         }
-        public bool IsPersonExist(string NationalNo)
+        public static bool IsPersonExist(string NationalNo)
         {
             return clsPersonData.IsPersonExist(NationalNo);
         }
