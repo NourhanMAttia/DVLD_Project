@@ -259,6 +259,7 @@
             this.Controls.Add(this.dgvManagePeople);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListPeople";
             this.Text = "Manage People";
             this.Load += new System.EventHandler(this.frmPeopleManagement_Load);
