@@ -57,6 +57,7 @@ namespace DVLD
                 dgvManagePeople.Columns[10].HeaderText = "Email";
                 dgvManagePeople.Columns[10].Width = 170;
             }
+
         }
         private void _Load()
         {
