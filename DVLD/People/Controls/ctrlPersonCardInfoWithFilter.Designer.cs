@@ -70,6 +70,7 @@
             this.btnAddNewPerson.Size = new System.Drawing.Size(50, 25);
             this.btnAddNewPerson.TabIndex = 4;
             this.btnAddNewPerson.UseVisualStyleBackColor = true;
+            this.btnAddNewPerson.Click += new System.EventHandler(this.btnAddNewPerson_Click);
             // 
             // btnFindPerson
             // 
@@ -81,6 +82,7 @@
             this.btnFindPerson.Size = new System.Drawing.Size(50, 25);
             this.btnFindPerson.TabIndex = 3;
             this.btnFindPerson.UseVisualStyleBackColor = true;
+            this.btnFindPerson.Click += new System.EventHandler(this.btnFindPerson_Click);
             // 
             // txtFilterValue
             // 
@@ -88,15 +90,20 @@
             this.txtFilterValue.Name = "txtFilterValue";
             this.txtFilterValue.Size = new System.Drawing.Size(164, 25);
             this.txtFilterValue.TabIndex = 2;
+            this.txtFilterValue.Validating += new System.ComponentModel.CancelEventHandler(this.txtFilterValue_Validating);
             // 
             // cbFilterBy
             // 
             this.cbFilterBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilterBy.FormattingEnabled = true;
+            this.cbFilterBy.Items.AddRange(new object[] {
+            "National No.",
+            "Person ID"});
             this.cbFilterBy.Location = new System.Drawing.Point(111, 26);
             this.cbFilterBy.Name = "cbFilterBy";
             this.cbFilterBy.Size = new System.Drawing.Size(164, 25);
             this.cbFilterBy.TabIndex = 1;
+            this.cbFilterBy.SelectedIndexChanged += new System.EventHandler(this.cbFilterBy_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -116,6 +123,7 @@
             this.Controls.Add(this.ctrlPersonCardInfo1);
             this.Name = "ctrlPersonCardInfoWithFilter";
             this.Size = new System.Drawing.Size(755, 378);
+            this.Load += new System.EventHandler(this.ctrlPersonCardInfoWithFilter_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
