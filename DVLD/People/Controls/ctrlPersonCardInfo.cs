@@ -95,9 +95,9 @@ namespace DVLD.People.Controls
         }
         private void llblEditPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-                frmAddUpdatePerson form = new frmAddUpdatePerson(_PersonID);
+                frmAddUpdatePerson form = new frmAddUpdatePerson(_Person.PersonID);
                 form.ShowDialog();
-                LoadPersonInfo(_PersonID);
+                LoadPersonInfo(_Person.PersonID);
         }
     }
 }

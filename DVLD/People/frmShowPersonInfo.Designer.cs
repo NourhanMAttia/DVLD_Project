@@ -39,9 +39,9 @@
             this.label1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(293, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 29);
+            this.label1.Size = new System.Drawing.Size(146, 29);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Person Details";
+            this.label1.Text = "Person Info";
             // 
             // btnClose
             // 
@@ -70,6 +70,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlPersonCardInfo1);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowPersonInfo";
             this.Text = "Show Details";
             this.ResumeLayout(false);
