@@ -16,5 +16,13 @@ namespace DVLD.People
         {
             InitializeComponent();
         }
+        public delegate void FormClosedDelegate(object sender, int PersonID);
+        public event FormClosedDelegate OnFormClosed;
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            OnFormClosed?.Invoke(this, ctrlPersonCardInfoWithFilter1.PersonID);
+            this.Close();
+        }
     }
 }

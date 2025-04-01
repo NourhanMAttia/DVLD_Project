@@ -13,12 +13,66 @@ namespace DVLD.People.Controls
 {
     public partial class ctrlPersonCardInfoWithFilter: UserControl
     {
+        private bool _ShowAddPerson = true;
+        public bool ShowAddPerson
+        {
+            get { return _ShowAddPerson; }
+            set
+            {
+                _ShowAddPerson = value;
+                btnAddNewPerson.Visible = _ShowAddPerson;
+            }
+        }
+        private bool _EnableFilter = true;
+        public bool EnableFilter
+        {
+            get { return _EnableFilter; }
+            set
+            {
+                _EnableFilter = value;
+                gbFilter.Enabled = _EnableFilter;
+            }
+        }
+        private int _PersonID = -1;
+        public int PersonID
+        {
+            get { return ctrlPersonCardInfo1.PersonID; }
+        }
+        public clsPerson SelectedPersonInfo
+        {
+            get { return ctrlPersonCardInfo1.SelectedPersonInfo; }
+        }
         public event Action<int> OnPersonSelected;
         protected virtual void PersonSelected(int PersonID)
         {
             Action<int> handler = OnPersonSelected;
             if (handler != null)
                 handler(PersonID); 
+        }
+        private void _FindNow() 
+        {
+            switch (cbFilterBy.Text)
+            {
+                case "Person ID":
+                    {
+                        ctrlPersonCardInfo1.LoadPersonInfo(int.Parse(txtFilterValue.Text));
+                        break;
+                    }
+                case "National No":
+                    {
+                        ctrlPersonCardInfo1.LoadPersonInfo(txtFilterValue.Text);
+                        break;
+                    }
+                default:
+                    break;
+            }
+            OnPersonSelected?.Invoke(ctrlPersonCardInfo1.PersonID);
+        }
+        public void LoadPersonInfo(int PersonID)
+        {
+            cbFilterBy.SelectedIndex = 1;
+            txtFilterValue.Text = PersonID.ToString();
+            _FindNow();
         }
         public ctrlPersonCardInfoWithFilter()
         {
@@ -73,6 +127,13 @@ namespace DVLD.People.Controls
         {
             if (string.IsNullOrEmpty(txtFilterValue.Text.Trim()))
                 MessageBox.Show("This Field Is Required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void txtFilterValue_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+                btnFindPerson.PerformClick();
+            if (cbFilterBy.Text == "Person ID")
+                e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
