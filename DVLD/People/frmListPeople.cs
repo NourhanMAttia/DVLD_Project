@@ -164,20 +164,19 @@ namespace DVLD
             if (cbFilterPeople.Text == "Person ID")
                 e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
+
         private void tsmShowDetails_Click(object sender, EventArgs e)
         {
             int PersonID = (int)dgvManagePeople.CurrentRow.Cells[0].Value;
             frmShowPersonInfo form = new frmShowPersonInfo(PersonID);
             form.ShowDialog();
         }
-
         private void tsmAddNewPerson_Click(object sender, EventArgs e)
         {
             frmAddUpdatePerson form = new frmAddUpdatePerson();
             form.ShowDialog();
             _RefreshPeopleList();
         }
-
         private void tsmEditPersonInfo_Click(object sender, EventArgs e)
         {
             int PersonID = (int)dgvManagePeople.CurrentRow.Cells[0].Value;
@@ -185,25 +184,24 @@ namespace DVLD
             form.ShowDialog();
             _RefreshPeopleList();
         }
-
         private void tsmDeletePerson_Click(object sender, EventArgs e)
         {
             int PersonID = (int)dgvManagePeople.CurrentRow.Cells[0].Value;
             if(MessageBox.Show($"Are You Sure You Want To Delete This Person [{PersonID}]?","Confirm!",MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 if (clsPerson.DeletePerson(PersonID))
+                {
                     MessageBox.Show($"Person With ID [{PersonID}] Deleted Successfuly", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshPeopleList();
+                }
                 else
                     MessageBox.Show($"Failed To Delete Person With ID [{PersonID}]", "Failure!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
         private void tsmSendEmail_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This Feature Isn't Implemented Yet", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
         private void tsmPhoneCall_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This Feature Isn't Implemented Yet", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -215,7 +213,6 @@ namespace DVLD
             frmShowPersonInfo form = new frmShowPersonInfo(PersonID);
             form.ShowDialog();
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

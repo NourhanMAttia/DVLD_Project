@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DVLD.Login;
+using DVLD.Users;
 using DVLD_B;
 
 namespace DVLD
@@ -22,6 +24,20 @@ namespace DVLD
                 frmListPeople ManagePeopleForm = new frmListPeople();
                 ManagePeopleForm.Show();
                 ManagePeopleForm.MdiParent = this;
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogin frm = new frmLogin();
+            frm.Show();
+            frm.MdiParent = this;
+        }
+
+        private void tsmUsers_Click(object sender, EventArgs e)
+        {
+            frmUsers frm = new frmUsers();
+            frm.Show();
+            frm.MdiParent = this;
         }
     }
 }

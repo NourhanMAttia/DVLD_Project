@@ -240,6 +240,7 @@
             this.tsmUsers.Name = "tsmUsers";
             this.tsmUsers.Size = new System.Drawing.Size(110, 44);
             this.tsmUsers.Text = "Users";
+            this.tsmUsers.Click += new System.EventHandler(this.tsmUsers_Click);
             // 
             // tsmSettings
             // 
@@ -275,6 +276,7 @@
             this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             this.signOutToolStripMenuItem.Size = new System.Drawing.Size(233, 30);
             this.signOutToolStripMenuItem.Text = "Sign Out";
+            this.signOutToolStripMenuItem.Click += new System.EventHandler(this.signOutToolStripMenuItem_Click);
             // 
             // frmMain
             // 
