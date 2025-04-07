@@ -157,21 +157,21 @@ namespace DVLD.Users
         private void tsmAddNewUser_Click(object sender, EventArgs e)
         {
             frmAddUpdateUser frm = new frmAddUpdateUser();
-            frm.Show();
+            frm.ShowDialog();
             _RefreshUsersList();
         }
         private void tsmEditUserInfo_Click(object sender, EventArgs e)
         {
             int UserID = (int)dgvUsers.CurrentRow.Cells[0].Value;
             frmAddUpdateUser frm = new frmAddUpdateUser(UserID);
-            frm.Show();
+            frm.ShowDialog();
             _RefreshUsersList();
         }
         private void tsmDeleteUser_Click(object sender, EventArgs e)
         {
             int UserID = (int)dgvUsers.CurrentRow.Cells[0].Value;
-            MessageBox.Show($"Are You Sure You Want To DELETE User With ID [{UserID}]?", "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);           
-            if(DialogResult == DialogResult.OK)
+            DialogResult res = MessageBox.Show($"Are You Sure You Want To DELETE User With ID [{UserID}]?", "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);           
+            if(res == DialogResult.OK)
             {
                 if (clsUser.DeleteUser(UserID))
                 {

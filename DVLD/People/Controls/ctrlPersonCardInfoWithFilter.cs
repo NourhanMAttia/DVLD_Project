@@ -74,6 +74,10 @@ namespace DVLD.People.Controls
             txtFilterValue.Text = PersonID.ToString();
             _FindNow();
         }
+        public void FilterFocus()
+        {
+            gbFilter.Focus();
+        }
         public ctrlPersonCardInfoWithFilter()
         {
             InitializeComponent();
@@ -88,14 +92,16 @@ namespace DVLD.People.Controls
             if (cbFilterBy.Text == "National No.")
             {
                 ctrlPersonCardInfo1.LoadPersonInfo(txtFilterValue.Text);
-                OnPersonSelected?.Invoke(ctrlPersonCardInfo1.SelectedPersonInfo.PersonID);
+                if(ctrlPersonCardInfo1.SelectedPersonInfo != null)
+                    OnPersonSelected?.Invoke(ctrlPersonCardInfo1.SelectedPersonInfo.PersonID);
             }    
             else if (cbFilterBy.Text == "Person ID")
             {
                 if (int.TryParse(txtFilterValue.Text, out int PersonID))
                 {
                     ctrlPersonCardInfo1.LoadPersonInfo(PersonID);
-                    OnPersonSelected?.Invoke(ctrlPersonCardInfo1.SelectedPersonInfo.PersonID);
+                    if(ctrlPersonCardInfo1.SelectedPersonInfo != null)
+                        OnPersonSelected?.Invoke(ctrlPersonCardInfo1.SelectedPersonInfo.PersonID);
                 }
                 else
                     MessageBox.Show("Invalid Person ID", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

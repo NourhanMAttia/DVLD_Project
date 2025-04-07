@@ -32,7 +32,6 @@
             this.tcUser = new System.Windows.Forms.TabControl();
             this.tpPersonalInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
-            this.ctrlPersonCardInfoWithFilter1 = new DVLD.People.Controls.ctrlPersonCardInfoWithFilter();
             this.tpLoginInfo = new System.Windows.Forms.TabPage();
             this.chkIsActive = new System.Windows.Forms.CheckBox();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -45,6 +44,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.ctrlPersonCardInfoWithFilter1 = new DVLD.People.Controls.ctrlPersonCardInfoWithFilter();
             this.tcUser.SuspendLayout();
             this.tpPersonalInfo.SuspendLayout();
             this.tpLoginInfo.SuspendLayout();
@@ -69,6 +69,7 @@
             this.tcUser.SelectedIndex = 0;
             this.tcUser.Size = new System.Drawing.Size(776, 483);
             this.tcUser.TabIndex = 0;
+            this.tcUser.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tcUser_Selecting);
             // 
             // tpPersonalInfo
             // 
@@ -96,15 +97,6 @@
             this.btnNext.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // ctrlPersonCardInfoWithFilter1
-            // 
-            this.ctrlPersonCardInfoWithFilter1.EnableFilter = true;
-            this.ctrlPersonCardInfoWithFilter1.Location = new System.Drawing.Point(7, 6);
-            this.ctrlPersonCardInfoWithFilter1.Name = "ctrlPersonCardInfoWithFilter1";
-            this.ctrlPersonCardInfoWithFilter1.ShowAddPerson = true;
-            this.ctrlPersonCardInfoWithFilter1.Size = new System.Drawing.Size(755, 378);
-            this.ctrlPersonCardInfoWithFilter1.TabIndex = 0;
             // 
             // tpLoginInfo
             // 
@@ -142,7 +134,7 @@
             this.txtConfirmPassword.PasswordChar = '*';
             this.txtConfirmPassword.Size = new System.Drawing.Size(115, 20);
             this.txtConfirmPassword.TabIndex = 7;
-            this.txtConfirmPassword.TextChanged += new System.EventHandler(this.txtConfirmPassword_TextChanged);
+            this.txtConfirmPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtConfirmPassword_Validating);
             // 
             // txtPassword
             // 
@@ -151,7 +143,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(115, 20);
             this.txtPassword.TabIndex = 6;
-            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
             // 
             // txtUserName
             // 
@@ -159,6 +151,7 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(115, 20);
             this.txtUserName.TabIndex = 5;
+            this.txtUserName.Validating += new System.ComponentModel.CancelEventHandler(this.txtUserName_Validating);
             // 
             // lblUserID
             // 
@@ -234,6 +227,15 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // ctrlPersonCardInfoWithFilter1
+            // 
+            this.ctrlPersonCardInfoWithFilter1.EnableFilter = true;
+            this.ctrlPersonCardInfoWithFilter1.Location = new System.Drawing.Point(7, 6);
+            this.ctrlPersonCardInfoWithFilter1.Name = "ctrlPersonCardInfoWithFilter1";
+            this.ctrlPersonCardInfoWithFilter1.ShowAddPerson = true;
+            this.ctrlPersonCardInfoWithFilter1.Size = new System.Drawing.Size(755, 378);
+            this.ctrlPersonCardInfoWithFilter1.TabIndex = 0;
+            // 
             // frmAddUpdateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -247,6 +249,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddUpdateUser";
             this.Text = "Add / Edit User";
+            this.Activated += new System.EventHandler(this.frmAddUpdateUser_Activated);
             this.Load += new System.EventHandler(this.frmAddUpdateUser_Load);
             this.tcUser.ResumeLayout(false);
             this.tpPersonalInfo.ResumeLayout(false);

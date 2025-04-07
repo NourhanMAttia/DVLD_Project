@@ -17,8 +17,30 @@ namespace DVLD.Users
         private enMode _Mode = enMode.AddNew;
         private int _UserID = -1;
         private clsUser _User;
-        private clsPerson _Person;
         private ErrorProvider ep = new ErrorProvider();
+        private void _ResetDefaultValues()
+        {
+            if(_Mode == enMode.AddNew)
+            {
+                this.Text = "Add New User";
+                lblTitle.Text = "Add New User";
+                _EnableOrDisableLoginPage(false);
+                _User = new clsUser();
+                ctrlPersonCardInfoWithFilter1.FilterFocus();
+            }
+            else
+            {
+                this.Text = "Edit User Info";
+                lblTitle.Text = "Edit User Info";
+                _EnableOrDisableLoginPage(true);
+                btnSave.Enabled = true;
+            }
+            lblUserID.Text = "???";
+            txtUserName.Text = "";
+            txtPassword.Text = "";
+            txtConfirmPassword.Text = "";
+            chkIsActive.Checked = false;
+        }
         public frmAddUpdateUser()
         {
             InitializeComponent();
@@ -30,31 +52,65 @@ namespace DVLD.Users
             _Mode = enMode.Update;
             _UserID = UserID;
         }
+        private void _EnableOrDisableLoginPage(bool enable)
+        {
+            lblUserID.Enabled = enable;
+            txtUserName.Enabled = enable;
+            txtPassword.Enabled = enable;
+            txtConfirmPassword.Enabled = enable;
+            chkIsActive.Enabled = enable;
+        }
         private void _LoadUserInfo()
         {
             _User = clsUser.FindByUserID(_UserID);
+            ctrlPersonCardInfoWithFilter1.EnableFilter = false;
             if (_User == null)
             {
-                MessageBox.Show($"User With ID [{_UserID}] Not Found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"User With ID [{_UserID}] Not Found", "User Not Found!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
                 return;
-            }
-            _User.Person = clsPerson.Find(_User.PersonID);
-            _Person = _User.Person;
-            ctrlPersonCardInfoWithFilter1.LoadPersonInfo(_User.PersonID);
+            } 
             lblUserID.Text = _User.UserID.ToString();
             txtUserName.Text = _User.Username;
             txtPassword.Text = _User.Password;
             txtConfirmPassword.Text = _User.Password;
             chkIsActive.Checked = _User.isActive;
+            ctrlPersonCardInfoWithFilter1.LoadPersonInfo(_User.PersonID);
         }
         private void frmAddUpdateUser_Load(object sender, EventArgs e)
         {
+            _ResetDefaultValues();
             if (_Mode == enMode.Update)
                 _LoadUserInfo();
         }
+
         private void btnNext_Click(object sender, EventArgs e)
         {
-            tcUser.SelectedTab = tpLoginInfo;
+            if(_Mode == enMode.Update)
+            {
+                btnSave.Enabled = true;
+                _EnableOrDisableLoginPage(true);
+                tcUser.SelectedTab = tpLoginInfo;
+            }
+            if(ctrlPersonCardInfoWithFilter1.SelectedPersonInfo.PersonID != -1)
+            {
+                if (clsUser.IsUserExistForPersonID(_User.PersonID))
+                {
+                    MessageBox.Show("This Person Already Has A User Account.", "Message!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ctrlPersonCardInfoWithFilter1.FilterFocus();
+                }
+                else
+                {
+                    btnSave.Enabled = true;
+                    _EnableOrDisableLoginPage(true);
+                    tcUser.SelectedTab = tpLoginInfo;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please Select A Person.", "Message!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ctrlPersonCardInfoWithFilter1.FilterFocus();
+            }
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -62,43 +118,108 @@ namespace DVLD.Users
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // check if person already has user account, password hashing, 
-            if (_Person == null)
+            if (!this.ValidateChildren())
             {
-                MessageBox.Show("You Must Link User To A Person.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Some Empty Fields Are Required!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if(_Mode == enMode.AddNew && clsUser.HasUser(_Person.PersonID))
-            {
-                MessageBox.Show("This Person Already Has A User Account.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            _User.Username = txtUserName.Text;
-            _User.Password = txtPassword.Text;
+            _User.PersonID = ctrlPersonCardInfoWithFilter1.SelectedPersonInfo.PersonID;
+            _User.Username = txtUserName.Text.Trim();
+            _User.Password = txtPassword.Text.Trim();
             _User.isActive = chkIsActive.Checked;
-            _User.Person = clsPerson.Find(_User.PersonID);
             if (_User.Save())
             {
+                MessageBox.Show("Saved User Info Successfuly.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblUserID.Text = _User.UserID.ToString();
                 lblTitle.Text = "Edit User Info";
+                this.Text = "Edit User Info";
                 _Mode = enMode.Update;
-                MessageBox.Show($"User With ID [{_User.UserID}] Saved Successfuly.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-                MessageBox.Show($"Error Saving User Info.", "Error!",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed At Saving User Info.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-        private void txtPassword_TextChanged(object sender, EventArgs e)
+
+        private void txtPassword_Validating(object sender, CancelEventArgs e)
         {
-            if (txtConfirmPassword.Text != txtPassword.Text)
-                ep.SetError(txtPassword, "Password Doesn't Match!");
+            if (string.IsNullOrEmpty(txtPassword.Text.Trim()))
+            {
+                ep.SetError(txtPassword, "This Field Is Required!");
+                e.Cancel = true;
+            }
             else
+            {
                 ep.SetError(txtPassword, "");
+                e.Cancel = false;
+            }
         }
-        private void txtConfirmPassword_TextChanged(object sender, EventArgs e)
+        private void txtConfirmPassword_Validating(object sender, CancelEventArgs e)
         {
-            if (txtConfirmPassword.Text != txtPassword.Text)
-                ep.SetError(txtConfirmPassword, "Password Doesn't Match!");
+            if (txtConfirmPassword.Text.Trim() != txtPassword.Text.Trim())
+            {
+                ep.SetError(txtConfirmPassword, "Password Doesn't Match");
+                e.Cancel = true;
+            }
             else
+            {
                 ep.SetError(txtConfirmPassword, "");
+                e.Cancel = false;
+            }
+        }
+        private void txtUserName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUserName.Text.Trim()))
+            {
+                ep.SetError(txtUserName, "This Field Is Required!");
+                e.Cancel = true;
+            }
+            else
+            {
+                ep.SetError(txtUserName, "");
+                e.Cancel = false;
+            }
+
+            if(_Mode == enMode.AddNew)
+            {
+                if (clsUser.IsUserExist(txtUserName.Text.Trim()))
+                {
+                    ep.SetError(txtUserName, "This Username Is Already Used By Someone Else");
+                    e.Cancel = true;
+                }
+                else
+                {
+                    ep.SetError(txtUserName, "");
+                    e.Cancel = false;
+                }
+            }
+            else
+            {
+                if(txtUserName.Text.Trim() != _User.Username)
+                {
+                    if (clsUser.IsUserExist(txtUserName.Text.Trim()))
+                    {
+                        ep.SetError(txtUserName, "This Username Is Already Used By Someone Else");
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        ep.SetError(txtUserName, "");
+                        e.Cancel = false;
+                    }
+                }
+            }
+        }
+        private void tcUser_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if(tcUser.SelectedTab == tpLoginInfo && ctrlPersonCardInfoWithFilter1.SelectedPersonInfo.PersonID == -1)
+            {
+                tcUser.SelectedTab = tpPersonalInfo;
+                MessageBox.Show("Please Select A Person First.", "Message!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void frmAddUpdateUser_Activated(object sender, EventArgs e)
+        {
+            ctrlPersonCardInfoWithFilter1.FilterFocus();
         }
     }
 }
