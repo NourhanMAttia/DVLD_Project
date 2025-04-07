@@ -182,6 +182,13 @@ namespace DVLD.Users
                     MessageBox.Show($"Failed To DELETE User With ID [{UserID}]", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void tsmChangePassword_Click(object sender, EventArgs e)
+        {
+            int UserID = (int)dgvUsers.CurrentRow.Cells[0].Value;
+            frmChangePassword frm = new frmChangePassword(UserID);
+            frm.ShowDialog();
+            _RefreshUsersList();
+        }
         private void tsmSendEmail_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This Feature Hasn't Been Implemented Yet.", "Coming Soon!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -190,5 +197,6 @@ namespace DVLD.Users
         {
             MessageBox.Show("This Feature Hasn't Been Implemented Yet.", "Coming Soon!", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+       
     }
 }

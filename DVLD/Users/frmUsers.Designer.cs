@@ -39,7 +39,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.cbIsActiveOptions = new System.Windows.Forms.ComboBox();
             this.cmUsers = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmShowDetails = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,6 +48,8 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmSendEmail = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPhoneCall = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbIsActiveOptions = new System.Windows.Forms.ComboBox();
+            this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.cmUsers.SuspendLayout();
@@ -167,20 +168,6 @@
             this.dgvUsers.Size = new System.Drawing.Size(692, 205);
             this.dgvUsers.TabIndex = 9;
             // 
-            // cbIsActiveOptions
-            // 
-            this.cbIsActiveOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbIsActiveOptions.FormattingEnabled = true;
-            this.cbIsActiveOptions.Items.AddRange(new object[] {
-            "ALL",
-            "YES",
-            "NO"});
-            this.cbIsActiveOptions.Location = new System.Drawing.Point(253, 198);
-            this.cbIsActiveOptions.Name = "cbIsActiveOptions";
-            this.cbIsActiveOptions.Size = new System.Drawing.Size(141, 22);
-            this.cbIsActiveOptions.TabIndex = 10;
-            this.cbIsActiveOptions.SelectedIndexChanged += new System.EventHandler(this.cbIsActiveOptions_SelectedIndexChanged);
-            // 
             // cmUsers
             // 
             this.cmUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -189,11 +176,12 @@
             this.tsmAddNewUser,
             this.tsmEditUserInfo,
             this.tsmDeleteUser,
+            this.tsmChangePassword,
             this.toolStripMenuItem2,
             this.tsmSendEmail,
             this.tsmPhoneCall});
             this.cmUsers.Name = "cmUsers";
-            this.cmUsers.Size = new System.Drawing.Size(150, 148);
+            this.cmUsers.Size = new System.Drawing.Size(181, 192);
             // 
             // tsmShowDetails
             // 
@@ -247,6 +235,27 @@
             this.tsmPhoneCall.Text = "Phone Call";
             this.tsmPhoneCall.Click += new System.EventHandler(this.tsmPhoneCall_Click);
             // 
+            // cbIsActiveOptions
+            // 
+            this.cbIsActiveOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbIsActiveOptions.FormattingEnabled = true;
+            this.cbIsActiveOptions.Items.AddRange(new object[] {
+            "ALL",
+            "YES",
+            "NO"});
+            this.cbIsActiveOptions.Location = new System.Drawing.Point(253, 198);
+            this.cbIsActiveOptions.Name = "cbIsActiveOptions";
+            this.cbIsActiveOptions.Size = new System.Drawing.Size(141, 22);
+            this.cbIsActiveOptions.TabIndex = 10;
+            this.cbIsActiveOptions.SelectedIndexChanged += new System.EventHandler(this.cbIsActiveOptions_SelectedIndexChanged);
+            // 
+            // tsmChangePassword
+            // 
+            this.tsmChangePassword.Name = "tsmChangePassword";
+            this.tsmChangePassword.Size = new System.Drawing.Size(180, 22);
+            this.tsmChangePassword.Text = "Change Password";
+            this.tsmChangePassword.Click += new System.EventHandler(this.tsmChangePassword_Click);
+            // 
             // frmUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -297,5 +306,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem tsmSendEmail;
         private System.Windows.Forms.ToolStripMenuItem tsmPhoneCall;
+        private System.Windows.Forms.ToolStripMenuItem tsmChangePassword;
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DVLD.Global_Classes;
 using DVLD.Login;
 using DVLD.Users;
 using DVLD_B;
@@ -26,16 +27,26 @@ namespace DVLD
                 ManagePeopleForm.MdiParent = this;
         }
 
-        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmUsers_Click(object sender, EventArgs e)
         {
-            frmLogin frm = new frmLogin();
+            frmUsers frm = new frmUsers();
             frm.Show();
             frm.MdiParent = this;
         }
 
-        private void tsmUsers_Click(object sender, EventArgs e)
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmUsers frm = new frmUsers();
+            frmShowUserDetails frm = new frmShowUserDetails(clsGlobal.GlobalUser.UserID);
+            frm.ShowDialog();
+        }
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword frm = new frmChangePassword(clsGlobal.GlobalUser.UserID);
+            frm.ShowDialog();
+        }
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogin frm = new frmLogin();
             frm.Show();
             frm.MdiParent = this;
         }
