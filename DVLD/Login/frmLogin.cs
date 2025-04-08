@@ -22,14 +22,18 @@ namespace DVLD.Login
         private void frmLogin_Load(object sender, EventArgs e)
         {
             string _username = "", _password = "";
-                if (clsGlobal.GetStoredCredentials(ref _username, ref _password))
-                {
-                    txtUsername.Text = _username;
-                    txtPassword.Text = _password;
-                    chkRememberMe.Checked = true;
-                }
-                else
-                    chkRememberMe.Checked = false;
+            if (clsGlobal.GetStoredCredentials(ref _username, ref _password))
+            {
+                txtUsername.Text = _username;
+                txtPassword.Text = _password;
+                chkRememberMe.Checked = true;
+            }
+            else
+            {
+                txtUsername.Text = _username;
+                txtPassword.Text = _password;
+                chkRememberMe.Checked = false;
+            }
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {
@@ -59,6 +63,10 @@ namespace DVLD.Login
             this.Hide();
             frmMain frm = new frmMain(this);
             frm.ShowDialog();
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

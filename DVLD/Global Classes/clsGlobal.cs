@@ -16,6 +16,21 @@ namespace DVLD.Global_Classes
         {
             bool hasRemembered = false;
             string FilePath = @"C:\DVLD-Credentials\User-Credentials.txt";
+            if(username == "" && password == "")
+            {
+                if (File.Exists(FilePath))
+                {
+                    try
+                    {
+                        File.Delete(FilePath);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error Deleting Credentials File.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                return true;
+            }
             string Delim = "#///#";
             string credentialsToRemember = GlobalUser.Username + Delim + GlobalUser.Password;
             try
@@ -35,7 +50,7 @@ namespace DVLD.Global_Classes
             string FilePath = @"C:\DVLD-Credentials\User-Credentials.txt";
             if (!File.Exists(FilePath))
             {
-                MessageBox.Show($"File Doesn't Exist", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               // MessageBox.Show($"File Doesn't Exist", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return isFound;
             }
             string Delim = "#///#";
