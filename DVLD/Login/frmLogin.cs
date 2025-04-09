@@ -13,8 +13,7 @@ using System.Windows.Forms;
 namespace DVLD.Login
 {
     public partial class frmLogin : Form
-    {
-
+    {// two features to add later : permissions for users and password encryption
         public frmLogin()
         {
             InitializeComponent();
