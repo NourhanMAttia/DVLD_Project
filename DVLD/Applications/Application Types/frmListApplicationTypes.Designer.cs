@@ -96,11 +96,15 @@
             // 
             // dgvApplicationTypes
             // 
+            this.dgvApplicationTypes.AllowUserToAddRows = false;
+            this.dgvApplicationTypes.AllowUserToDeleteRows = false;
+            this.dgvApplicationTypes.AllowUserToOrderColumns = true;
             this.dgvApplicationTypes.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvApplicationTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvApplicationTypes.ContextMenuStrip = this.cmApplicationTypes;
             this.dgvApplicationTypes.Location = new System.Drawing.Point(15, 260);
             this.dgvApplicationTypes.Name = "dgvApplicationTypes";
+            this.dgvApplicationTypes.ReadOnly = true;
             this.dgvApplicationTypes.Size = new System.Drawing.Size(773, 172);
             this.dgvApplicationTypes.TabIndex = 5;
             // 
@@ -109,7 +113,7 @@
             this.cmApplicationTypes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmEditApplicationTypes});
             this.cmApplicationTypes.Name = "cmApplicationTypes";
-            this.cmApplicationTypes.Size = new System.Drawing.Size(191, 48);
+            this.cmApplicationTypes.Size = new System.Drawing.Size(191, 26);
             // 
             // tsmEditApplicationTypes
             // 

@@ -85,6 +85,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(153, 20);
             this.txtName.TabIndex = 5;
+            this.txtName.Validating += new System.ComponentModel.CancelEventHandler(this.txtName_Validating);
             // 
             // txtFees
             // 
@@ -92,6 +93,8 @@
             this.txtFees.Name = "txtFees";
             this.txtFees.Size = new System.Drawing.Size(153, 20);
             this.txtFees.TabIndex = 6;
+            this.txtFees.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFees_KeyPress);
+            this.txtFees.Validating += new System.ComponentModel.CancelEventHandler(this.txtFees_Validating);
             // 
             // lblApplicationTypeID
             // 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DVLD.Applications.Application_Types;
 using DVLD.Global_Classes;
 using DVLD.Login;
 using DVLD.Users;
@@ -51,6 +52,17 @@ namespace DVLD
             clsGlobal.GlobalUser = null;
             _frmLogin.Show();
             this.Close();
+        }
+
+        private void tsmManageApplicationTypes_Click(object sender, EventArgs e)
+        {
+            frmListApplicationTypes frm = new frmListApplicationTypes();
+            frm.ShowDialog();
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _frmLogin.Close();
         }
     }
 }
