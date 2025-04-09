@@ -123,10 +123,6 @@ namespace DVLD_B
         {
             return clsUserData.IsUserExistForPersonID(PersonID);
         }
-        public static bool HasUser(int PersonID)
-        {
-            return clsUserData.HasUser(PersonID);
-        }
         public bool ChangePassword(string NewPassword)
         {
             return clsUserData.ChangePassword(this.UserID, NewPassword);

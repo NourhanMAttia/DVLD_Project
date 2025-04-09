@@ -255,27 +255,6 @@ namespace DVLD_D
             }
             return isExist;
         }
-        public static bool HasUser(int PersonID)
-        {
-            bool hasUser = false;
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT Found=1 FROM Users WHERE PersonID=@PersonID;";
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                hasUser = reader.HasRows;
-                reader.Close();
-            }
-            catch (Exception) { hasUser = false; }
-            finally
-            {
-                connection.Close();
-            }
-            return hasUser;
-        }
         public static bool ChangePassword(int UserID, string NewPassword)
         {
             int rowsAffected = 0;
