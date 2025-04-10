@@ -16,5 +16,13 @@ namespace DVLD.Tests.Test_Types
         {
             InitializeComponent();
         }
+        private void frmListTestTypes_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void tsmEditTestTypes_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
