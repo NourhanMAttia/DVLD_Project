@@ -35,7 +35,7 @@ namespace DVLD_D
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = "SELECT * FROM TestTypes WHERE TestID=@ID";
+            string query = "SELECT * FROM TestTypes WHERE TestTypeID=@ID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ID", ID);
             try
@@ -47,7 +47,7 @@ namespace DVLD_D
                     isFound = true;
                     Name = (string)reader["TestTypeTitle"];
                     Description = (string)reader["TestTypeDescription"];
-                    Fees = (float)reader["TestTypeFees"];
+                    Fees = Convert.ToSingle(reader["TestTypeFees"]);
                 }
                 reader.Close();
             }

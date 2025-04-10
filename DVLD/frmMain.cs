@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DVLD.Applications.Application_Types;
 using DVLD.Global_Classes;
 using DVLD.Login;
+using DVLD.Tests.Test_Types;
 using DVLD.Users;
 using DVLD_B;
 
@@ -63,6 +64,12 @@ namespace DVLD
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             _frmLogin.Close();
+        }
+
+        private void tsmManageTestTypes_Click(object sender, EventArgs e)
+        {
+            frmListTestTypes frm = new frmListTestTypes();
+            frm.ShowDialog();
         }
     }
 }

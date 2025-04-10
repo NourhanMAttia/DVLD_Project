@@ -33,12 +33,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.dgvTestTypesList = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.cmTestTypes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmEditTestTypes = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypesList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmTestTypes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -55,7 +55,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 367);
+            this.label2.Location = new System.Drawing.Point(10, 400);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 18);
             this.label2.TabIndex = 1;
@@ -65,7 +65,7 @@
             // 
             this.lblRecordsCount.AutoSize = true;
             this.lblRecordsCount.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordsCount.Location = new System.Drawing.Point(92, 367);
+            this.lblRecordsCount.Location = new System.Drawing.Point(92, 400);
             this.lblRecordsCount.Name = "lblRecordsCount";
             this.lblRecordsCount.Size = new System.Drawing.Size(35, 18);
             this.lblRecordsCount.TabIndex = 2;
@@ -82,18 +82,8 @@
             this.dgvTestTypesList.Location = new System.Drawing.Point(13, 165);
             this.dgvTestTypesList.Name = "dgvTestTypesList";
             this.dgvTestTypesList.ReadOnly = true;
-            this.dgvTestTypesList.Size = new System.Drawing.Size(686, 197);
+            this.dgvTestTypesList.Size = new System.Drawing.Size(686, 222);
             this.dgvTestTypesList.TabIndex = 3;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DVLD.Properties.Resources.test;
-            this.pictureBox1.Location = new System.Drawing.Point(257, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(198, 100);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // cmTestTypes
             // 
@@ -105,15 +95,25 @@
             // tsmEditTestTypes
             // 
             this.tsmEditTestTypes.Name = "tsmEditTestTypes";
-            this.tsmEditTestTypes.Size = new System.Drawing.Size(180, 22);
+            this.tsmEditTestTypes.Size = new System.Drawing.Size(144, 22);
             this.tsmEditTestTypes.Text = "Edit Test Type";
             this.tsmEditTestTypes.Click += new System.EventHandler(this.tsmEditTestTypes_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DVLD.Properties.Resources.test;
+            this.pictureBox1.Location = new System.Drawing.Point(257, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(198, 100);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
             // 
             // frmListTestTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 394);
+            this.ClientSize = new System.Drawing.Size(713, 426);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dgvTestTypesList);
             this.Controls.Add(this.lblRecordsCount);
@@ -125,8 +125,8 @@
             this.Text = "Test Types";
             this.Load += new System.EventHandler(this.frmListTestTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypesList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmTestTypes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
