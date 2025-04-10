@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DVLD_D
 {
-    public class clsTestTypes
+    public class clsTestTypesData
     {
         public static DataTable GetAllTestTypes()
         {
