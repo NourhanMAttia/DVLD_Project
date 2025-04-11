@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DVLD.Applications.Application_Types;
+using DVLD.Applications.Local_Driving_Licenses;
 using DVLD.Global_Classes;
 using DVLD.Login;
 using DVLD.Tests.Test_Types;
@@ -70,6 +71,17 @@ namespace DVLD
         {
             frmListTestTypes frm = new frmListTestTypes();
             frm.ShowDialog();
+        }
+
+        private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateLocalDrivingLicense frm = new frmAddUpdateLocalDrivingLicense();
+            frm.ShowDialog();
+        }
+
+        private void localDriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
