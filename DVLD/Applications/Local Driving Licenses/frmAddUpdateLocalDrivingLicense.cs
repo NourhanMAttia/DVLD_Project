@@ -22,7 +22,6 @@ namespace DVLD.Applications.Local_Driving_Licenses
         }
         private void _LoadApplicationInfo()
         {
-            ctrlPersonCardInfoWithFilter1.LoadPersonInfo()
         }
         public frmAddUpdateLocalDrivingLicense()
         {
