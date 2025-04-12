@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DVLD_D
+namespace DVLD_B
 {
-    public class clsApplications
+    internal class clsLicenseClass
     {
     }
 }
