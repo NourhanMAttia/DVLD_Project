@@ -1,4 +1,5 @@
-﻿using DVLD_B;
+﻿using DVLD.Global_Classes;
+using DVLD_B;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,29 +17,54 @@ namespace DVLD.Applications.Local_Driving_Licenses
         private enum enMode { AddNew = 0, Update = 1 };
         private enMode _Mode = enMode.AddNew;
         private clsPerson _Person;
+        private int _LocalLicenseApplicaitonID = -1;
+        private clsLocalDrivingLicenseApplication _obj;
+        private void _FillLicenseClassesComboBox()
+        {
+
+        }
         private void _RefreshApplicationForm()
         {
             _Person = new clsPerson();
+            _obj = new clsLocalDrivingLicenseApplication();
+            lblLocalDrivingLicenseApplicationID.Text = "???";
+            lblApplicationID.Text = "???";
+            lblApplicationDate.Text = DateTime.Now.ToShortDateString();
+            lblApplicationFee.Text = "???";
+            lblCreatedBy.Text = clsGlobal.GlobalUser.Username;
+            _FillLicenseClassesComboBox();
         }
         private void _LoadApplicationInfo()
         {
+            _obj = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(_LocalLicenseApplicaitonID);
+            if(_obj == null)
+            {
+                MessageBox.Show("Invalid Local License Applicaiton ID.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
+            }
+            lblLocalDrivingLicenseApplicationID.Text = _obj.LocalDrivingLicenseApplicationID.ToString();
+            lblApplicationID.Text = _obj.ApplicationID.ToString();
+            //lblApplicationDate.Text = _obj.
+
         }
         public frmAddUpdateLocalDrivingLicense()
         {
             InitializeComponent();
             _Mode = enMode.AddNew;
         }
-        public frmAddUpdateLocalDrivingLicense(int ApplicationID)
+        public frmAddUpdateLocalDrivingLicense(int LocalLicenseApplicationID)
         {
             InitializeComponent();
             _Mode = enMode.Update;
+            _LocalLicenseApplicaitonID = LocalLicenseApplicationID;
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
             if(_Person == null)
             {
-                MessageBox.Show("Choose A Person First.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Select A Person First.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             tcApplication.SelectedTab = tpApplicationInfo;
