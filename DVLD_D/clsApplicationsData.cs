@@ -196,13 +196,57 @@ namespace DVLD_D
             return (GetActiveApplicationID(PersonID, ApplicationTypeID) != -1);
         }
 
-        public static int GetActiveApplicaitonIDForLicenseClass()
+        public static int GetActiveApplicaitonIDForLicenseClass(int PersonID, int ApplicationTypeID, int LicenseClassID)
         {
-            return -1;
+            int ActiveApplicationID = -1;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT ActiveApplicationID=ApplicationID FROM Applications 
+                             INNER JOIN LocalDrivingLicenseApplications 
+                             ON Applicaitons.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
+                             WHERE ApplicantPersonID=@PersonID AND
+                             ApplicationTypeID=@ApplicationTypeID AND
+                             LocalDrivingLicenseApplications.LicenseClassID=@LicenseClassID AND
+                             ApplicationStatus=1";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+            try
+            {
+                connection.Open();
+                object res = command.ExecuteScalar();
+                if (res != null && int.TryParse(res.ToString(), out int id))
+                    ActiveApplicationID = id;
+            }
+            catch (Exception) { }
+            finally
+            {
+                connection.Close();
+            }
+            return ActiveApplicationID;
         }
-        public static bool UpdateStatus()
+        public static bool UpdateStatus(int ApplicationID, int ApplicationStatus)
         {
-            return false;
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"UPDATE Applicaitons 
+                             SET ApplicationStatus=@ApplicationStatus, LastStatusDate=@LastStatusDate
+                             WHERE ApplicationID=@ApplicationID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            command.Parameters.AddWithValue("@ApplicationStatus", ApplicationStatus);
+            command.Parameters.AddWithValue("@LastStatusDate", DateTime.Now);
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception) { }
+            finally
+            {
+                connection.Close();
+            }
+            return rowsAffected > 0;
         }
     }
 }
