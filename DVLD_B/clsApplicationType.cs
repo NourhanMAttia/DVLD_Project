@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace DVLD_B
 {
-    public class clsApplicationTypes
+    public class clsApplicationType
     {
-        public clsApplicationTypes()
+        public clsApplicationType()
         {
             ID = -1;
             Name = "";
             Fees = 0;
         }
-        private clsApplicationTypes(int ID, string Name, decimal Fees)
+        private clsApplicationType(int ID, string Name, decimal Fees)
         {
             this.ID = ID;
             this.Name = Name;
@@ -34,12 +34,12 @@ namespace DVLD_B
         {
             return clsApplicationTypesData.UpdateApplicationTypes(this.ID, this.Name, this.Fees);
         }
-        public static clsApplicationTypes Find(int ID)
+        public static clsApplicationType Find(int ID)
         {
             string Name = "";
             decimal Fees = 0;
             if (clsApplicationTypesData.FindByID(ID, ref Name, ref Fees))
-                return new clsApplicationTypes(ID, Name, Fees);
+                return new clsApplicationType(ID, Name, Fees);
             return null;
         }
     }

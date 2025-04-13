@@ -14,7 +14,7 @@ namespace DVLD.Applications.Application_Types
     public partial class frmEditAppliactionTypes : Form
     {
         private int _ApplicationTypeID = -1;
-        private clsApplicationTypes _obj;
+        private clsApplicationType _obj;
         private ErrorProvider ep = new ErrorProvider();
         public frmEditAppliactionTypes(int ApplicationTypeID)
         {
@@ -23,7 +23,7 @@ namespace DVLD.Applications.Application_Types
         }
         private void frmEditAppliactionTypes_Load(object sender, EventArgs e)
         {
-            _obj = clsApplicationTypes.Find(_ApplicationTypeID);
+            _obj = clsApplicationType.Find(_ApplicationTypeID);
             if(_obj == null)
             {
                 MessageBox.Show("Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);

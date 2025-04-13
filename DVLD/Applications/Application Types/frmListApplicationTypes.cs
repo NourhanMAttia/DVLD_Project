@@ -20,7 +20,7 @@ namespace DVLD.Applications.Application_Types
         }
         private void _RefreshList()
         {
-            _dtApplicationTypesList = clsApplicationTypes.GetApplicationTypesList();
+            _dtApplicationTypesList = clsApplicationType.GetApplicationTypesList();
             dgvApplicationTypes.DataSource = _dtApplicationTypesList;
             dgvApplicationTypes.Columns["ApplicationTypeTitle"].Width = 500;
             lblRecordsCount.Text = dgvApplicationTypes.Rows.Count.ToString();

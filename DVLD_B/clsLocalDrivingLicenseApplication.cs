@@ -5,13 +5,13 @@ using Microsoft.Win32;
 
 namespace DVLD_B
 {
-    public class clsLocalDrivingLicenseApplication
+    public class clsLocalDrivingLicenseApplication : clsApplication
     {
         private enum enMode { AddNew = 0, Update = 1 };
         private enMode _Mode = enMode.AddNew;
         public int LocalDrivingLicenseApplicationID { get; set; }
-        public int ApplicationID { get; set; }
         public int LicenseClassID { get; set; }
+        public clsLicenseClass LicenseClassInfo;
         public clsLocalDrivingLicenseApplication()
         {
             this.LocalDrivingLicenseApplicationID = -1;
