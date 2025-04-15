@@ -32,6 +32,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.tcApplication = new System.Windows.Forms.TabControl();
             this.tbPersonalInfo = new System.Windows.Forms.TabPage();
+            this.ctrlPersonCardInfoWithFilter1 = new DVLD.People.Controls.ctrlPersonCardInfoWithFilter();
             this.btnNext = new System.Windows.Forms.Button();
             this.tpApplicationInfo = new System.Windows.Forms.TabPage();
             this.cbLicenseClass = new System.Windows.Forms.ComboBox();
@@ -45,7 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ctrlPersonCardInfoWithFilter1 = new DVLD.People.Controls.ctrlPersonCardInfoWithFilter();
             this.tcApplication.SuspendLayout();
             this.tbPersonalInfo.SuspendLayout();
             this.tpApplicationInfo.SuspendLayout();
@@ -95,6 +95,16 @@
             this.tbPersonalInfo.TabIndex = 0;
             this.tbPersonalInfo.Text = "Personal Information";
             this.tbPersonalInfo.UseVisualStyleBackColor = true;
+            // 
+            // ctrlPersonCardInfoWithFilter1
+            // 
+            this.ctrlPersonCardInfoWithFilter1.EnableFilter = true;
+            this.ctrlPersonCardInfoWithFilter1.Location = new System.Drawing.Point(6, 20);
+            this.ctrlPersonCardInfoWithFilter1.Name = "ctrlPersonCardInfoWithFilter1";
+            this.ctrlPersonCardInfoWithFilter1.ShowAddPerson = true;
+            this.ctrlPersonCardInfoWithFilter1.Size = new System.Drawing.Size(755, 378);
+            this.ctrlPersonCardInfoWithFilter1.TabIndex = 5;
+            this.ctrlPersonCardInfoWithFilter1.OnPersonSelected += new System.Action<int>(this.ctrlPersonCardInfoWithFilter1_OnPersonSelected);
             // 
             // btnNext
             // 
@@ -250,15 +260,6 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // ctrlPersonCardInfoWithFilter1
-            // 
-            this.ctrlPersonCardInfoWithFilter1.EnableFilter = true;
-            this.ctrlPersonCardInfoWithFilter1.Location = new System.Drawing.Point(6, 20);
-            this.ctrlPersonCardInfoWithFilter1.Name = "ctrlPersonCardInfoWithFilter1";
-            this.ctrlPersonCardInfoWithFilter1.ShowAddPerson = true;
-            this.ctrlPersonCardInfoWithFilter1.Size = new System.Drawing.Size(755, 378);
-            this.ctrlPersonCardInfoWithFilter1.TabIndex = 5;
             // 
             // frmAddUpdateLocalDrivingLicense
             // 

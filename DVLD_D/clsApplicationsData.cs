@@ -167,7 +167,7 @@ namespace DVLD_D
             }
             return isFound;
         }
-        private static int GetActiveApplicationID(int PersonID, int ApplicationTypeID)
+        public static int GetActiveApplicationID(int PersonID, int ApplicationTypeID)
         {
             int ActiveApplicationID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -176,6 +176,29 @@ namespace DVLD_D
                              ApplicationTypeID=@ApplicationTypeID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
+            try
+            {
+                connection.Open();
+                object res = command.ExecuteScalar();
+                if (res != null && int.TryParse(res.ToString(), out int id))
+                    ActiveApplicationID = id;
+            }
+            catch (Exception) { }
+            finally
+            {
+                connection.Close();
+            }
+            return ActiveApplicationID;
+        }
+        public static int GetActiveApplicationID(int ApplicationTypeID)
+        {
+            int ActiveApplicationID = -1;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT ActiveApplicationID=ApplicationID FROM Applications
+                             WHERE ApplicationStatus=1 AND
+                             ApplicationTypeID=@ApplicationTypeID";
+            SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
             try
             {

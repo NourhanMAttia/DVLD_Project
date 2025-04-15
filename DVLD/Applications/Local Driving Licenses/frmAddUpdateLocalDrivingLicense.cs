@@ -17,7 +17,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
     {
         private enum enMode { AddNew = 0, Update = 1 };
         private enMode _Mode = enMode.AddNew;
-        private clsPerson _Person;
+        private int _SelectedPersonID=-1;
         private int _LocalLicenseApplicaitonID = -1;
         private clsLocalDrivingLicenseApplication _LocalLicenseApplication;
 
@@ -50,7 +50,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
                 lblTitle.Text = "New Local Driving License Applicaiton";
                 _LocalLicenseApplicaitonID = -1;
                 _LocalLicenseApplication = new clsLocalDrivingLicenseApplication();
-                _Person = new clsPerson();
+                _SelectedPersonID = -1;
                 ctrlPersonCardInfoWithFilter1.FilterFocus();
                 lblApplicationFee.Text = clsApplicationType.Find((int)clsApplication.enApplicationType.NewDrivingLicense).Fees.ToString();
                 cbLicenseClass.SelectedIndex = 2;
@@ -98,17 +98,32 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (ctrlPersonCardInfoWithFilter1.SelectedPersonInfo == null)
+            if(_Mode == enMode.Update || ctrlPersonCardInfoWithFilter1.PersonID != -1)
             {
-                MessageBox.Show("Select A Person First.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                tcApplication.SelectedTab = tbPersonalInfo;
-                return;
+                ctrlPersonCardInfoWithFilter1.EnableFilter = false;
+                tpApplicationInfo.Enabled = true;
+                tcApplication.SelectedTab = tpApplicationInfo;
+                btnSave.Enabled = true;
             }
-            tcApplication.SelectedTab = tpApplicationInfo;
+            else
+            {
+                ctrlPersonCardInfoWithFilter1.EnableFilter = true;
+                tpApplicationInfo.Enabled = false;
+                tcApplication.SelectedTab = tbPersonalInfo;
+                btnSave.Enabled = false;
+                MessageBox.Show("Select a person first.", "Message!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
+            _LocalLicenseApplication.ApplicationDate = Convert.ToDateTime(lblApplicationDate.Text);
+            _LocalLicenseApplication.LicenseClassID = cbLicenseClass.SelectedIndex;
+            _LocalLicenseApplication.PaidFees = Convert.ToSingle(lblApplicationFee.Text);
+            _LocalLicenseApplication.CreatedByUserID = clsGlobal.GlobalUser.UserID;
 
+            _LocalLicenseApplication.ApplicantPersonID = _SelectedPersonID;
+            //_LocalLicenseApplication.
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -126,6 +141,16 @@ namespace DVLD.Applications.Local_Driving_Licenses
                 MessageBox.Show("Select A Person First.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true; 
             }
-        }  
+        }
+
+        private void _OnPersonSelectedEventHandler(object sender, int PersonID)
+        {
+            _SelectedPersonID = PersonID;
+            ctrlPersonCardInfoWithFilter1.LoadPersonInfo(PersonID);
+        }
+        private void ctrlPersonCardInfoWithFilter1_OnPersonSelected(int PersonID)
+        {
+            _SelectedPersonID = PersonID;
+        }
     }
 }
