@@ -117,13 +117,20 @@ namespace DVLD.Applications.Local_Driving_Licenses
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _LocalLicenseApplication.ApplicationDate = Convert.ToDateTime(lblApplicationDate.Text);
-            _LocalLicenseApplication.LicenseClassID = cbLicenseClass.SelectedIndex;
-            _LocalLicenseApplication.PaidFees = Convert.ToSingle(lblApplicationFee.Text);
-            _LocalLicenseApplication.CreatedByUserID = clsGlobal.GlobalUser.UserID;
-
-            _LocalLicenseApplication.ApplicantPersonID = _SelectedPersonID;
-            //_LocalLicenseApplication.
+            if (!this.ValidateChildren())
+            {
+                MessageBox.Show("Some Required Fields Are NOT Valid.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int LicenseClassID = clsLicenseClass.GetLicenseClassByName(cbLicenseClass.Text).ClassID;
+            int ActiveApplicationID = clsApplication.GetActiveApplicationIDForLicenseClass(_SelectedPersonID, clsApplication.enApplicationType.NewDrivingLicense, LicenseClassID);
+            if(ActiveApplicationID != -1)
+            {
+                MessageBox.Show("You Already Have An Application For This Class. Choose Another One.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbLicenseClass.Focus();
+                return;
+            }
+            //if(clsLicenseClass.)
         }
         private void btnClose_Click(object sender, EventArgs e)
         {

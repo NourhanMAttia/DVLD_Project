@@ -137,7 +137,7 @@ namespace DVLD_B
         }
         public static int GetActiveApplicationIDForLicenseClass(int PersonID, clsApplication.enApplicationType ApplicationTypeID, int LicenseClassID)
         {
-            return clsApplicationsData.GetActiveApplicaitonIDForLicenseClass(PersonID, ApplicationTypeID, LicenseClassID);
+            return clsApplicationsData.GetActiveApplicaitonIDForLicenseClass(PersonID, (int)ApplicationTypeID, LicenseClassID);
         }
     }
 }
