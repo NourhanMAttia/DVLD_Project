@@ -94,7 +94,7 @@ namespace DVLD_D
                              (ApplicationID, LicenseClassID)
                              VALUES
                              (@ApplicationID, @LicenseClassID);
-                             SCOPE_IDENTITY();";
+                             SELECT SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
