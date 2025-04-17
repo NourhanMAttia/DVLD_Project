@@ -59,6 +59,7 @@ namespace DVLD.People.Controls
         }
         public void LoadPersonInfo(int PersonID)
         {
+            _PersonID = PersonID;
             _Person = clsPerson.Find(PersonID);
             if(_Person == null)
             {
@@ -77,6 +78,7 @@ namespace DVLD.People.Controls
                 MessageBox.Show($"Couldn't Find Person With National Number [{NationalNo}]!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            _PersonID = _Person.PersonID;
             _FillPersonInfo();
         }
         public void ResetPersonInfo()

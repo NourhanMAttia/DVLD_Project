@@ -98,7 +98,15 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if(_Mode == enMode.Update || ctrlPersonCardInfoWithFilter1.PersonID != -1)
+            if(_Mode == enMode.Update)
+            {
+                ctrlPersonCardInfoWithFilter1.EnableFilter = false;
+                tpApplicationInfo.Enabled = true;
+                tcApplication.SelectedTab = tpApplicationInfo;
+                btnSave.Enabled = true;
+                return;
+            }
+            if (ctrlPersonCardInfoWithFilter1.PersonID != -1)
             {
                 ctrlPersonCardInfoWithFilter1.EnableFilter = false;
                 tpApplicationInfo.Enabled = true;
@@ -130,7 +138,28 @@ namespace DVLD.Applications.Local_Driving_Licenses
                 cbLicenseClass.Focus();
                 return;
             }
-            //if(clsLicenseClass.)
+            if (clsLicense.DoesLicenseExistForPersonID(ctrlPersonCardInfoWithFilter1.PersonID, LicenseClassID))
+            {
+                MessageBox.Show("This Person Already Has An Active License For This Class.", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            _LocalLicenseApplication.ApplicantPersonID = ctrlPersonCardInfoWithFilter1.PersonID; ;
+            _LocalLicenseApplication.ApplicationDate = DateTime.Now;
+            _LocalLicenseApplication.ApplicationTypeID = 1;
+            _LocalLicenseApplication.ApplicationStatus = clsApplication.enApplicationStatus.New;
+            _LocalLicenseApplication.LastStatusDate = DateTime.Now;
+            _LocalLicenseApplication.PaidFees = Convert.ToSingle(lblApplicationFee.Text);
+            _LocalLicenseApplication.CreatedByUserID = clsGlobal.GlobalUser.UserID;
+            _LocalLicenseApplication.LicenseClassID = LicenseClassID;
+            if (_LocalLicenseApplication.Save())
+            {
+                _Mode = enMode.Update;
+                lblTitle.Text = "Update Local License Info";
+                lblApplicationID.Text = _LocalLicenseApplication.LocalDrivingLicenseApplicationID.ToString();
+                MessageBox.Show("Data Saved Successfuly.", "Information!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show("Error : Failed To Save Data.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -150,11 +179,6 @@ namespace DVLD.Applications.Local_Driving_Licenses
             }
         }
 
-        private void _OnPersonSelectedEventHandler(object sender, int PersonID)
-        {
-            _SelectedPersonID = PersonID;
-            ctrlPersonCardInfoWithFilter1.LoadPersonInfo(PersonID);
-        }
         private void ctrlPersonCardInfoWithFilter1_OnPersonSelected(int PersonID)
         {
             _SelectedPersonID = PersonID;

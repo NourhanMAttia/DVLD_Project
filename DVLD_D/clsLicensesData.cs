@@ -206,7 +206,7 @@ namespace DVLD_D
             try
             {
                 connection.Open();
-                object res = command.ExecuteReader();
+                object res = command.ExecuteScalar();
                 if (res != null && int.TryParse(res.ToString(), out int id))
                     ActiveLicenseID = id;
             }
@@ -216,6 +216,31 @@ namespace DVLD_D
                 connection.Close();
             }
             return ActiveLicenseID;
+        }
+        public static bool DoesLicenseExistForPersonID(int PersonID, int LicenseClassID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT Found=1 FROM 
+                             Licenses INNER JOIN Drivers ON
+                             Licenses.DriverID = Drivers.DriverID
+                             WHERE Drivers.PersonID=@PersonID, Licenses.LicenseClassID=@LicenseClassID, IsActive=1";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                isFound = reader.HasRows;
+                reader.Close();
+            }
+            catch (Exception) { }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
         }
     }
 }

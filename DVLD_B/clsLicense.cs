@@ -114,5 +114,9 @@ namespace DVLD_B
         {
             return clsLicensesData.GetActiveLicenseIDByPersonID(PersonID, LicenseClassID);
         }
+        public static bool DoesLicenseExistForPersonID(int PersonID, int LicenseClassID)
+        {
+            return clsLicensesData.DoesLicenseExistForPersonID(PersonID, LicenseClassID);
+        }
     }
 }
