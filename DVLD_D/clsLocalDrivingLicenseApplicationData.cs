@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
@@ -90,11 +91,12 @@ namespace DVLD_D
         {
             int LocalDrivingLicenseApplicationID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"INSERT INTO LocalDrivingLicenseApplications
+            string query = @"SET NOCOUNT ON;
+                             INSERT INTO LocalDrivingLicenseApplications
                              (ApplicationID, LicenseClassID)
                              VALUES
                              (@ApplicationID, @LicenseClassID);
-                             SELECT SCOPE_IDENTITY();";
+                             SELECT CAST(SCOPE_IDENTITY() AS INT);";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
@@ -105,7 +107,11 @@ namespace DVLD_D
                 if (res != null && int.TryParse(res.ToString(), out int ID))
                     LocalDrivingLicenseApplicationID = ID;
             }
-            catch (Exception) { }
+            catch (SqlException e) 
+            {
+                Debug.WriteLine("SQL error: " + e.Message);
+                throw;  
+            }
             finally
             {
                 connection.Close();

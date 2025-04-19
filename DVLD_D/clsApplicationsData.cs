@@ -72,7 +72,7 @@ namespace DVLD_D
                              (ApplicantPersonID, ApplicationDate, ApplicationTypeID, ApplicationStatus, LastStatusDate,PaidFees, CreatedByUserID)
                              VALUES
                              (@ApplicantPersonID,@ApplicationDate, @ApplicationTypeID, @ApplicationStatus, @LastStatusDate, @PaidFees, @CreatedByUserID);
-                             SCOPE_IDENTITY();";
+                             SELECT SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
             command.Parameters.AddWithValue("@ApplicationDate", ApplicationDate);

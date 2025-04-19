@@ -10,8 +10,8 @@ namespace DVLD_B
 {
     public class clsApplication
     {
-        private enum enMode { AddNew = 0, Update = 1 };
-        private enMode _Mode = enMode.AddNew;
+        public enum enMode { AddNew = 0, Update = 1 };
+        public enMode Mode = enMode.AddNew;
         public enum enApplicationType {
             NewDrivingLicense = 1, RenewDrivingLicense = 2, ReplaceLostDrivingLicense = 3,
             ReplaceDamagedDrivingLicense = 4, ReleaseDetainedDrivingLicsense = 5, NewInternationalLicense = 6, RetakeTest = 7
@@ -19,6 +19,7 @@ namespace DVLD_B
         public enum enApplicationStatus { New = 1, Cancelled = 2, Completed = 3 };
         public int ApplicationID { get; set; }
         public int ApplicantPersonID{get;set;}
+        public clsPerson PersonInfo { get; set; }
         public DateTime ApplicationDate{get;set;}
         public int ApplicationTypeID{get;set;}
         public clsApplicationType ApplicationTypeInfo;
@@ -33,7 +34,7 @@ namespace DVLD_B
         public clsUser CreatedByUserInfo;
         public clsApplication()
         {
-            _Mode = enMode.AddNew;
+            Mode = enMode.AddNew;
 
             this.ApplicationID = -1;
             this.ApplicantPersonID = -1;
@@ -49,13 +50,14 @@ namespace DVLD_B
         private clsApplication(int ApplicatoinID, int ApplicantPersonID, int ApplicationTypeID, int CreatedByUserID,
                                enApplicationStatus ApplicationStatus, float PaidFees, DateTime ApplicationDate, DateTime LastStatusDate)
         {
-            _Mode = enMode.Update;
+            Mode = enMode.Update;
 
             this.ApplicationID = ApplicatoinID;
             this.ApplicantPersonID = ApplicantPersonID;
             this.ApplicationTypeID = ApplicationTypeID;
             this.CreatedByUserID = CreatedByUserID;
 
+            this.PersonInfo = clsPerson.Find(ApplicantPersonID);
             this.ApplicationTypeInfo = clsApplicationType.Find(ApplicationTypeID);
             this.CreatedByUserInfo = clsUser.FindByUserID(CreatedByUserID);
 
@@ -94,13 +96,13 @@ namespace DVLD_B
         }
         public bool Save()
         {
-            switch (_Mode)
+            switch (Mode)
             {
                 case enMode.AddNew:
                     {
                         if (_AddNewApplication())
                         {
-                            _Mode = enMode.Update;
+                            Mode = enMode.Update;
                             return true;
                         }
                         return false;
