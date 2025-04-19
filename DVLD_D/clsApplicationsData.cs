@@ -223,9 +223,9 @@ namespace DVLD_D
         {
             int ActiveApplicationID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT ActiveApplicationID=ApplicationID FROM Applications 
+            string query = @"SELECT ActiveApplicationID=Applications.ApplicationID FROM Applications 
                              INNER JOIN LocalDrivingLicenseApplications 
-                             ON Applicaitons.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
+                             ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID
                              WHERE ApplicantPersonID=@PersonID AND
                              ApplicationTypeID=@ApplicationTypeID AND
                              LocalDrivingLicenseApplications.LicenseClassID=@LicenseClassID AND

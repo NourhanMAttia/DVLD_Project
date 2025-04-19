@@ -81,7 +81,8 @@ namespace DVLD
 
         private void localDriToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmManageLocalLicenseApplications frm = new frmManageLocalLicenseApplications();
+            frm.ShowDialog();
         }
     }
 }

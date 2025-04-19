@@ -134,7 +134,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
             int ActiveApplicationID = clsApplication.GetActiveApplicationIDForLicenseClass(_SelectedPersonID, clsApplication.enApplicationType.NewDrivingLicense, LicenseClassID);
             if(ActiveApplicationID != -1)
             {
-                MessageBox.Show("You Already Have An Application For This Class. Choose Another One.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("This Person Already Has An Application For This Class. Choose Another One.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cbLicenseClass.Focus();
                 return;
             }
