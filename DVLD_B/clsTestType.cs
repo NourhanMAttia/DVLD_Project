@@ -10,6 +10,7 @@ namespace DVLD_B
 {
     public class clsTestType
     {
+        public enum enTestType { VisionTest=1, WrittenTest=2, StreetTest=3};
         public int ID { get; set; }
         public string Name{get; set;}
         public string Description{get; set;}
