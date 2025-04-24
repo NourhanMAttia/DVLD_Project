@@ -121,24 +121,38 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void tsmEditApplication_Click(object sender, EventArgs e)
         {
-
+            
         }
         private void tsmDeleteApplication_Click(object sender, EventArgs e)
         {
-
+            int localAppID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            clsLocalDrivingLicenseApplication localApplication = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(localAppID);
+            if(localApplication == null)
+            {
+                MessageBox.Show("Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            DialogResult res = MessageBox.Show("Are You Sure You Want To Delete This Application?", "Confirm!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            if(res == DialogResult.OK)
+            {
+                if (clsLocalDrivingLicenseApplication.DeleteApplication(localAppID))
+                    MessageBox.Show("Application Deleted Successfuly.", "Inform!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Failed To Delete Application.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void tsmCancelApplication_Click(object sender, EventArgs e)
         {
-
+            // change status
         }
 
         private void tsmIssueLicenseFirstTime_Click(object sender, EventArgs e)
         {
-
+            
         }
         private void tsmShowLicense_Click(object sender, EventArgs e)
         {
-
+            
         }
         private void tsmLicenseHistory_Click(object sender, EventArgs e)
         {
@@ -147,7 +161,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void tsmVisionTest_Click(object sender, EventArgs e)
         {
-
+            // handle success, handle failuer
         }
         private void tsmWrittenTest_Click(object sender, EventArgs e)
         {
@@ -155,7 +169,81 @@ namespace DVLD.Applications.Local_Driving_Licenses
         }
         private void tsmStreetTest_Click(object sender, EventArgs e)
         {
+            // if success , then add to drivers
+            // handle retakes
+        }
 
+        private void cmLocalLicensesApplications_Opening(object sender, CancelEventArgs e)
+        {
+            int appID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            clsLocalDrivingLicenseApplication application = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(appID);
+            if(application == null)
+            {
+                MessageBox.Show("Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            tsmShowApplicationDetails.Enabled = true;
+            tsmEditApplication.Enabled = true;
+            tsmDeleteApplication.Enabled = true;
+            tsmCancelApplication.Enabled = true;
+            tsmScheduleTest.Enabled = true;
+            tsmIssueLicenseFirstTime.Enabled = true;
+            tsmShowLicense.Enabled = true;
+            tsmLicenseHistory.Enabled = true;
+            if(application.ApplicationStatus == (clsApplication.enApplicationStatus)1)
+            {
+                tsmIssueLicenseFirstTime.Enabled = false;
+                tsmShowLicense.Enabled = false;
+                byte passedTestCount = clsTest.PassedTestCount(appID);
+                switch (passedTestCount)
+                {
+                    case 0:
+                        {
+                            tsmVisionTest.Enabled = true;
+                            tsmWrittenTest.Enabled = false;
+                            tsmStreetTest.Enabled = false;
+                            break;
+                        }
+                    case 1:
+                        {
+                            tsmVisionTest.Enabled = false;
+                            tsmWrittenTest.Enabled = true;
+                            tsmStreetTest.Enabled = false;
+                            break;
+                        }
+                    case 2:
+                        {
+                            tsmVisionTest.Enabled = false;
+                            tsmWrittenTest.Enabled = false;
+                            tsmStreetTest.Enabled = true;
+                            break;
+                        }
+                    case 3:
+                        {
+                            tsmScheduleTest.Enabled = false;
+                            break;
+                        }
+                }
+                return;
+            }
+            if(application.ApplicationStatus == (clsApplication.enApplicationStatus)2)
+            {
+                tsmEditApplication.Enabled = false;
+                tsmDeleteApplication.Enabled = false;
+                tsmCancelApplication.Enabled = false;
+                tsmScheduleTest.Enabled = false;
+                tsmIssueLicenseFirstTime.Enabled = false;
+                tsmShowLicense.Enabled = false;
+                return;
+            }
+            if (application.ApplicationStatus == (clsApplication.enApplicationStatus)3)
+            {
+                tsmEditApplication.Enabled = false;
+                tsmDeleteApplication.Enabled = false;
+                tsmCancelApplication.Enabled = false;
+                tsmScheduleTest.Enabled = false;
+                return;
+            }
         }
     }
 }

@@ -107,7 +107,5 @@ namespace DVLD_B
         {
             return clsLocalDrivingLicenseApplicationData.DeleteLocalDrivingLicenseApplication(this.LocalDrivingLicenseApplicationID);
         }
-        
-
     }
 }

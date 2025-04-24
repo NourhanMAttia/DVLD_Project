@@ -86,7 +86,7 @@ namespace DVLD_B
             }
             return false;
         }
-        public byte PassedTestCount(int LocalDrivingLicenseApplicationID)
+        public static byte PassedTestCount(int LocalDrivingLicenseApplicationID)
         {
             return clsTestsData.GetPassedTestCount(LocalDrivingLicenseApplicationID);
         }
