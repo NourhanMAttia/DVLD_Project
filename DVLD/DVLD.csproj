@@ -130,6 +130,12 @@
     <Compile Include="Tests\controls\ctrlScheduleTest.Designer.cs">
       <DependentUpon>ctrlScheduleTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tests\frmScheduleTestAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tests\frmScheduleTestAppointment.Designer.cs">
+      <DependentUpon>frmScheduleTestAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tests\Test Types\frmEditTestTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,6 +222,9 @@
     <EmbeddedResource Include="Tests\controls\ctrlScheduleTest.resx">
       <DependentUpon>ctrlScheduleTest.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tests\frmScheduleTestAppointment.resx">
+      <DependentUpon>frmScheduleTestAppointment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tests\Test Types\frmEditTestTypes.resx">
       <DependentUpon>frmEditTestTypes.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,9 +278,11 @@
     <None Include="Resources\deleteDoc24.png" />
     <None Include="Resources\cancel24.png" />
     <None Include="Resources\car24.png" />
+    <None Include="Resources\addAppointment24.png" />
     <Content Include="Resources\doc.png" />
     <None Include="Resources\editDoc.png" />
     <None Include="Resources\eye24.png" />
+    <None Include="Resources\eye64.png" />
     <Content Include="Resources\female.png" />
     <None Include="Resources\female1.png" />
     <Content Include="Resources\group.png" />

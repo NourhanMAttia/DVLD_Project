@@ -1,4 +1,5 @@
-﻿using DVLD_B;
+﻿using DVLD.Tests;
+using DVLD_B;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,15 +136,36 @@ namespace DVLD.Applications.Local_Driving_Licenses
             DialogResult res = MessageBox.Show("Are You Sure You Want To Delete This Application?", "Confirm!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             if(res == DialogResult.OK)
             {
-                if (clsLocalDrivingLicenseApplication.DeleteApplication(localAppID))
+                if (clsLocalDrivingLicenseApplication.DeleteLocalLicenseApplication(localAppID))
+                {
                     MessageBox.Show("Application Deleted Successfuly.", "Inform!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshList();
+                }
                 else
                     MessageBox.Show("Failed To Delete Application.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void tsmCancelApplication_Click(object sender, EventArgs e)
         {
-            // change status
+            int localAppID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            clsLocalDrivingLicenseApplication localApplication = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(localAppID);
+            if (localApplication == null)
+            {
+                MessageBox.Show("Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            localApplication.ApplicationStatus = (clsApplication.enApplicationStatus)2;
+            DialogResult res = MessageBox.Show("Are You Sure You Want To Cancel This Application?", "Confirm!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            if (res == DialogResult.OK)
+            {
+                if (localApplication.UpdateStatus())
+                {
+                    MessageBox.Show("Application Cancelled.", "Message!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshList();
+                }
+                else
+                    MessageBox.Show("Error Cancelling Application.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }   
         }
 
         private void tsmIssueLicenseFirstTime_Click(object sender, EventArgs e)
@@ -161,7 +183,9 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void tsmVisionTest_Click(object sender, EventArgs e)
         {
-            // handle success, handle failuer
+            frmScheduleTestAppointment frm = new frmScheduleTestAppointment();
+            frm.ShowDialog();
+            _RefreshList();
         }
         private void tsmWrittenTest_Click(object sender, EventArgs e)
         {

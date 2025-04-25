@@ -252,7 +252,7 @@ namespace DVLD_D
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"UPDATE Applicaitons 
+            string query = @"UPDATE Applications 
                              SET ApplicationStatus=@ApplicationStatus, LastStatusDate=@LastStatusDate
                              WHERE ApplicationID=@ApplicationID";
             SqlCommand command = new SqlCommand(query, connection);

@@ -103,9 +103,9 @@ namespace DVLD_B
             }
             return false;
         }
-        public bool DeleteLocalLicenseApplication()
+        public static bool DeleteLocalLicenseApplication(int LocalDrivingLicenseApplicationID)
         {
-            return clsLocalDrivingLicenseApplicationData.DeleteLocalDrivingLicenseApplication(this.LocalDrivingLicenseApplicationID);
+            return clsLocalDrivingLicenseApplicationData.DeleteLocalDrivingLicenseApplication(LocalDrivingLicenseApplicationID);
         }
     }
 }
