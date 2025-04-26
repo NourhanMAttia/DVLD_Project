@@ -24,7 +24,7 @@ namespace DVLD.Tests.Test_Types
         }
         private void frmEditTestTypes_Load(object sender, EventArgs e)
         {
-            _TestTypeInfo = clsTestType.GetTestTypeByID(_TestTypeID);
+            _TestTypeInfo = clsTestType.GetTestTypeByID((clsTestType.enTestType)_TestTypeID);
             if(_TestTypeInfo != null)
             {
                 lblTestTypeID.Text = _TestTypeInfo.ID.ToString();

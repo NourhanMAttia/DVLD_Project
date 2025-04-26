@@ -12,6 +12,7 @@ namespace DVLD_B
     {
         private enum enMode { AddNew = 0, Update = 1 };
         private enMode _Mode = enMode.AddNew;
+        public enum enTestType { VisionTest = 1, WrittenTest = 2, StreetTest = 3 };
         public int TestID { set; get; }
         public int TestAppointmentID{set;get;}
         public int CreatedByUserID{set;get;}

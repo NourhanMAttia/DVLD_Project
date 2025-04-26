@@ -33,12 +33,12 @@ namespace DVLD_B
         {
             return clsTestTypesData.GetAllTestTypes();
         }
-        public static clsTestType GetTestTypeByID(int ID)
+        public static clsTestType GetTestTypeByID(enTestType ID)
         {
             string name = "", description = "";
             float fees = -1;
-            if (clsTestTypesData.GetTestTypeByID(ID, ref name, ref description, ref fees))
-                return new clsTestType(ID, name, description, fees);
+            if (clsTestTypesData.GetTestTypeByID((int)ID, ref name, ref description, ref fees))
+                return new clsTestType((int)ID, name, description, fees);
             else
                 return null;
         }

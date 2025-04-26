@@ -49,7 +49,7 @@ namespace DVLD_B
             this.IsLocked = IsLocked;
             this.AppointmentDate = AppointmentDate;
         }
-        public DataTable GetAllTestAppointment()
+        public static DataTable GetAllTestAppointment()
         {
             return clsTestAppointmentsData.GetAllTestAppointments();
         }
@@ -86,7 +86,7 @@ namespace DVLD_B
         {
             return clsTestAppointmentsData.GetTestID(this.TestAppointmentID);
         }
-        public clsTestAppointment Find(int AppointmentID)
+        public static clsTestAppointment Find(int AppointmentID)
         {
             int testTypeID = -1, localDrivingLicenseApplicationID = -1, createdByUserID = -1, retakeTestApplicationID = -1;
             DateTime appointmentDate = DateTime.Now;
@@ -96,7 +96,7 @@ namespace DVLD_B
                 return new clsTestAppointment(AppointmentID, (clsTestType.enTestType)testTypeID, localDrivingLicenseApplicationID, appointmentDate, paidFees, createdByUserID, isLocked, retakeTestApplicationID);
             return null;
         }
-        public clsTestAppointment GetLastTestAppointment(clsTestType.enTestType TestTypeID, int LocalDrivingLicenseApplicationID)
+        public static clsTestAppointment GetLastTestAppointment(clsTestType.enTestType TestTypeID, int LocalDrivingLicenseApplicationID)
         {
             int appointmentID = -1, createdByUserID = -1, retakeTestApplicationID = -1;
             DateTime appointmentDate = DateTime.Now;
@@ -112,7 +112,7 @@ namespace DVLD_B
         {
             return clsTestAppointmentsData.GetApplicationAppointmentsPerTestType(this.LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }
-        public DataTable GetApplicationTestAppointmentPerTestType(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestTypeID)
+        public static DataTable GetApplicationTestAppointmentPerTestType(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestTypeID)
         {
             return clsTestAppointmentsData.GetApplicationAppointmentsPerTestType(LocalDrivingLicenseApplicationID, (int)TestTypeID);
         }

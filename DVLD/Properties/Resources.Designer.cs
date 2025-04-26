@@ -133,6 +133,16 @@ namespace DVLD.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap car64 {
+            get {
+                object obj = ResourceManager.GetObject("car64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap deleteDoc24 {
             get {
                 object obj = ResourceManager.GetObject("deleteDoc24", resourceCulture);
@@ -326,6 +336,16 @@ namespace DVLD.Properties {
         internal static System.Drawing.Bitmap test24 {
             get {
                 object obj = ResourceManager.GetObject("test24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap test64 {
+            get {
+                object obj = ResourceManager.GetObject("test64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -183,18 +183,24 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void tsmVisionTest_Click(object sender, EventArgs e)
         {
-            frmScheduleTestAppointment frm = new frmScheduleTestAppointment();
+            int LocalDrivingLicenseApplicationID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            frmScheduleTestAppointments frm = new frmScheduleTestAppointments(LocalDrivingLicenseApplicationID, (clsTest.enTestType)1);
             frm.ShowDialog();
             _RefreshList();
         }
         private void tsmWrittenTest_Click(object sender, EventArgs e)
         {
-
+            int LocalDrivingLicenseApplicationID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            frmScheduleTestAppointments frm = new frmScheduleTestAppointments(LocalDrivingLicenseApplicationID, (clsTest.enTestType)2);
+            frm.ShowDialog();
+            _RefreshList();
         }
         private void tsmStreetTest_Click(object sender, EventArgs e)
         {
-            // if success , then add to drivers
-            // handle retakes
+            int LocalDrivingLicenseApplicationID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            frmScheduleTestAppointments frm = new frmScheduleTestAppointments(LocalDrivingLicenseApplicationID, (clsTest.enTestType)3);
+            frm.ShowDialog();
+            _RefreshList();
         }
 
         private void cmLocalLicensesApplications_Opening(object sender, CancelEventArgs e)
