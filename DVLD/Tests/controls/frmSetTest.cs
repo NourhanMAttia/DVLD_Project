@@ -42,19 +42,19 @@ namespace DVLD.Tests.controls
             {
                 case clsTestType.enTestType.VisionTest:
                     {
-                        gbTestInfo.Name = "Vision Test";
+                        gbTestInfo.Text = "Vision Test";
                         pbTestImage.Image = Properties.Resources.eye64;
                         break;
                     }
                 case clsTestType.enTestType.WrittenTest:
                     {
-                        gbTestInfo.Name = "Written Test";
+                        gbTestInfo.Text = "Written Test";
                         pbTestImage.Image = Properties.Resources.test64;
                         break;
                     }
                 case clsTestType.enTestType.StreetTest:
                     {
-                        gbTestInfo.Name = "Street Test";
+                        gbTestInfo.Text = "Street Test";
                         pbTestImage.Image = Properties.Resources.car64;
                         break;
                     }
