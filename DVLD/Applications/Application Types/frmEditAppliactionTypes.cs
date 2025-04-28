@@ -42,7 +42,7 @@ namespace DVLD.Applications.Application_Types
                 return;
             }
             _obj.Name = txtName.Text.Trim();
-            _obj.Fees = Convert.ToDecimal(txtFees.Text.Trim());
+            _obj.Fees = Convert.ToSingle(txtFees.Text.Trim());
             if (_obj.UpdateApplicationTypes())
                 MessageBox.Show("Saved Info Successfuly.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else

@@ -17,7 +17,7 @@ namespace DVLD_B
             Name = "";
             Fees = 0;
         }
-        private clsApplicationType(int ID, string Name, decimal Fees)
+        private clsApplicationType(int ID, string Name, float Fees)
         {
             this.ID = ID;
             this.Name = Name;
@@ -25,7 +25,7 @@ namespace DVLD_B
         }
         public int ID { get; set; }
         public string Name{get;set;}
-        public decimal Fees{get;set;}
+        public float Fees{get;set;}
         public static DataTable GetApplicationTypesList()
         {
             return clsApplicationTypesData.GetAllApplicationTypes();
@@ -37,7 +37,7 @@ namespace DVLD_B
         public static clsApplicationType Find(int ID)
         {
             string Name = "";
-            decimal Fees = 0;
+            float Fees = 0;
             if (clsApplicationTypesData.FindByID(ID, ref Name, ref Fees))
                 return new clsApplicationType(ID, Name, Fees);
             return null;

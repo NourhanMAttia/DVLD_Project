@@ -34,7 +34,7 @@ namespace DVLD_D
             }
             return dt;
         }
-        public static bool UpdateApplicationTypes(int ID, string Name, decimal Fees)
+        public static bool UpdateApplicationTypes(int ID, string Name, float Fees)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -61,7 +61,7 @@ namespace DVLD_D
             }
             return rowsAffected > 0;
         }
-        public static bool FindByID(int ID, ref string Name, ref decimal Fees)
+        public static bool FindByID(int ID, ref string Name, ref float Fees)
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -77,7 +77,7 @@ namespace DVLD_D
                 {
                     isFound = true;
                     Name = (string)reader["ApplicationTypeTitle"];
-                    Fees = (decimal)reader["ApplicationFees"];
+                    Fees = Convert.ToSingle(reader["ApplicationFees"]);
                 }
                 reader.Close();
             }

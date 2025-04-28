@@ -31,6 +31,8 @@
             this.pbTestImage = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbTestInfo = new System.Windows.Forms.GroupBox();
+            this.dtpTestAppointment = new System.Windows.Forms.DateTimePicker();
+            this.btnSave = new System.Windows.Forms.Button();
             this.lblFees = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -43,14 +45,12 @@
             this.lblLocalID = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.gbRetakeTest = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblRetakeAppFees = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lblRetakeAppID = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.lblTotalFees = new System.Windows.Forms.Label();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.dtpTestAppointment = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblRetakeAppID = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.lblRetakeAppFees = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).BeginInit();
             this.gbTestInfo.SuspendLayout();
             this.gbRetakeTest.SuspendLayout();
@@ -100,6 +100,26 @@
             this.gbTestInfo.TabIndex = 2;
             this.gbTestInfo.TabStop = false;
             this.gbTestInfo.Text = "Vision Test";
+            // 
+            // dtpTestAppointment
+            // 
+            this.dtpTestAppointment.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpTestAppointment.Location = new System.Drawing.Point(134, 311);
+            this.dtpTestAppointment.Name = "dtpTestAppointment";
+            this.dtpTestAppointment.Size = new System.Drawing.Size(125, 20);
+            this.dtpTestAppointment.TabIndex = 16;
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(345, 558);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(55, 34);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblFees
             // 
@@ -227,45 +247,15 @@
             this.gbRetakeTest.TabStop = false;
             this.gbRetakeTest.Text = "Retake Test";
             // 
-            // label3
+            // lblTotalFees
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(17, 36);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 18);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "R. App. Fees:";
-            // 
-            // lblRetakeAppFees
-            // 
-            this.lblRetakeAppFees.AutoSize = true;
-            this.lblRetakeAppFees.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetakeAppFees.Location = new System.Drawing.Point(125, 36);
-            this.lblRetakeAppFees.Name = "lblRetakeAppFees";
-            this.lblRetakeAppFees.Size = new System.Drawing.Size(35, 18);
-            this.lblRetakeAppFees.TabIndex = 15;
-            this.lblRetakeAppFees.Text = "???";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(38, 80);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 18);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "R. App. ID:";
-            // 
-            // lblRetakeAppID
-            // 
-            this.lblRetakeAppID.AutoSize = true;
-            this.lblRetakeAppID.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetakeAppID.Location = new System.Drawing.Point(125, 80);
-            this.lblRetakeAppID.Name = "lblRetakeAppID";
-            this.lblRetakeAppID.Size = new System.Drawing.Size(35, 18);
-            this.lblRetakeAppID.TabIndex = 17;
-            this.lblRetakeAppID.Text = "???";
+            this.lblTotalFees.AutoSize = true;
+            this.lblTotalFees.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFees.Location = new System.Drawing.Point(290, 36);
+            this.lblTotalFees.Name = "lblTotalFees";
+            this.lblTotalFees.Size = new System.Drawing.Size(35, 18);
+            this.lblTotalFees.TabIndex = 19;
+            this.lblTotalFees.Text = "???";
             // 
             // label11
             // 
@@ -277,34 +267,45 @@
             this.label11.TabIndex = 18;
             this.label11.Text = "Total Fees:";
             // 
-            // lblTotalFees
+            // lblRetakeAppID
             // 
-            this.lblTotalFees.AutoSize = true;
-            this.lblTotalFees.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalFees.Location = new System.Drawing.Point(290, 36);
-            this.lblTotalFees.Name = "lblTotalFees";
-            this.lblTotalFees.Size = new System.Drawing.Size(35, 18);
-            this.lblTotalFees.TabIndex = 19;
-            this.lblTotalFees.Text = "???";
+            this.lblRetakeAppID.AutoSize = true;
+            this.lblRetakeAppID.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetakeAppID.Location = new System.Drawing.Point(125, 80);
+            this.lblRetakeAppID.Name = "lblRetakeAppID";
+            this.lblRetakeAppID.Size = new System.Drawing.Size(35, 18);
+            this.lblRetakeAppID.TabIndex = 17;
+            this.lblRetakeAppID.Text = "???";
             // 
-            // btnSave
+            // label7
             // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(345, 558);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(55, 34);
-            this.btnSave.TabIndex = 15;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(38, 80);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 18);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "R. App. ID:";
             // 
-            // dtpTestAppointment
+            // lblRetakeAppFees
             // 
-            this.dtpTestAppointment.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTestAppointment.Location = new System.Drawing.Point(134, 311);
-            this.dtpTestAppointment.Name = "dtpTestAppointment";
-            this.dtpTestAppointment.Size = new System.Drawing.Size(125, 20);
-            this.dtpTestAppointment.TabIndex = 16;
+            this.lblRetakeAppFees.AutoSize = true;
+            this.lblRetakeAppFees.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetakeAppFees.Location = new System.Drawing.Point(125, 36);
+            this.lblRetakeAppFees.Name = "lblRetakeAppFees";
+            this.lblRetakeAppFees.Size = new System.Drawing.Size(35, 18);
+            this.lblRetakeAppFees.TabIndex = 15;
+            this.lblRetakeAppFees.Text = "???";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(17, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(100, 18);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "R. App. Fees:";
             // 
             // frmAddAppointment
             // 

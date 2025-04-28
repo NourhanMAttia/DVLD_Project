@@ -38,7 +38,7 @@ namespace DVLD_B
 
             this.ApplicationID = -1;
             this.ApplicantPersonID = -1;
-            this.ApplicationTypeID = -1;
+            this.ApplicationTypeID = 0;
             this.CreatedByUserID = -1;
 
             this.ApplicationStatus = enApplicationStatus.New;
@@ -77,11 +77,11 @@ namespace DVLD_B
         }
         public static clsApplication FindBaseApplicaiton(int ApplicationID)
         {
-            int personID = -1, applicationTypeID = -1, createdByUserID = -1;
+            int personID = -1, applicationTypeID=-1, createdByUserID = -1;
             byte applicationStatus = 1;
             float paidFees = 0;
             DateTime applicationDate = DateTime.Now, lastStatusDate = DateTime.Now;
-            if (clsApplicationsData.GetApplicationByID(ApplicationID, ref personID, ref applicationDate, ref applicationTypeID, ref applicationStatus, ref lastStatusDate, ref paidFees, ref createdByUserID))
+            if (clsApplicationsData.GetApplicationByID(ApplicationID, ref personID, ref applicationDate,  ref applicationTypeID, ref applicationStatus, ref lastStatusDate, ref paidFees, ref createdByUserID))
                 return new clsApplication(ApplicationID, personID, applicationTypeID, createdByUserID, (enApplicationStatus)applicationStatus, paidFees, applicationDate, lastStatusDate);
             return null;
         }
