@@ -117,7 +117,9 @@ namespace DVLD.Applications.Local_Driving_Licenses
         ///
         private void tsmShowApplicationDetails_Click(object sender, EventArgs e)
         {
-
+            int localAppID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            frmShowApplicationDetails frm = new frmShowApplicationDetails(localAppID);
+            frm.ShowDialog();
         }
 
         private void tsmEditApplication_Click(object sender, EventArgs e)

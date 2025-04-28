@@ -47,6 +47,34 @@ namespace DVLD.Tests.controls
             lblStatusDate.Text = application.LastStatusDate.ToShortDateString();
             lblCreatedBy.Text = application.CreatedByUserInfo.Username;
         }
+        public void LoadInfo(int LocalDrivingLicenseApplicationID)
+        {
+            _LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
+            clsLocalDrivingLicenseApplication localApplication = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(_LocalDrivingLicenseApplicationID);
+            if (localApplication == null)
+            {
+                MessageBox.Show("Local Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            clsApplication application = clsApplication.FindBaseApplicaiton(localApplication.ApplicationID);
+            if (application == null)
+            {
+                MessageBox.Show("Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            lblLocalApplicationID.Text = localApplication.LocalDrivingLicenseApplicationID.ToString();
+            lblLicenseClass.Text = localApplication.LicenseClassInfo.ClassName;
+            lblPassedTests.Text = clsTest.PassedTestCount(_LocalDrivingLicenseApplicationID).ToString();
+
+            lblID.Text = application.ApplicationID.ToString();
+            lblStatus.Text = application.StatusText;
+            lblFees.Text = application.PaidFees.ToString();
+            lblType.Text = application.ApplicationTypeInfo.Name;
+            lblApplicant.Text = application.PersonInfo.FullName;
+            lblDate.Text = application.ApplicationDate.ToShortDateString();
+            lblStatusDate.Text = application.LastStatusDate.ToShortDateString();
+            lblCreatedBy.Text = application.CreatedByUserInfo.Username;
+        }
         private void llblShowPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             clsLocalDrivingLicenseApplication localApplication = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(_LocalDrivingLicenseApplicationID);

@@ -47,7 +47,7 @@ namespace DVLD_D
                     TestTypeID = (int)reader["TestTypeID"];
                     LocalDrivingLicenseApplicationID = (int)reader["LocalDrivingLicenseApplicationID"];
                     AppointmentDate = (DateTime)reader["AppointmentDate"];
-                    PaidFees = (float)reader["PaidFees"];
+                    PaidFees = Convert.ToSingle(reader["PaidFees"]);
                     CreatedByUserID = (int)reader["CreatedByUserID"];
                     IsLocked = (bool)reader["IsLocked"];
                     RetakeTestApplicationID = reader["RetakeTestApplicationID"] == DBNull.Value ? -1 :(int)reader["RetakeTestApplicationID"];
@@ -192,7 +192,7 @@ namespace DVLD_D
                              TestTypeID=@TestTypeID, LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID,
                              AppointmentDate=@AppointmentDate, PaidFees=@PaidFees, CreatedByUserID=@CreatedByUserID, 
                              IsLocked=@IsLocked, RetakeTestApplicationID=@RetakeTestApplicationID
-                             WHERE TestAppointmentID=AppointmentID";
+                             WHERE TestAppointmentID=@AppointmentID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
             command.Parameters.AddWithValue("@TestTypeID", TestTypeID);

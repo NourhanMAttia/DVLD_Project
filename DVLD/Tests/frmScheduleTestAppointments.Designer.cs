@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pbTestImage = new System.Windows.Forms.PictureBox();
             this.dgvAppointments = new System.Windows.Forms.DataGridView();
             this.btnAddAppointments = new System.Windows.Forms.Button();
@@ -36,8 +37,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblRecords = new System.Windows.Forms.Label();
             this.ctrlScheduleTest1 = new DVLD.Tests.controls.ctrlScheduleTest();
+            this.cmAppointments = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmEditTestAppointmentInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTakeTest = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).BeginInit();
+            this.cmAppointments.SuspendLayout();
             this.SuspendLayout();
             // 
             // pbTestImage
@@ -57,6 +62,7 @@
             this.dgvAppointments.AllowUserToOrderColumns = true;
             this.dgvAppointments.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvAppointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAppointments.ContextMenuStrip = this.cmAppointments;
             this.dgvAppointments.Location = new System.Drawing.Point(23, 518);
             this.dgvAppointments.Name = "dgvAppointments";
             this.dgvAppointments.ReadOnly = true;
@@ -123,6 +129,28 @@
             this.ctrlScheduleTest1.Size = new System.Drawing.Size(714, 368);
             this.ctrlScheduleTest1.TabIndex = 8;
             // 
+            // cmAppointments
+            // 
+            this.cmAppointments.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmEditTestAppointmentInfo,
+            this.tsmTakeTest});
+            this.cmAppointments.Name = "cmAppointments";
+            this.cmAppointments.Size = new System.Drawing.Size(181, 70);
+            // 
+            // tsmEditTestAppointmentInfo
+            // 
+            this.tsmEditTestAppointmentInfo.Name = "tsmEditTestAppointmentInfo";
+            this.tsmEditTestAppointmentInfo.Size = new System.Drawing.Size(180, 22);
+            this.tsmEditTestAppointmentInfo.Text = "Edit";
+            this.tsmEditTestAppointmentInfo.Click += new System.EventHandler(this.tsmEditTestAppointmentInfo_Click);
+            // 
+            // tsmTakeTest
+            // 
+            this.tsmTakeTest.Name = "tsmTakeTest";
+            this.tsmTakeTest.Size = new System.Drawing.Size(180, 22);
+            this.tsmTakeTest.Text = "Take Test";
+            this.tsmTakeTest.Click += new System.EventHandler(this.tsmTakeTest_Click);
+            // 
             // frmScheduleTestAppointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -143,6 +171,7 @@
             this.Load += new System.EventHandler(this.frmScheduleTestAppointments_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).EndInit();
+            this.cmAppointments.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,5 +187,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblRecords;
         private controls.ctrlScheduleTest ctrlScheduleTest1;
+        private System.Windows.Forms.ContextMenuStrip cmAppointments;
+        private System.Windows.Forms.ToolStripMenuItem tsmEditTestAppointmentInfo;
+        private System.Windows.Forms.ToolStripMenuItem tsmTakeTest;
     }
 }

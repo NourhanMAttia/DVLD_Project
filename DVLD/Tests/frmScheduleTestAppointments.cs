@@ -69,9 +69,27 @@ namespace DVLD.Tests
         }
         private void btnAddAppointments_Click(object sender, EventArgs e)
         {
+            clsTestAppointment lastAppointment = clsTestAppointment.GetLastTestAppointment((clsTestType.enTestType)_TestTypeID, _LocalDrivingLicenseApplicationID);
+            if(lastAppointment != null && !lastAppointment.IsLocked)
+            {
+                MessageBox.Show("Error : Can't Set New Appointment When You Still Have Another Valid One.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             frmAddAppointment frm = new frmAddAppointment(_LocalDrivingLicenseApplicationID, (clsTestType.enTestType)_TestTypeID);
             frm.ShowDialog();
             _RefreshAppointmentsList();
+        }
+
+        private void tsmEditTestAppointmentInfo_Click(object sender, EventArgs e)
+        {
+            int AppointmentID = (int)dgvAppointments.CurrentRow.Cells[0].Value;
+            frmAddAppointment frm = new frmAddAppointment(_LocalDrivingLicenseApplicationID, (clsTestType.enTestType)_TestTypeID, AppointmentID);
+            frm.ShowDialog();
+            _RefreshAppointmentsList();
+        }
+        private void tsmTakeTest_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

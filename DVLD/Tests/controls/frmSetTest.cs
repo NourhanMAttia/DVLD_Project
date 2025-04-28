@@ -18,11 +18,20 @@ namespace DVLD.Tests.controls
         private int _LocalDrivingLicenseApplicationID = -1;
         private clsTestType.enTestType _TestTypeID;
         clsLocalDrivingLicenseApplication _localApp;
+        clsTestAppointment appointment;
+        private int _AppointmentID = -1;
         public frmAddAppointment(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestTypeID)
         {
             InitializeComponent();
             _LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
             _TestTypeID = TestTypeID;
+        }
+        public frmAddAppointment(int LocalDrivingLicenseApplicationID, clsTestType.enTestType TestTypeID, int AppointmentID)
+        {
+            InitializeComponent();
+            _LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
+            _TestTypeID = TestTypeID;
+            _AppointmentID = AppointmentID;
         }
         private void frmAddAppointment_Load(object sender, EventArgs e)
         {
@@ -75,7 +84,17 @@ namespace DVLD.Tests.controls
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            clsTestAppointment appointment = new clsTestAppointment();
+            if(_AppointmentID == -1)
+                appointment = new clsTestAppointment();
+            else
+            {
+                appointment = clsTestAppointment.Find(_AppointmentID);
+                if(appointment == null)
+                {
+                    MessageBox.Show("Appointment Info Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             appointment.AppointmentDate = dtpTestAppointment.Value;
             appointment.CreatedByUserID = clsGlobal.GlobalUser.UserID;
             appointment.LocalDrivingLicenseApplicationID = _LocalDrivingLicenseApplicationID;
@@ -85,13 +104,6 @@ namespace DVLD.Tests.controls
             DataTable _dtAllAppointmentsPerTest = clsTestAppointment.GetApplicationTestAppointmentPerTestType(_LocalDrivingLicenseApplicationID, _TestTypeID);
             if (_dtAllAppointmentsPerTest.Rows.Count > 0)
             {
-                clsTestAppointment lastAppointment = clsTestAppointment.GetLastTestAppointment(_TestTypeID, _LocalDrivingLicenseApplicationID);
-                if (!lastAppointment.IsLocked)
-                {
-                    MessageBox.Show("Error : Can't Set New Appointment When You Still A Valid One.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
-                    return;
-                }
                 clsTestType testTypeInfo = clsTestType.GetTestTypeByID(_TestTypeID);
                 clsApplication application = clsApplication.FindBaseApplicaiton(_localApp.ApplicationID);
                 _localApp.ApplicationTypeID = (int)clsApplication.enApplicationType.RetakeTest;
