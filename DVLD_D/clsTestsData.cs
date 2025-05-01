@@ -108,9 +108,9 @@ namespace DVLD_D
             int testID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"INSERT INTO TESTS
-                             (TestAppointmentID, TestResults, Notes, CreatedByUserID)
+                             (TestAppointmentID, TestResult, Notes, CreatedByUserID)
                              VALUES
-                             (@TestAppointmentID, @TestResults, @Notes, @CreatedByUserID);
+                             (@TestAppointmentID, @TestResult, @Notes, @CreatedByUserID);
                              SELECT SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);

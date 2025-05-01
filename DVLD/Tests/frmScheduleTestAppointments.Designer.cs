@@ -31,15 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.pbTestImage = new System.Windows.Forms.PictureBox();
             this.dgvAppointments = new System.Windows.Forms.DataGridView();
+            this.cmAppointments = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmEditTestAppointmentInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTakeTest = new System.Windows.Forms.ToolStripMenuItem();
             this.btnAddAppointments = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblRecords = new System.Windows.Forms.Label();
             this.ctrlScheduleTest1 = new DVLD.Tests.controls.ctrlScheduleTest();
-            this.cmAppointments = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmEditTestAppointmentInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmTakeTest = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAppointments)).BeginInit();
             this.cmAppointments.SuspendLayout();
@@ -68,6 +68,28 @@
             this.dgvAppointments.ReadOnly = true;
             this.dgvAppointments.Size = new System.Drawing.Size(690, 134);
             this.dgvAppointments.TabIndex = 2;
+            // 
+            // cmAppointments
+            // 
+            this.cmAppointments.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmEditTestAppointmentInfo,
+            this.tsmTakeTest});
+            this.cmAppointments.Name = "cmAppointments";
+            this.cmAppointments.Size = new System.Drawing.Size(121, 48);
+            // 
+            // tsmEditTestAppointmentInfo
+            // 
+            this.tsmEditTestAppointmentInfo.Name = "tsmEditTestAppointmentInfo";
+            this.tsmEditTestAppointmentInfo.Size = new System.Drawing.Size(120, 22);
+            this.tsmEditTestAppointmentInfo.Text = "Edit";
+            this.tsmEditTestAppointmentInfo.Click += new System.EventHandler(this.tsmEditTestAppointmentInfo_Click);
+            // 
+            // tsmTakeTest
+            // 
+            this.tsmTakeTest.Name = "tsmTakeTest";
+            this.tsmTakeTest.Size = new System.Drawing.Size(120, 22);
+            this.tsmTakeTest.Text = "Take Test";
+            this.tsmTakeTest.Click += new System.EventHandler(this.tsmTakeTest_Click);
             // 
             // btnAddAppointments
             // 
@@ -129,28 +151,6 @@
             this.ctrlScheduleTest1.Size = new System.Drawing.Size(714, 368);
             this.ctrlScheduleTest1.TabIndex = 8;
             // 
-            // cmAppointments
-            // 
-            this.cmAppointments.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmEditTestAppointmentInfo,
-            this.tsmTakeTest});
-            this.cmAppointments.Name = "cmAppointments";
-            this.cmAppointments.Size = new System.Drawing.Size(181, 70);
-            // 
-            // tsmEditTestAppointmentInfo
-            // 
-            this.tsmEditTestAppointmentInfo.Name = "tsmEditTestAppointmentInfo";
-            this.tsmEditTestAppointmentInfo.Size = new System.Drawing.Size(180, 22);
-            this.tsmEditTestAppointmentInfo.Text = "Edit";
-            this.tsmEditTestAppointmentInfo.Click += new System.EventHandler(this.tsmEditTestAppointmentInfo_Click);
-            // 
-            // tsmTakeTest
-            // 
-            this.tsmTakeTest.Name = "tsmTakeTest";
-            this.tsmTakeTest.Size = new System.Drawing.Size(180, 22);
-            this.tsmTakeTest.Text = "Take Test";
-            this.tsmTakeTest.Click += new System.EventHandler(this.tsmTakeTest_Click);
-            // 
             // frmScheduleTestAppointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -167,6 +167,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmScheduleTestAppointments";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Schedule Test Appointments";
             this.Load += new System.EventHandler(this.frmScheduleTestAppointments_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbTestImage)).EndInit();

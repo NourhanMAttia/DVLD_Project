@@ -89,7 +89,10 @@ namespace DVLD.Tests
         }
         private void tsmTakeTest_Click(object sender, EventArgs e)
         {
-
+            int AppointmentID = (int)dgvAppointments.CurrentRow.Cells[0].Value;
+            frmTakeTest frm = new frmTakeTest(AppointmentID);
+            frm.ShowDialog();
+            _RefreshAppointmentsList();
         }
     }
 }
