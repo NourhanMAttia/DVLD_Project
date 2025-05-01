@@ -49,28 +49,31 @@ namespace DVLD.Tests.controls
             DataTable _dtAllAppointmentsPerTest = clsTestAppointment.GetApplicationTestAppointmentPerTestType(_LocalDrivingLicenseApplicationID, _TestTypeID);
             lblTrials.Text = _dtAllAppointmentsPerTest.Rows.Count.ToString();
             lblFees.Text = TestTypeInfo.Fees.ToString();
+            clsTestAppointment lastTestAppointment = clsTestAppointment.GetLastTestAppointment(_TestTypeID, _LocalDrivingLicenseApplicationID);
+            if (lastTestAppointment != null && !lastTestAppointment.IsLocked)
+                dtpTestAppointment.Value = lastTestAppointment.AppointmentDate;
             dtpTestAppointment.MinDate = DateTime.Today;
             switch (_TestTypeID)
-            {
-                case clsTestType.enTestType.VisionTest:
-                    {
-                        gbTestInfo.Text = "Vision Test";
-                        pbTestImage.Image = Properties.Resources.eye64;
-                        break;
-                    }
-                case clsTestType.enTestType.WrittenTest:
-                    {
-                        gbTestInfo.Text = "Written Test";
-                        pbTestImage.Image = Properties.Resources.test64;
-                        break;
-                    }
-                case clsTestType.enTestType.StreetTest:
-                    {
-                        gbTestInfo.Text = "Street Test";
-                        pbTestImage.Image = Properties.Resources.car64;
-                        break;
-                    }
-            }
+                {
+                    case clsTestType.enTestType.VisionTest:
+                        {
+                            gbTestInfo.Text = "Vision Test";
+                            pbTestImage.Image = Properties.Resources.eye64;
+                            break;
+                        }
+                    case clsTestType.enTestType.WrittenTest:
+                        {
+                            gbTestInfo.Text = "Written Test";
+                            pbTestImage.Image = Properties.Resources.test64;
+                            break;
+                        }
+                    case clsTestType.enTestType.StreetTest:
+                        {
+                            gbTestInfo.Text = "Street Test";
+                            pbTestImage.Image = Properties.Resources.car64;
+                            break;
+                        }
+                }
             clsApplication application = clsApplication.FindBaseApplicaiton(_localApp.ApplicationID);
             
             if (_dtAllAppointmentsPerTest.Rows.Count > 0)
@@ -104,10 +107,14 @@ namespace DVLD.Tests.controls
             DataTable _dtAllAppointmentsPerTest = clsTestAppointment.GetApplicationTestAppointmentPerTestType(_LocalDrivingLicenseApplicationID, _TestTypeID);
             if (_dtAllAppointmentsPerTest.Rows.Count > 0)
             {
-                clsTestType testTypeInfo = clsTestType.GetTestTypeByID(_TestTypeID);
-                clsApplication application = clsApplication.FindBaseApplicaiton(_localApp.ApplicationID);
-                _localApp.ApplicationTypeID = (int)clsApplication.enApplicationType.RetakeTest;
-                appointment.PaidFees = testTypeInfo.Fees + application.ApplicationTypeInfo.Fees;
+                clsTestAppointment lastTestAppointment = clsTestAppointment.GetLastTestAppointment(_TestTypeID, _LocalDrivingLicenseApplicationID);
+                if (lastTestAppointment.IsLocked)
+                {
+                    clsTestType testTypeInfo = clsTestType.GetTestTypeByID(_TestTypeID);
+                    clsApplication application = clsApplication.FindBaseApplicaiton(_localApp.ApplicationID);
+                    _localApp.ApplicationTypeID = (int)clsApplication.enApplicationType.RetakeTest;
+                    appointment.PaidFees = testTypeInfo.Fees + application.ApplicationTypeInfo.Fees;
+                }
             }
             if (appointment.Save())
                 MessageBox.Show("Appointment Set Successfuly.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
