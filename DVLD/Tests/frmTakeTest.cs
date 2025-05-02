@@ -38,10 +38,10 @@ namespace DVLD.Tests
             test.TestResult = (rbPass.Checked) ? true : false;
             test.Notes = txtNotes.Text;
             test.CreatedByUserID = clsGlobal.GlobalUser.UserID;
-            if (test.Save())
-            {
+            clsTestAppointment appointment = clsTestAppointment.Find(_appointmentID);
+            appointment.IsLocked = true;
+            if (test.Save() && appointment.Save())
                 MessageBox.Show("Data Saved Successfuly.", "Message!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
             else
                 MessageBox.Show("Error Saving Data.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

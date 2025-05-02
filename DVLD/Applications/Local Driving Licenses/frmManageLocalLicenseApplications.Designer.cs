@@ -93,7 +93,7 @@
             this.toolStripMenuItem6,
             this.tsmLicenseHistory});
             this.cmLocalLicensesApplications.Name = "cmLocalLicensesApplications";
-            this.cmLocalLicensesApplications.Size = new System.Drawing.Size(246, 238);
+            this.cmLocalLicensesApplications.Size = new System.Drawing.Size(246, 216);
             this.cmLocalLicensesApplications.Opening += new System.ComponentModel.CancelEventHandler(this.cmLocalLicensesApplications_Opening);
             // 
             // tsmShowApplicationDetails
@@ -320,6 +320,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmManageLocalLicenseApplications";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Local Licenses Applications";
             this.Load += new System.EventHandler(this.frmManageLocalLicenseApplications_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalLicensesApplications)).EndInit();

@@ -161,5 +161,64 @@ namespace DVLD_D
             }
             return rowsAffected > 0;
         }
+
+        public bool HasPassedTestByTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            bool hasPassed = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT Found=1 FROM Tests 
+                             INNER JOIN TestAppointments ON
+                             Tests.TestAppointmentID = TestAppointments.TestAppointmentID
+                             INNER JOIN LocalDrivingLicenseApplications ON
+                             TestAppointments.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+                             WHERE TestResult=1 AND TestAppointments.TestTypeID = @TestTypeID AND
+                             LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            try
+            {
+                connection.Open();
+                object res = command.ExecuteScalar();
+                if (res != null && int.TryParse(res.ToString(), out int result))
+                    hasPassed = result == 0 ? false : true;
+            }
+            catch (Exception) { }
+            finally
+            {
+                connection.Close();
+            }
+            return hasPassed;
+        }
+        public bool HasAttendedTestByTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            bool hasAttended = false;
+
+            return hasAttended;
+        }
+        public byte GetTotalTrialsPerTest(int TestType)
+        {
+            byte trials = 0;
+
+            return trials;
+        }
+        public bool HasPassedAllTests(int LocalDrivingLicenseApplicationID)
+        {
+            bool hasPassedAllTests = false;
+
+            return hasPassedAllTests;
+        }
+        public int IssueLicenseForFirstTime()
+        {
+            return 0;
+        }
+        public bool IsLicenseIssued()
+        {
+            return false;
+        }
+        public int GetActiveLicenseID()
+        {
+            return 0;
+        }
     }
 }

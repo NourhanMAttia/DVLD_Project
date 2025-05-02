@@ -70,6 +70,7 @@ namespace DVLD_D
                              FROM TestAppointments 
                              WHERE (TestTypeID=@TestTypeID)
                              AND (LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID)
+                             AND TestAppointments.IsLocked = 1
                              ORDER BY TestAppointmentID DESC";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
@@ -84,7 +85,7 @@ namespace DVLD_D
                     AppointmentID = (int)reader["TestAppointmentID"];
                     AppointmentDate = (DateTime)reader["AppointmentDate"];
 
-                    PaidFees = (float)reader["PaidFees"];
+                    PaidFees = Convert.ToSingle(reader["PaidFees"]);
                     CreatedByUserID = (int)reader["CreatedByUserID"];
 
                     IsLocked = (bool)reader["IsLocked"];

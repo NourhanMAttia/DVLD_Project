@@ -75,6 +75,15 @@ namespace DVLD.Tests
                 MessageBox.Show("Error : Can't Set New Appointment When You Still Have Another Valid One.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if(lastAppointment != null)
+            {
+                clsTest test = clsTest.GetTestInfoByID(lastAppointment.TestID);
+                if (test != null && test.TestResult)
+                {
+                    MessageBox.Show("Error : Person Already Passed This Test.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             frmAddAppointment frm = new frmAddAppointment(_LocalDrivingLicenseApplicationID, (clsTestType.enTestType)_TestTypeID);
             frm.ShowDialog();
             _RefreshAppointmentsList();
@@ -83,6 +92,12 @@ namespace DVLD.Tests
         private void tsmEditTestAppointmentInfo_Click(object sender, EventArgs e)
         {
             int AppointmentID = (int)dgvAppointments.CurrentRow.Cells[0].Value;
+            clsTestAppointment appointment = clsTestAppointment.Find(AppointmentID);
+            if (appointment.IsLocked)
+            {
+                MessageBox.Show("Appointment Is Locked. Can't Edit.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             frmAddAppointment frm = new frmAddAppointment(_LocalDrivingLicenseApplicationID, (clsTestType.enTestType)_TestTypeID, AppointmentID);
             frm.ShowDialog();
             _RefreshAppointmentsList();
@@ -90,6 +105,12 @@ namespace DVLD.Tests
         private void tsmTakeTest_Click(object sender, EventArgs e)
         {
             int AppointmentID = (int)dgvAppointments.CurrentRow.Cells[0].Value;
+            clsTestAppointment appointment = clsTestAppointment.Find(AppointmentID);
+            if (appointment.IsLocked)
+            {
+                MessageBox.Show("Appointment Is Locked. Can't Edit. Create A New Appointment", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             frmTakeTest frm = new frmTakeTest(AppointmentID);
             frm.ShowDialog();
             _RefreshAppointmentsList();
