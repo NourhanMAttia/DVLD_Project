@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD.Applications.Local_Driving_Licenses
 {
@@ -135,7 +136,8 @@ namespace DVLD.Applications.Local_Driving_Licenses
                 MessageBox.Show("Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DialogResult res = MessageBox.Show("Are You Sure You Want To Delete This Application?", "Confirm!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            
+            DialogResult res = MessageBox.Show("Are You Sure You Want To Delete This Application?", "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if(res == DialogResult.OK)
             {
                 if (clsLocalDrivingLicenseApplication.DeleteLocalLicenseApplication(localAppID))
@@ -157,7 +159,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
                 return;
             }
             localApplication.ApplicationStatus = (clsApplication.enApplicationStatus)2;
-            DialogResult res = MessageBox.Show("Are You Sure You Want To Cancel This Application?", "Confirm!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show("Are You Sure You Want To Cancel This Application?", "Confirm!", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (res == DialogResult.OK)
             {
                 if (localApplication.UpdateStatus())
@@ -275,6 +277,18 @@ namespace DVLD.Applications.Local_Driving_Licenses
                 tsmCancelApplication.Enabled = false;
                 tsmScheduleTest.Enabled = false;
                 return;
+            }
+            if (application.HasPassedAllTests())
+            {
+                tsmShowApplicationDetails.Enabled = true;
+                tsmLicenseHistory.Enabled = true;
+                tsmEditApplication.Enabled = false;
+                tsmDeleteApplication.Enabled = false;
+                tsmCancelApplication.Enabled = false;
+                tsmScheduleTest.Enabled = false;
+                /// if else
+                //tsmIssueLicenseFirstTime.Enabled = true;
+                //tsmShowLicense.Enabled = true;
             }
         }
     }

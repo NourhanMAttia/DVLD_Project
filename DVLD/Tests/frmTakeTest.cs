@@ -40,7 +40,13 @@ namespace DVLD.Tests
             test.CreatedByUserID = clsGlobal.GlobalUser.UserID;
             clsTestAppointment appointment = clsTestAppointment.Find(_appointmentID);
             appointment.IsLocked = true;
-            if (test.Save() && appointment.Save())
+            clsLocalDrivingLicenseApplication localApp = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(appointment.LocalDrivingLicenseApplicationID);
+            if (appointment.TestTypeID == clsTestType.enTestType.StreetTest && test.TestResult)
+            {
+                localApp.ApplicationStatus = clsApplication.enApplicationStatus.Completed;
+                localApp.LastStatusDate = DateTime.Now;
+            }
+            if (test.Save() && appointment.Save() && localApp.Save())
                 MessageBox.Show("Data Saved Successfuly.", "Message!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("Error Saving Data.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);

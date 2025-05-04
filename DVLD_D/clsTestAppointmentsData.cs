@@ -220,5 +220,25 @@ namespace DVLD_D
             }
             return rowsAffected > 0;
         } 
+        public static bool DeleteTestAppointment(int AppointmentID, int LocalDrivingLicenseApplicationID)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"DELETE TestAppointments WHERE TestAppointmentID = @AppointmentID AND LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@AppointmentID", AppointmentID);
+            command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+            try
+            {
+                connection.Open();
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            catch (Exception) { }
+            finally
+            {
+                connection.Close();
+            }
+            return rowsAffected > 0;
+        }
     }
 }

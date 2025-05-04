@@ -82,6 +82,10 @@ namespace DVLD_B
             }
             return false;
         }
+        public bool Delete(int LocalDrivingLicenseApplicationID)
+        {
+            return clsTestAppointmentsData.DeleteTestAppointment(this.TestAppointmentID, LocalDrivingLicenseApplicationID);
+        }
         private int _GetTestID()
         {
             return clsTestAppointmentsData.GetTestID(this.TestAppointmentID);

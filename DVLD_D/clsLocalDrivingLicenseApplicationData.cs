@@ -128,7 +128,7 @@ namespace DVLD_D
                              WHERE LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-            command.Parameters.AddWithValue("@ApplicaitonID", ApplicationID);
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
             try
             {
@@ -146,7 +146,18 @@ namespace DVLD_D
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"DELETE LocalDrivingLicenseApplications WHERE LocalDrivingLicenseApplicationID=@LocalDrivingLicenseApplicationID";
+            string query = @"DELETE t
+                             FROM Tests AS t
+                             JOIN TestAppointments AS ta
+                             ON t.TestAppointmentID = ta.TestAppointmentID
+                             WHERE ta.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID; 
+
+                             DELETE ta
+                             FROM TestAppointments AS ta
+                             WHERE ta.LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID;
+
+                             DELETE FROM LocalDrivingLicenseApplications
+                             WHERE LocalDrivingLicenseApplicationID = @LocalDrivingLicenseApplicationID;";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
             try
@@ -162,7 +173,7 @@ namespace DVLD_D
             return rowsAffected > 0;
         }
 
-        public bool HasPassedTestByTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        public static bool HasPassedTestByTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
             bool hasPassed = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -190,33 +201,33 @@ namespace DVLD_D
             }
             return hasPassed;
         }
-        public bool HasAttendedTestByTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        public static bool HasAttendedTestByTestType(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
             bool hasAttended = false;
 
             return hasAttended;
         }
-        public byte GetTotalTrialsPerTest(int TestType)
+        public static byte GetTotalTrialsPerTest(int TestType)
         {
             byte trials = 0;
 
             return trials;
         }
-        public bool HasPassedAllTests(int LocalDrivingLicenseApplicationID)
+        public static bool HasPassedAllTests(int LocalDrivingLicenseApplicationID)
         {
             bool hasPassedAllTests = false;
-
+            hasPassedAllTests = (HasPassedTestByTestType(LocalDrivingLicenseApplicationID, 1)) && (HasPassedTestByTestType(LocalDrivingLicenseApplicationID, 2)) && (HasPassedTestByTestType(LocalDrivingLicenseApplicationID, 3));
             return hasPassedAllTests;
         }
-        public int IssueLicenseForFirstTime()
+        public static int IssueLicenseForFirstTime()
         {
             return 0;
         }
-        public bool IsLicenseIssued()
+        public static bool IsLicenseIssued()
         {
             return false;
         }
-        public int GetActiveLicenseID()
+        public static int GetActiveLicenseID()
         {
             return 0;
         }
