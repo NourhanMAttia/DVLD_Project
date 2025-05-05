@@ -1,4 +1,5 @@
-﻿using DVLD.Tests;
+﻿using DVLD.Licenses.Local_Licenses;
+using DVLD.Tests;
 using DVLD_B;
 using System;
 using System.Collections.Generic;
@@ -174,11 +175,15 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void tsmIssueLicenseFirstTime_Click(object sender, EventArgs e)
         {
-            
+            int localAppID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            frmIssueDrivingLicenseFirstTime frm = new frmIssueDrivingLicenseFirstTime(localAppID);
+            frm.ShowDialog();
+            _RefreshList();
         }
         private void tsmShowLicense_Click(object sender, EventArgs e)
         {
-            frmShowLicense frm = new frmShowLicense();
+            int localAppID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            frmShowLicenseInfo frm = new frmShowLicenseInfo(localAppID);
             frm.ShowDialog();
         }
         private void tsmLicenseHistory_Click(object sender, EventArgs e)

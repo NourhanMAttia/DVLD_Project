@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using DVLD_D;
 
@@ -70,6 +71,21 @@ namespace DVLD_B
                                       paidFees, issueReason, isActive);
             return null;
 
+        }
+        public static clsLicense GetLicenseInfoByApplicationID(int ApplicationID)
+        {
+            int licenseID = -1, driverID = -1, createdByUserID = -1, licenseClass=-1;
+            DateTime issueDate = DateTime.Now, expirationDate = DateTime.Now;
+            string notes = "";
+            float paidFees = 0;
+            byte issueReason = 0;
+            bool isActive = false;
+            if (clsLicensesData.GetLicenseInfoByApplicationID(ApplicationID, ref licenseID, ref driverID, ref licenseClass, ref issueDate,
+                                                             ref expirationDate, ref notes, ref paidFees, ref isActive, ref issueReason,
+                                                             ref createdByUserID))
+                return new clsLicense(licenseID, ApplicationID, driverID, licenseClass, createdByUserID, issueDate, expirationDate, notes,
+                                      paidFees, issueReason, isActive);
+            return null;
         }
         public static DataTable GetDriverLicenses(int DriverID)
         {

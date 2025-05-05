@@ -51,9 +51,9 @@ namespace DVLD_D
                     IssueDate = (DateTime)reader["IssueDate"];
                     ExpirationDate = (DateTime)reader["ExpirationDate"];
                     Notes = (string)reader["Notes"];
-                    PaidFees = (float)reader["PaidFees"];
+                    PaidFees = Convert.ToSingle(reader["PaidFees"]);
                     IsActive = (bool)reader["IsActive"];
-                    IssueReason = (byte)reader["IssueReason"];
+                    IssueReason = Convert.ToByte(reader["IssueReason"]);
                     CreatedByUserID = (int)reader["CreatedByUserID"];
                 }
                 reader.Close();
@@ -64,6 +64,46 @@ namespace DVLD_D
                 connection.Close();
             }
             return isFound;
+        }
+        public static bool GetLicenseInfoByApplicationID(int ApplicationID, ref int LicenseID, ref int DriverID, ref int LicenseClass,
+                                                         ref DateTime IssueDate, ref DateTime ExpirationDate, ref string Notes,
+                                                         ref float PaidFees, ref bool IsActive, ref byte IssueReason, ref int CreatedByUserID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT * FROM Licenses WHERE ApplicationID=@ApplicationID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    isFound = true;
+                    LicenseID = (int)reader["LicenseID"];
+                    DriverID = (int)reader["DriverID"];
+
+                    LicenseClass = (int)reader["LicenseClass"];
+                    IssueDate = (DateTime)reader["IssueDate"];
+
+                    ExpirationDate = (DateTime)reader["ExpirationDate"];
+                    Notes = (string)reader["Notes"];
+
+                    PaidFees = Convert.ToSingle(reader["PaidFees"]);
+                    IsActive = (bool)reader["IsActive"];
+
+                    IssueReason = Convert.ToByte(reader["IssueReason"]);
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                }
+                reader.Close();
+            }
+            catch (Exception) { }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound; 
         }
         public static DataTable GetDriverLicenses(int DriverID)
         {
@@ -102,7 +142,7 @@ namespace DVLD_D
                              (ApplicationID, DriverID, LicenseClass, IssueDate, ExpirationDate, Notes, PaidFees, IsActive, IssueReason, CreatedByUserID)
                              VALUES
                              (@ApplicationID, @DriverID, @LicenseClass, @IssueDate, @ExpirationDate, @Notes, @PaidFees, @IsActive, @IssueReason, @CreatedByUserID);
-                             SCOPE_IDENTITY();";
+                             SELECT SCOPE_IDENTITY();";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
             command.Parameters.AddWithValue("@DriverID", DriverID);
