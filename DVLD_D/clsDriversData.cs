@@ -11,7 +11,12 @@ namespace DVLD_D
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT * FROM Drivers";
+            string query = @"SELECT Drivers.DriverID, Drivers.PersonID, People.NationalNo, 
+                             FullName = People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName,
+                             Drivers.CreatedDate, ActiveLicenses = (SELECT COUNT(*) FROM Licenses WHERE Licenses.DriverID = Drivers.DriverID AND Licenses.IsActive = 1)
+                             FROM Drivers 
+                             INNER JOIN People ON
+                             People.PersonID = Drivers.PersonID";
             SqlCommand command = new SqlCommand(query, connection);
             try
             {

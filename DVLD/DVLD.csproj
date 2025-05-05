@@ -76,6 +76,18 @@
     <Compile Include="Applications\Local Driving Licenses\frmShowApplicationDetails.Designer.cs">
       <DependentUpon>frmShowApplicationDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Applications\Local Driving Licenses\frmShowLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Applications\Local Driving Licenses\frmShowLicense.Designer.cs">
+      <DependentUpon>frmShowLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Drivers\frmManageDrivers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Drivers\frmManageDrivers.Designer.cs">
+      <DependentUpon>frmManageDrivers.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +229,12 @@
     <EmbeddedResource Include="Applications\Local Driving Licenses\frmShowApplicationDetails.resx">
       <DependentUpon>frmShowApplicationDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Applications\Local Driving Licenses\frmShowLicense.resx">
+      <DependentUpon>frmShowLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Drivers\frmManageDrivers.resx">
+      <DependentUpon>frmManageDrivers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -320,6 +338,7 @@
     <None Include="Resources\editDoc.png" />
     <None Include="Resources\eye24.png" />
     <None Include="Resources\eye64.png" />
+    <None Include="Resources\driver128.png" />
     <Content Include="Resources\female.png" />
     <None Include="Resources\female1.png" />
     <Content Include="Resources\group.png" />

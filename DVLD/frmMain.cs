@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DVLD.Applications.Application_Types;
 using DVLD.Applications.Local_Driving_Licenses;
+using DVLD.Drivers;
 using DVLD.Global_Classes;
 using DVLD.Login;
 using DVLD.Tests.Test_Types;
@@ -82,6 +83,12 @@ namespace DVLD
         private void localDriToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmManageLocalLicenseApplications frm = new frmManageLocalLicenseApplications();
+            frm.ShowDialog();
+        }
+
+        private void tsmDrivers_Click(object sender, EventArgs e)
+        {
+            frmManageDrivers frm = new frmManageDrivers();
             frm.ShowDialog();
         }
     }

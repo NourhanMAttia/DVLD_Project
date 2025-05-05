@@ -115,7 +115,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
             frm.ShowDialog();
             _RefreshList();
         }
-        ///
+        
         private void tsmShowApplicationDetails_Click(object sender, EventArgs e)
         {
             int localAppID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
@@ -178,7 +178,8 @@ namespace DVLD.Applications.Local_Driving_Licenses
         }
         private void tsmShowLicense_Click(object sender, EventArgs e)
         {
-            
+            frmShowLicense frm = new frmShowLicense();
+            frm.ShowDialog();
         }
         private void tsmLicenseHistory_Click(object sender, EventArgs e)
         {
@@ -286,6 +287,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
                 tsmDeleteApplication.Enabled = false;
                 tsmCancelApplication.Enabled = false;
                 tsmScheduleTest.Enabled = false;
+                
                 /// if else
                 //tsmIssueLicenseFirstTime.Enabled = true;
                 //tsmShowLicense.Enabled = true;
