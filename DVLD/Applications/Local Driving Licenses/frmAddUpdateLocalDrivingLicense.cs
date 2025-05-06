@@ -35,6 +35,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void _FillLicenseClassesComboBox()
         {
+            cbLicenseClass.Items.Clear();
             DataTable dt = clsLicenseClass.GetAllLicenseClasses();
             foreach (DataRow row in dt.Rows)
             {

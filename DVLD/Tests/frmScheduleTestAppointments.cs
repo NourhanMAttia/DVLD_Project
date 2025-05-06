@@ -72,7 +72,7 @@ namespace DVLD.Tests
             clsTestAppointment lastAppointment = clsTestAppointment.GetLastTestAppointment((clsTestType.enTestType)_TestTypeID, _LocalDrivingLicenseApplicationID);
             if(lastAppointment != null && !lastAppointment.IsLocked)
             {
-                MessageBox.Show("Error : Can't Set New Appointment When You Still Have Another Valid One.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Your Still Have An Active Appointment. Can't Add A New One.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if(lastAppointment != null)
