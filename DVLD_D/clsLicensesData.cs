@@ -264,7 +264,7 @@ namespace DVLD_D
             string query = @"SELECT Found=1 FROM 
                              Licenses INNER JOIN Drivers ON
                              Licenses.DriverID = Drivers.DriverID
-                             WHERE Drivers.PersonID=@PersonID, Licenses.LicenseClassID=@LicenseClassID, IsActive=1";
+                             WHERE Drivers.PersonID=@PersonID AND Licenses.LicenseClass=@LicenseClassID AND IsActive=1";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
