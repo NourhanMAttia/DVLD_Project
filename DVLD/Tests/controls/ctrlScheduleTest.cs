@@ -1,4 +1,5 @@
-﻿using DVLD.People;
+﻿using DVLD.Licenses.Local_Licenses;
+using DVLD.People;
 using DVLD_B;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,9 @@ namespace DVLD.Tests.controls
             lblDate.Text = application.ApplicationDate.ToShortDateString();
             lblStatusDate.Text = application.LastStatusDate.ToShortDateString();
             lblCreatedBy.Text = application.CreatedByUserInfo.Username;
+
+            clsLicense license = clsLicense.GetLicenseInfoByApplicationID(localApplication.ApplicationID);
+            llblShowLicense.Enabled = (license == null) ? false : true;
         }
         public void LoadInfo(int LocalDrivingLicenseApplicationID)
         {
@@ -74,6 +78,9 @@ namespace DVLD.Tests.controls
             lblDate.Text = application.ApplicationDate.ToShortDateString();
             lblStatusDate.Text = application.LastStatusDate.ToShortDateString();
             lblCreatedBy.Text = application.CreatedByUserInfo.Username;
+
+            clsLicense license = clsLicense.GetLicenseInfoByApplicationID(localApplication.ApplicationID);
+            llblShowLicense.Enabled = (license == null) ? false : true;
         }
         private void llblShowPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -88,7 +95,8 @@ namespace DVLD.Tests.controls
         }
         private void llblShowLicense_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            frmShowLicenseInfo frm = new frmShowLicenseInfo(_LocalDrivingLicenseApplicationID);
+            frm.ShowDialog();
         }
     }
 }
