@@ -28,6 +28,8 @@ namespace DVLD.Licenses.Local_Licenses
         {
             clsLocalDrivingLicenseApplication localApp = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(_LocalDrivingLicenseApplicationID);
             clsDriver driver = new clsDriver();
+            if (clsDriver.DoesDriverExistByPersonID(localApp.ApplicantPersonID))
+                driver = clsDriver.GetDriverByPersonID(localApp.ApplicantPersonID);
             driver.CreatedByUserID = clsGlobal.GlobalUser.UserID;
             driver.CreatedDate = DateTime.Now;
             driver.PersonID = localApp.ApplicantPersonID;

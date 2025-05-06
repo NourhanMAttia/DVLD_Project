@@ -282,20 +282,24 @@ namespace DVLD.Applications.Local_Driving_Licenses
                 tsmDeleteApplication.Enabled = false;
                 tsmCancelApplication.Enabled = false;
                 tsmScheduleTest.Enabled = false;
-                return;
             }
             if (application.HasPassedAllTests())
             {
-                tsmShowApplicationDetails.Enabled = true;
-                tsmLicenseHistory.Enabled = true;
                 tsmEditApplication.Enabled = false;
                 tsmDeleteApplication.Enabled = false;
                 tsmCancelApplication.Enabled = false;
                 tsmScheduleTest.Enabled = false;
-                
-                /// if else
-                //tsmIssueLicenseFirstTime.Enabled = true;
-                //tsmShowLicense.Enabled = true;
+                clsLicense license = clsLicense.GetLicenseInfoByApplicationID(application.ApplicationID);
+                if(license == null)
+                {
+                    tsmIssueLicenseFirstTime.Enabled = true;
+                    tsmShowLicense.Enabled = false;
+                }
+                else
+                {
+                    tsmIssueLicenseFirstTime.Enabled = false;
+                    tsmShowLicense.Enabled = true;
+                }
             }
         }
     }

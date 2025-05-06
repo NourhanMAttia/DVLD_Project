@@ -44,6 +44,14 @@ namespace DVLD_B
                 return new clsDriver(ID, personID, createdByUserID, createdDate);
             return null;
         }
+        public static clsDriver GetDriverByPersonID(int PersonID)
+        {
+            int driverID = -1, createdByUserID = -1;
+            DateTime createdDate = DateTime.Now;
+            if (clsDriversData.GetDriverInfoByPersonID(PersonID, ref driverID, ref createdByUserID, ref createdDate))
+                return new clsDriver(driverID, PersonID, createdByUserID, createdDate);
+            return null;
+        }
         private bool _AddNewDriver()
         {
             this.DriverID = clsDriversData.AddNewDriver(this.PersonID, this.CreatedByUserID, this.CreatedDate);
@@ -80,6 +88,10 @@ namespace DVLD_B
         public static bool DoesDriverExist(int DriverID)
         {
             return clsDriversData.DoesDriverExist(DriverID);
+        }
+        public static bool DoesDriverExistByPersonID(int PersonID)
+        {
+            return clsDriversData.DoesDriverExistByPersonID(PersonID);
         }
     }
 }

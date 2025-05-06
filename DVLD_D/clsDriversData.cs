@@ -66,6 +66,36 @@ namespace DVLD_D
             }
             return isFound;
         }
+        public static bool GetDriverInfoByPersonID(int PersonID, ref int DriverID, ref int CreatedByUserID, ref DateTime CreatedDate)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT * FROM Drivers WHERE PersonID = @PersonID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    isFound = true;
+                    DriverID = (int)reader["DriverID"];
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                    CreatedDate = (DateTime)reader["CreatedDate"];
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error : {e.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
         public static int AddNewDriver(int PersonID, int CreatedByUserID, DateTime CreatedDate)
         {
             int DriverID = -1;
@@ -101,7 +131,7 @@ namespace DVLD_D
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
             string query = @"UPDATE Drivers 
-                             PersonID=@PersonID, CreatedByUserID=@CreatedByUserID, CreatedDate=@CreatedDate
+                             SET PersonID=@PersonID, CreatedByUserID=@CreatedByUserID, CreatedDate=@CreatedDate
                              WHERE DriverID=@DriverID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@DriverID", DriverID);
@@ -163,6 +193,26 @@ namespace DVLD_D
             {
                 Console.WriteLine($"Error : {e.Message}");
             }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
+        public static bool DoesDriverExistByPersonID(int PersonID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT Found=1 FROM Drivers WHERE PersonID=@PersonID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            try
+            {
+                connection.Open();
+                object res = command.ExecuteScalar();
+                isFound = (res != null);
+            }
+            catch (Exception) { }
             finally
             {
                 connection.Close();
