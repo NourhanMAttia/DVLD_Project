@@ -126,7 +126,10 @@ namespace DVLD.Applications.Local_Driving_Licenses
 
         private void tsmEditApplication_Click(object sender, EventArgs e)
         {
-            
+            int localAppID = (int)dgvLocalLicensesApplications.CurrentRow.Cells[0].Value;
+            frmAddUpdateLocalDrivingLicense frm = new frmAddUpdateLocalDrivingLicense(localAppID);
+            frm.ShowDialog();
+            _RefreshList();
         }
         private void tsmDeleteApplication_Click(object sender, EventArgs e)
         {
@@ -188,7 +191,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
         }
         private void tsmLicenseHistory_Click(object sender, EventArgs e)
         {
-
+            //
         }
 
         private void tsmVisionTest_Click(object sender, EventArgs e)

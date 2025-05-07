@@ -71,7 +71,7 @@ namespace DVLD.Applications.Local_Driving_Licenses
         private void _LoadApplicationInfo()
         {
             ctrlPersonCardInfoWithFilter1.EnableFilter = false;
-            _LocalLicenseApplication = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByApplicationID(_LocalLicenseApplicaitonID);
+            _LocalLicenseApplication = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(_LocalLicenseApplicaitonID);
             if(_LocalLicenseApplication == null)
             {
                 MessageBox.Show("Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
