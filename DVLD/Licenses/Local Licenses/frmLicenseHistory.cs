@@ -41,7 +41,10 @@ namespace DVLD.Licenses.Local_Licenses
             DataTable dtLocalLicensesPerDriver = clsLicense.GetDriverLicenses(driver.DriverID);
             dgvLocalLicenses.DataSource = dtLocalLicensesPerDriver;
             lblLocalRecordsCount.Text = dtLocalLicensesPerDriver.Rows.Count.ToString();
-            // international
+
+            DataTable dtInternationalLicensesPerDriver = clsInternationalLicense.GetInternationalLicensesPerDriver(driver.DriverID);
+            dgvInternationalLicenses.DataSource = dtInternationalLicensesPerDriver;
+            lblInternationalRecordsCount.Text = dtInternationalLicensesPerDriver.Rows.Count.ToString();
         }
     }
 }
