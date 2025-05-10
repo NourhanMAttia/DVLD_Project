@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.ctrlLicenseInfoWithFilter1 = new DVLD.Licenses.Controls.ctrlLicenseInfoWithFilter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.llblShowLicenseHistory = new System.Windows.Forms.LinkLabel();
             this.llblShowLicenseInfo = new System.Windows.Forms.LinkLabel();
@@ -50,6 +49,7 @@
             this.lblExpirationDate = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.lblCreatedBy = new System.Windows.Forms.Label();
+            this.ctrlLicenseInfoWithFilter1 = new DVLD.Licenses.Controls.ctrlLicenseInfoWithFilter();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,14 +62,6 @@
             this.label1.Size = new System.Drawing.Size(338, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "International License Application";
-            // 
-            // ctrlLicenseInfoWithFilter1
-            // 
-            this.ctrlLicenseInfoWithFilter1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlLicenseInfoWithFilter1.Location = new System.Drawing.Point(12, 39);
-            this.ctrlLicenseInfoWithFilter1.Name = "ctrlLicenseInfoWithFilter1";
-            this.ctrlLicenseInfoWithFilter1.Size = new System.Drawing.Size(676, 434);
-            this.ctrlLicenseInfoWithFilter1.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -99,7 +91,6 @@
             // llblShowLicenseHistory
             // 
             this.llblShowLicenseHistory.AutoSize = true;
-            this.llblShowLicenseHistory.Enabled = false;
             this.llblShowLicenseHistory.Location = new System.Drawing.Point(15, 627);
             this.llblShowLicenseHistory.Name = "llblShowLicenseHistory";
             this.llblShowLicenseHistory.Size = new System.Drawing.Size(114, 14);
@@ -292,6 +283,14 @@
             this.lblCreatedBy.TabIndex = 16;
             this.lblCreatedBy.Text = "???";
             // 
+            // ctrlLicenseInfoWithFilter1
+            // 
+            this.ctrlLicenseInfoWithFilter1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctrlLicenseInfoWithFilter1.Location = new System.Drawing.Point(12, 39);
+            this.ctrlLicenseInfoWithFilter1.Name = "ctrlLicenseInfoWithFilter1";
+            this.ctrlLicenseInfoWithFilter1.Size = new System.Drawing.Size(676, 434);
+            this.ctrlLicenseInfoWithFilter1.TabIndex = 1;
+            // 
             // frmInternationalLicenseApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -308,6 +307,7 @@
             this.Name = "frmInternationalLicenseApplication";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "International License Application";
+            this.Load += new System.EventHandler(this.frmInternationalLicenseApplication_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

@@ -55,6 +55,18 @@ namespace DVLD_B
         {
             return clsInternationalLicensesData.GetInternationalLicensesPerDriver(DriverID);
         }
+        public static clsInternationalLicense GetLastActiveInternationalLicense(int DriverID)
+        {
+            int internationalLicenseID = -1, applicationID = -1, issuedUsingLocalLicenseID = -1, createdByUserID = -1;
+            DateTime issueDate = DateTime.Now, expirationDate = DateTime.Now;
+            bool isActive = false;
+            if (clsInternationalLicensesData.GetLastActiveInternationalLicense(ref internationalLicenseID, ref applicationID, DriverID,
+                                                                              ref issuedUsingLocalLicenseID, ref createdByUserID,
+                                                                              ref issueDate, ref expirationDate, ref isActive))
+                return new clsInternationalLicense(internationalLicenseID, applicationID, DriverID, issuedUsingLocalLicenseID, createdByUserID,
+                                                  issueDate, expirationDate, isActive);
+            return null;
+        }
         private bool _AddNewInternationalLicense()
         {
             this.InternationalLicenseID = clsInternationalLicensesData.AddNewInternationalLicense(this.ApplicationID, this.DriverID, this.IssuedUsingLocalLicenseID, this.CreatedByUserID, this.IssueDate, this.ExpirationDate, this.IsActive);

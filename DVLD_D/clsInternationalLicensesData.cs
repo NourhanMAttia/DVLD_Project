@@ -75,6 +75,40 @@ namespace DVLD_D
             }
             return dt;
         }
+        public static bool GetLastActiveInternationalLicense(ref int InternationalLicenseID, ref int ApplicationID, int DriverID,
+                                                           ref int IssuedUsingLocalLicenseID, ref int CreatedByUSerID,
+                                                           ref DateTime IssueDate, ref DateTime ExpirationDate, ref bool IsActive)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT * FROM InternationalLicenses WHERE DriverID=@DriverID AND IsActive = 1
+                             ORDER BY InternationalLicenseID DESC";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@DriverID", DriverID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    isFound = true;
+                    InternationalLicenseID = (int)reader["InternationalLicenseID"];
+                    ApplicationID = (int)reader["ApplicationID"];
+                    IssuedUsingLocalLicenseID = (int)reader["IssuedUsingLocalLicenseID"];
+                    CreatedByUSerID = (int)reader["CreatedByUSerID"];
+                    IssueDate = (DateTime)reader["IssueDate"];
+                    ExpirationDate = (DateTime)reader["ExpirationDate"];
+                    IsActive = (bool)reader["IsActive"];
+                }
+                reader.Close();
+            }
+            catch (Exception) { }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
         public static int AddNewInternationalLicense(int ApplicationID,  int DriverID,
                                                            int IssuedUsingLocalLicenseID, int CreatedByUSerID,
                                                            DateTime IssueDate, DateTime ExpirationDate, bool IsActive)
