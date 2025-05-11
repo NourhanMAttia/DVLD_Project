@@ -50,10 +50,10 @@ namespace DVLD_D
                              LicenseClasses.ClassName, InternationalLicenses.IssueDate, InternationalLicenses.ExpirationDate,
                              InternationalLicenses.IsActive 
                              FROM InternationalLicenses INNER JOIN LocalDrivingLicenseApplications
-                             ON InternationalLicenses.LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+                             ON InternationalLicenses.IssuedUsingLocalLicenseID = LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
                              INNER JOIN LicenseClasses ON
                              LocalDrivingLicenseApplications.LicenseClassID = LicenseClasses.LicenseClassID
-                             WHERE DriverID=@DriverID
+                             WHERE InternationalLicenses.DriverID=@DriverID
                              ORDER BY InternationalLicenses.InternationalLicenseID DESC";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@DriverID", DriverID);
