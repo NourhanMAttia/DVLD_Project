@@ -51,6 +51,10 @@ namespace DVLD_B
                 return new clsInternationalLicense(LicenseID, applicationID, driverID, issuedUsingLocalLicenseID, createdByUserID, issueDate, expirationDate, isActive);
             return null;
         }
+        public static DataTable GetAllInternationalLicenses()
+        {
+            return clsInternationalLicensesData.GetAllInternationalLicenses();
+        }
         public static DataTable GetInternationalLicensesPerDriver(int DriverID)
         {
             return clsInternationalLicensesData.GetInternationalLicensesPerDriver(DriverID);

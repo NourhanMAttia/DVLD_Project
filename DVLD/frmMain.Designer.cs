@@ -176,6 +176,7 @@
             this.internationalApplicationsToolStripMenuItem.Name = "internationalApplicationsToolStripMenuItem";
             this.internationalApplicationsToolStripMenuItem.Size = new System.Drawing.Size(370, 30);
             this.internationalApplicationsToolStripMenuItem.Text = "International Applications";
+            this.internationalApplicationsToolStripMenuItem.Click += new System.EventHandler(this.internationalApplicationsToolStripMenuItem_Click);
             // 
             // detainLicenseToolStripMenuItem
             // 
