@@ -148,5 +148,30 @@ namespace DVLD_D
             }
             return rowsAffected > 0;
         }
+
+        public static int GetValidityLengthPerClass(int ClassID)
+        {
+            int DefaultValidityLength = -1;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT DefaultValidityLength FROM LicenseClasses WHERE LicenseClassID=@ClassID";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ClassID", ClassID);
+            try
+            {
+                connection.Open();
+                object res = command.ExecuteScalar();
+                if (res != null && int.TryParse(res.ToString(), out int length))
+                    DefaultValidityLength = length;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"{e.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return DefaultValidityLength;
+        }
     }
 }

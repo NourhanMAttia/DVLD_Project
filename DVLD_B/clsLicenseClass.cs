@@ -89,5 +89,9 @@ namespace DVLD_B
             }
             return false;
         }
+        public static int GetDefaultValidityLengthPerClass(int ClassID)
+        {
+            return clsLicenseClassData.GetValidityLengthPerClass(ClassID);
+        }
     }
 }

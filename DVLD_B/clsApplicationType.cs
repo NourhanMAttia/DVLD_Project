@@ -11,6 +11,7 @@ namespace DVLD_B
 {
     public class clsApplicationType
     {
+        public enum enApplicationType { NewLocalLicense = 1, RenewLicense, ReplaceForLost, ReplaceForDamage, ReleaseDetained, NewInternationalLicense, RetakeTest };
         public clsApplicationType()
         {
             ID = -1;
