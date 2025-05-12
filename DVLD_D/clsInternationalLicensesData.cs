@@ -36,7 +36,7 @@ namespace DVLD_D
         {
             bool isFound = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT * FROM InternationalLicenses InternationalLicenseID=@InternationalLicenseID";
+            string query = @"SELECT * FROM InternationalLicenses WHERE InternationalLicenseID=@InternationalLicenseID";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@InternationalLicenseID", InternationalLicenseID);
             try

@@ -103,8 +103,7 @@ namespace DVLD.Licenses.International_Licenses
         }
         private void showLicenseDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int localLicenseID = (int)dgvInternationalLicenses.CurrentRow.Cells[3].Value;
-            frmShowLicenseInfo frm = new frmShowLicenseInfo(localLicenseID);
+            frmShowLicenseInfo frm = new frmShowLicenseInfo(-1, (int)dgvInternationalLicenses.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
         }
         private void showLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)

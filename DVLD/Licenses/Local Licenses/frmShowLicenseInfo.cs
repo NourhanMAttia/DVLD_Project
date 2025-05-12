@@ -14,28 +14,37 @@ namespace DVLD.Licenses.Local_Licenses
     public partial class frmShowLicenseInfo : Form
     {
         private int _LocalDrivingLicenseApplicationID = -1;
-        public frmShowLicenseInfo(int LocalDrivingLicenseApplicationID)
+        private int _InternationalLicenseID = -1;
+        public frmShowLicenseInfo(int LocalDrivingLicenseApplicationID, int InternationalLicenseID=-1)
         {
             InitializeComponent();
             _LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
+            _InternationalLicenseID = InternationalLicenseID;
         }
         private void frmShowLicenseInfo_Load(object sender, EventArgs e)
         {
-            clsLocalDrivingLicenseApplication localApp = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(_LocalDrivingLicenseApplicationID);
-            if(localApp == null)
+            if(_InternationalLicenseID != -1)
             {
-                MessageBox.Show("Local Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
+                ctrlLicenseInfo1.LoadInfo(_InternationalLicenseID, false);
             }
-            clsLicense license = clsLicense.GetLicenseInfoByApplicationID(localApp.ApplicationID);
-            if (license == null)
+            else
             {
-                MessageBox.Show("License Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
+                clsLocalDrivingLicenseApplication localApp = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByLocalApplicationID(_LocalDrivingLicenseApplicationID);
+                if (localApp == null)
+                {
+                    MessageBox.Show("Local Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                    return;
+                }
+                clsLicense license = clsLicense.GetLicenseInfoByApplicationID(localApp.ApplicationID);
+                if (license == null)
+                {
+                    MessageBox.Show("License Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                    return;
+                }
+                ctrlLicenseInfo1.LoadInfo(license.LicenseID, true);
             }
-            ctrlLicenseInfo1.LoadInfo(license.LicenseID);
         }
     }
 }
