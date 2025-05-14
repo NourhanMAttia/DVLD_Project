@@ -117,5 +117,11 @@ namespace DVLD
             frmReplaceLicense frm = new frmReplaceLicense();
             frm.ShowDialog();
         }
+
+        private void detainLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmDetainLicense frm = new frmDetainLicense();
+            frm.ShowDialog();
+        }
     }
 }
