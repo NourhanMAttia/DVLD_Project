@@ -1,4 +1,5 @@
 ﻿using DVLD.Global_Classes;
+using DVLD_B;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,11 +30,19 @@ namespace DVLD.Licenses.Local_Licenses
         {
             _LicenseID = LicenseID;
             lblLicenseID.Text = _LicenseID.ToString();
+            clsLicense license = clsLicense.GetLicenseInfoByID(_LicenseID);
+            if (!license.IsActive)
+            {
+                MessageBox.Show("This License Is Not Active.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             btnDetain.Enabled = true;
         }
         private void btnDetain_Click(object sender, EventArgs e)
         {
-
+            clsLicense license = clsLicense.GetLicenseInfoByID(_LicenseID);
+            //if()
+            btnDetain.Enabled = false;
         }
     }
 }
