@@ -14,6 +14,7 @@ namespace DVLD_D
             string query = @"SELECT Found=1 FROM DetainedLicenses WHERE
                              LicenseID=@LicenseID AND IsReleased = 0";
             SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
             try
             {
                 connection.Open();
@@ -91,8 +92,44 @@ namespace DVLD_D
             }
             return isFound;
         }
+        public static bool GetDetainedLicenseInfoByLicenseID(int LicenseID, ref int DetainID, ref DateTime DetainDate, ref float FineFees, ref int CreatedByUserID, ref bool IsReleased,
+                                        ref DateTime? ReleaseDate, ref int? ReleasedByUserID, ref int? ReleaseApplicationID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = @"SELECT * FROM DetainedLicenses WHERE LicenseID=@LicenseID ORDER BY DetainID DESC";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@LicenseID", LicenseID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    isFound = true;
+                    DetainID = (int)reader["DetainID"];
+                    DetainDate = (DateTime)reader["DetainDate"];
+                    FineFees = Convert.ToSingle(reader["FineFees"]);
+                    CreatedByUserID = (int)reader["CreatedByUserID"];
+                    IsReleased = (bool)reader["IsReleased"];
+                    ReleaseDate = reader["ReleaseDate"] == DBNull.Value ? (DateTime?)null : (DateTime)reader["ReleaseDate"];
+                    ReleasedByUserID = reader["ReleasedByUserID"] == DBNull.Value ? (int?)null : (int)reader["ReleasedByUserID"];
+                    ReleaseApplicationID = reader["ReleaseApplicationID"] == DBNull.Value ? (int?)null : (int)reader["ReleaseApplicationID"];
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"{e.Message}");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return isFound;
+        }
         public static int DetainLicense(int LicenseID, DateTime DetainDate, float FineFees, int CreatedByUserID, bool IsReleased, 
-                                        DateTime ReleaseDate, int ReleasedByUserID, int ReleaseApplicationID)
+                                        DateTime? ReleaseDate, int? ReleasedByUserID, int? ReleaseApplicationID)
         {
             int detainedLicenseID = -1;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -107,28 +144,37 @@ namespace DVLD_D
             command.Parameters.AddWithValue("@FineFees", FineFees);
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
             command.Parameters.AddWithValue("@IsReleased", IsReleased);
-            command.Parameters.AddWithValue("@ReleaseDate", ReleaseDate);
-            command.Parameters.AddWithValue("@ReleasedByUserID", ReleasedByUserID);
-            command.Parameters.AddWithValue("@ReleaseApplicationID", ReleaseApplicationID);
-            try
-            {
-                connection.Open();
-                object res = command.ExecuteScalar();
-                if (res != null && int.TryParse(res.ToString(), out int id))
-                    detainedLicenseID = id;
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine($"{e.Message}");
-            }
-            finally
-            {
-                connection.Close();
-            }
+            if(ReleaseDate == null)
+                command.Parameters.AddWithValue("@ReleaseDate", DBNull.Value);
+            else
+                command.Parameters.AddWithValue("@ReleaseDate", ReleaseDate);
+            if(ReleasedByUserID != -1)
+                command.Parameters.AddWithValue("@ReleasedByUserID", ReleasedByUserID);
+            else
+                command.Parameters.AddWithValue("@ReleasedByUserID", DBNull.Value);
+            if (ReleaseApplicationID != -1)
+                command.Parameters.AddWithValue("@ReleaseApplicationID", ReleaseApplicationID);
+            else
+                command.Parameters.AddWithValue("@ReleaseApplicationID", DBNull.Value);
+                try
+                {
+                    connection.Open();
+                    object res = command.ExecuteScalar();
+                    if (res != null && int.TryParse(res.ToString(), out int id))
+                        detainedLicenseID = id;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"{e.Message}");
+                }
+                finally
+                {
+                    connection.Close();
+                }
             return detainedLicenseID;
         }
         public static bool UpdateDetainedLicense(int DetainID, int LicenseID, DateTime DetainDate, float FineFees, int CreatedByUserID, bool IsReleased,
-                                        DateTime ReleaseDate, int ReleasedByUserID, int ReleaseApplicationID)
+                                        DateTime? ReleaseDate, int? ReleasedByUserID, int? ReleaseApplicationID)
         {
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -143,9 +189,18 @@ namespace DVLD_D
             command.Parameters.AddWithValue("@FineFees", FineFees);
             command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
             command.Parameters.AddWithValue("@IsReleased", IsReleased);
-            command.Parameters.AddWithValue("@ReleaseDate", ReleaseDate);
-            command.Parameters.AddWithValue("@ReleasedByUserID", ReleasedByUserID);
-            command.Parameters.AddWithValue("@ReleaseApplicationID", ReleaseApplicationID);
+            if (ReleaseDate == null)
+                command.Parameters.AddWithValue("@ReleaseDate", DBNull.Value);
+            else
+                command.Parameters.AddWithValue("@ReleaseDate", ReleaseDate);
+            if (ReleasedByUserID != -1)
+                command.Parameters.AddWithValue("@ReleasedByUserID", ReleasedByUserID);
+            else
+                command.Parameters.AddWithValue("@ReleasedByUserID", DBNull.Value);
+            if (ReleaseApplicationID != -1)
+                command.Parameters.AddWithValue("@ReleaseApplicationID", ReleaseApplicationID);
+            else
+                command.Parameters.AddWithValue("@ReleaseApplicationID", DBNull.Value);
             try
             {
                 connection.Open();

@@ -25,6 +25,7 @@ namespace DVLD.Licenses.Local_Licenses
             ctrlLicenseInfoWithFilter1.OnLicenseSelected += OnLicenseSelectedHandler;
             lblCreatedBy.Text = clsGlobal.GlobalUser.Username;
             lblDetainDate.Text = DateTime.Now.ToShortDateString();
+            lblFineFees.Text = "50";
         }
         private void OnLicenseSelectedHandler(int LicenseID)
         {
@@ -36,12 +37,32 @@ namespace DVLD.Licenses.Local_Licenses
                 MessageBox.Show("This License Is Not Active.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (clsDetainedLicense.IsLicenseDetained(license.LicenseID))
+            {
+                MessageBox.Show("This License Is Already Detained.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             btnDetain.Enabled = true;
         }
         private void btnDetain_Click(object sender, EventArgs e)
         {
             clsLicense license = clsLicense.GetLicenseInfoByID(_LicenseID);
-            //if()
+            clsDetainedLicense detainedLicense = new clsDetainedLicense();
+            detainedLicense.LicenseID = license.LicenseID;
+            detainedLicense.CreatedByUserID = clsGlobal.GlobalUser.UserID;
+            detainedLicense.DetainDate = DateTime.Now;
+            detainedLicense.FineFees = 50;
+            detainedLicense.IsReleased = false;
+            detainedLicense.ReleaseApplicationID = -1;
+            detainedLicense.ReleaseDate = null;
+            detainedLicense.ReleasedByUserID = -1;
+            if (detainedLicense.Save())
+            {
+                MessageBox.Show("Detained License Done.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                lblDetainID.Text = detainedLicense.DetainID.ToString();
+            }
+            else
+                MessageBox.Show("Failed To Detain License.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             btnDetain.Enabled = false;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using DVLD_D;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,9 @@ namespace DVLD_B
         public float FineFees{set;get;}
         public int CreatedByUserID{set;get;}
         public bool IsReleased{set;get;}
-        public DateTime ReleaseDate{set;get;}
-        public int ReleasedByUserID{set;get;}
-        public int ReleaseApplicationID{set;get;}
+        public DateTime? ReleaseDate{set;get;}
+        public int? ReleasedByUserID{set;get;}
+        public int? ReleaseApplicationID{set;get;}
         public clsDetainedLicense()
         {
             _Mode = enMode.AddNew;
@@ -33,7 +34,7 @@ namespace DVLD_B
             this.FineFees = 0;
             this.IsReleased = false;
         }
-        private clsDetainedLicense(int DetainID, int LicenseID, int CreatedByUserID, int ReleasedByUserID, int ReleasedApplicationID, DateTime DetainDate, DateTime ReleaseDate, float FineFees, bool IsReleased)
+        private clsDetainedLicense(int DetainID, int LicenseID, int CreatedByUserID, int? ReleasedByUserID, int? ReleasedApplicationID, DateTime DetainDate, DateTime? ReleaseDate, float FineFees, bool IsReleased)
         {
             _Mode = enMode.Update;
             this.LicenseID = LicenseID;
@@ -44,6 +45,7 @@ namespace DVLD_B
             this.ReleaseDate = ReleaseDate;
             this.FineFees = FineFees;
             this.IsReleased = IsReleased;
+            this.DetainID = DetainID;
         }
         public static DataTable GetAllDetainedLicenses()
         {
@@ -58,6 +60,16 @@ namespace DVLD_B
             if (clsDetainedLicensesData.GetDetainedLicenseInfo(DetainID, ref licenseID, ref detainDate, ref fineFees, ref createdByUserID,
                                                               ref isReleased, ref releaseDate, ref releasedByUserID, ref releaseApplicationID))
                 return new clsDetainedLicense(DetainID, licenseID, createdByUserID, releasedByUserID, releaseApplicationID, detainDate, releaseDate, fineFees, isReleased);
+            return null;
+        }
+        public static clsDetainedLicense GetDetainedLicenseInfoByLicenseID(int LicenseID)
+        {
+            int detainID = -1, createdByUserID = -1; int? releasedByUserID = -1, releaseApplicationID = -1;
+            DateTime? releaseDate = DateTime.Now; DateTime detainDate = DateTime.Now;
+            float fineFees = 0;
+            bool isReleased = false;
+            if(clsDetainedLicensesData.GetDetainedLicenseInfoByLicenseID(LicenseID, ref detainID, ref detainDate, ref fineFees, ref createdByUserID, ref isReleased, ref releaseDate, ref releasedByUserID, ref releaseApplicationID))
+                return new clsDetainedLicense(detainID, LicenseID, createdByUserID, releasedByUserID, releaseApplicationID, detainDate, releaseDate, fineFees, isReleased);
             return null;
         }
         private bool _AddNewDetainedLicense()
