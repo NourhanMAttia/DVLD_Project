@@ -36,7 +36,7 @@ namespace DVLD_D
         {
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-            string query = @"SELECT * FROM DetainedLicenses";
+            string query = @"SELECT * FROM detainedLicenses_View ORDER BY IsReleased ,DetainID;";
             SqlCommand command = new SqlCommand(query, connection);
             try
             {
