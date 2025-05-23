@@ -1,4 +1,5 @@
-﻿using DVLD.People;
+﻿using DVLD.Global_Classes;
+using DVLD.People;
 using DVLD_B;
 using System;
 using System.Collections.Generic;
@@ -148,7 +149,37 @@ namespace DVLD.Licenses.Local_Licenses
         }
         private void tsmReleaseDetainedLicense_Click(object sender, EventArgs e)
         {
-            
+            int DetainID = (int)dgvDetainedLicenses.CurrentRow.Cells[0].Value;
+            clsDetainedLicense detainedLicense = clsDetainedLicense.GetDetainedLicenseInfo(DetainID);
+            clsLicense license = clsLicense.GetLicenseInfoByID(detainedLicense.LicenseID);
+            clsDriver driver = clsDriver.GetDriverByID(license.DriverID);
+
+            clsApplication releaseApplication = new clsApplication();
+            releaseApplication.ApplicantPersonID = driver.PersonID;
+            releaseApplication.PersonInfo = clsPerson.Find(releaseApplication.ApplicantPersonID);
+            releaseApplication.ApplicationDate = DateTime.Now;
+            releaseApplication.ApplicationStatus = clsApplication.enApplicationStatus.Completed;
+            releaseApplication.ApplicationTypeID = (int)clsApplication.enApplicationType.ReleaseDetainedDrivingLicsense;
+            releaseApplication.ApplicationTypeInfo = clsApplicationType.Find(releaseApplication.ApplicationTypeID);
+            releaseApplication.CreatedByUserID = clsGlobal.GlobalUser.UserID;
+            releaseApplication.CreatedByUserInfo = clsUser.FindByUserID(releaseApplication.CreatedByUserID);
+            releaseApplication.PaidFees = releaseApplication.ApplicationTypeInfo.Fees;
+            if (releaseApplication.Save())
+            {
+                detainedLicense.IsReleased = true;
+                detainedLicense.ReleaseDate = DateTime.Now;
+                detainedLicense.ReleasedByUserID = clsGlobal.GlobalUser.UserID;
+                detainedLicense.ReleaseApplicationID = releaseApplication.ApplicationID;
+                if (detainedLicense.Save())
+                {
+                    MessageBox.Show("Rleased Detained License Successfuly.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshList();
+                }
+                else
+                    MessageBox.Show("Failed To Release Detained License.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+                MessageBox.Show("Failed To Complete Release License Application.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void cmManageDetainedLicenses_Opening(object sender, CancelEventArgs e)
