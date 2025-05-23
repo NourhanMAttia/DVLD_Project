@@ -137,7 +137,15 @@ namespace DVLD.Licenses.Local_Licenses
         private void tsmShowLicenseInfo_Click(object sender, EventArgs e)
         {
             int LicenseID = (int)dgvDetainedLicenses.CurrentRow.Cells[1].Value;
-            //frmShowLicenseInfo frm = new frmShowLicenseInfo()
+            clsLicense license = clsLicense.GetLicenseInfoByID(LicenseID);
+            clsLocalDrivingLicenseApplication localApp = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationByApplicationID(license.ApplicationID);
+            if (localApp != null)
+            {
+                frmShowLicenseInfo frm = new frmShowLicenseInfo(localApp.LocalDrivingLicenseApplicationID);
+                frm.ShowDialog();
+            }
+            else
+                MessageBox.Show("Local Application Not Found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void tsmShowLicenseHistory_Click(object sender, EventArgs e)
         {
