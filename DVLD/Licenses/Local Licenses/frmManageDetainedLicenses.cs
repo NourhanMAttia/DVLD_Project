@@ -140,7 +140,11 @@ namespace DVLD.Licenses.Local_Licenses
         }
         private void tsmShowLicenseHistory_Click(object sender, EventArgs e)
         {
-
+            int LicenseID = (int)dgvDetainedLicenses.CurrentRow.Cells[1].Value;
+            clsLicense license = clsLicense.GetLicenseInfoByID(LicenseID);
+            clsDriver driver = clsDriver.GetDriverByID(license.DriverID);
+            frmLicenseHistory frm = new frmLicenseHistory(driver.DriverID, -1);
+            frm.ShowDialog();
         }
         private void tsmReleaseDetainedLicense_Click(object sender, EventArgs e)
         {
