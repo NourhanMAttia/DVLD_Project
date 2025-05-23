@@ -1,4 +1,5 @@
-﻿using DVLD_B;
+﻿using DVLD.People;
+using DVLD_B;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -127,11 +128,15 @@ namespace DVLD.Licenses.Local_Licenses
 
         private void tsmShowPersonInfo_Click(object sender, EventArgs e)
         {
-            //
+            string NationalNo = (string)dgvDetainedLicenses.CurrentRow.Cells[6].Value;
+            clsPerson person = clsPerson.Find(NationalNo);
+            frmShowPersonInfo frm = new frmShowPersonInfo(person.PersonID);
+            frm.ShowDialog();
         }
         private void tsmShowLicenseInfo_Click(object sender, EventArgs e)
         {
-            
+            int LicenseID = (int)dgvDetainedLicenses.CurrentRow.Cells[1].Value;
+            //frmShowLicenseInfo frm = new frmShowLicenseInfo()
         }
         private void tsmShowLicenseHistory_Click(object sender, EventArgs e)
         {
