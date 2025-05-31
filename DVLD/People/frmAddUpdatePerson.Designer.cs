@@ -430,6 +430,7 @@
             this.Controls.Add(this.lblTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmAddUpdatePerson";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add / Edit Person Info";
             this.Load += new System.EventHandler(this.frmAddUpdatePerson_Load);
             this.groupBox1.ResumeLayout(false);

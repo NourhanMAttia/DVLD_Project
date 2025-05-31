@@ -122,6 +122,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListTestTypes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Test Types";
             this.Load += new System.EventHandler(this.frmListTestTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypesList)).EndInit();

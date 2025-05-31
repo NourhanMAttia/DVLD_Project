@@ -136,6 +136,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListApplicationTypes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Application Types";
             this.Load += new System.EventHandler(this.frmListApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

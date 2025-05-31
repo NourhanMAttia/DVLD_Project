@@ -261,6 +261,7 @@
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmListPeople";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage People";
             this.Load += new System.EventHandler(this.frmPeopleManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagePeople)).EndInit();

@@ -46,9 +46,11 @@
             // 
             // ctrlPersonCardInfoWithFilter1
             // 
+            this.ctrlPersonCardInfoWithFilter1.EnableFilter = true;
             this.ctrlPersonCardInfoWithFilter1.Location = new System.Drawing.Point(0, 106);
-            this.ctrlPersonCardInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ctrlPersonCardInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4);
             this.ctrlPersonCardInfoWithFilter1.Name = "ctrlPersonCardInfoWithFilter1";
+            this.ctrlPersonCardInfoWithFilter1.ShowAddPerson = true;
             this.ctrlPersonCardInfoWithFilter1.Size = new System.Drawing.Size(996, 482);
             this.ctrlPersonCardInfoWithFilter1.TabIndex = 1;
             // 
@@ -73,8 +75,9 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmFindPerson";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Find Person";
             this.ResumeLayout(false);
             this.PerformLayout();

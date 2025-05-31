@@ -38,6 +38,7 @@
             this.ctrlUserCard1.Name = "ctrlUserCard1";
             this.ctrlUserCard1.Size = new System.Drawing.Size(750, 441);
             this.ctrlUserCard1.TabIndex = 0;
+            this.ctrlUserCard1.UserID = -1;
             // 
             // frmShowUserDetails
             // 
@@ -48,6 +49,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmShowUserDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Show User Details";
             this.Load += new System.EventHandler(this.frmShowUserDetails_Load);
             this.ResumeLayout(false);

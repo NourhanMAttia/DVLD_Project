@@ -45,11 +45,11 @@
             this.tsmAddNewUser = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEditUserInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmDeleteUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmSendEmail = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmPhoneCall = new System.Windows.Forms.ToolStripMenuItem();
             this.cbIsActiveOptions = new System.Windows.Forms.ComboBox();
-            this.tsmChangePassword = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.cmUsers.SuspendLayout();
@@ -181,57 +181,64 @@
             this.tsmSendEmail,
             this.tsmPhoneCall});
             this.cmUsers.Name = "cmUsers";
-            this.cmUsers.Size = new System.Drawing.Size(181, 192);
+            this.cmUsers.Size = new System.Drawing.Size(169, 170);
             // 
             // tsmShowDetails
             // 
             this.tsmShowDetails.Name = "tsmShowDetails";
-            this.tsmShowDetails.Size = new System.Drawing.Size(180, 22);
+            this.tsmShowDetails.Size = new System.Drawing.Size(168, 22);
             this.tsmShowDetails.Text = "Show Details";
             this.tsmShowDetails.Click += new System.EventHandler(this.tsmShowDetails_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(165, 6);
             // 
             // tsmAddNewUser
             // 
             this.tsmAddNewUser.Name = "tsmAddNewUser";
-            this.tsmAddNewUser.Size = new System.Drawing.Size(180, 22);
+            this.tsmAddNewUser.Size = new System.Drawing.Size(168, 22);
             this.tsmAddNewUser.Text = "Add New User";
             this.tsmAddNewUser.Click += new System.EventHandler(this.tsmAddNewUser_Click);
             // 
             // tsmEditUserInfo
             // 
             this.tsmEditUserInfo.Name = "tsmEditUserInfo";
-            this.tsmEditUserInfo.Size = new System.Drawing.Size(180, 22);
+            this.tsmEditUserInfo.Size = new System.Drawing.Size(168, 22);
             this.tsmEditUserInfo.Text = "Edit User Info";
             this.tsmEditUserInfo.Click += new System.EventHandler(this.tsmEditUserInfo_Click);
             // 
             // tsmDeleteUser
             // 
             this.tsmDeleteUser.Name = "tsmDeleteUser";
-            this.tsmDeleteUser.Size = new System.Drawing.Size(180, 22);
+            this.tsmDeleteUser.Size = new System.Drawing.Size(168, 22);
             this.tsmDeleteUser.Text = "Delete User";
             this.tsmDeleteUser.Click += new System.EventHandler(this.tsmDeleteUser_Click);
+            // 
+            // tsmChangePassword
+            // 
+            this.tsmChangePassword.Name = "tsmChangePassword";
+            this.tsmChangePassword.Size = new System.Drawing.Size(168, 22);
+            this.tsmChangePassword.Text = "Change Password";
+            this.tsmChangePassword.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(165, 6);
             // 
             // tsmSendEmail
             // 
             this.tsmSendEmail.Name = "tsmSendEmail";
-            this.tsmSendEmail.Size = new System.Drawing.Size(180, 22);
+            this.tsmSendEmail.Size = new System.Drawing.Size(168, 22);
             this.tsmSendEmail.Text = "Send Email";
             this.tsmSendEmail.Click += new System.EventHandler(this.tsmSendEmail_Click);
             // 
             // tsmPhoneCall
             // 
             this.tsmPhoneCall.Name = "tsmPhoneCall";
-            this.tsmPhoneCall.Size = new System.Drawing.Size(180, 22);
+            this.tsmPhoneCall.Size = new System.Drawing.Size(168, 22);
             this.tsmPhoneCall.Text = "Phone Call";
             this.tsmPhoneCall.Click += new System.EventHandler(this.tsmPhoneCall_Click);
             // 
@@ -248,13 +255,6 @@
             this.cbIsActiveOptions.Size = new System.Drawing.Size(141, 22);
             this.cbIsActiveOptions.TabIndex = 10;
             this.cbIsActiveOptions.SelectedIndexChanged += new System.EventHandler(this.cbIsActiveOptions_SelectedIndexChanged);
-            // 
-            // tsmChangePassword
-            // 
-            this.tsmChangePassword.Name = "tsmChangePassword";
-            this.tsmChangePassword.Size = new System.Drawing.Size(180, 22);
-            this.tsmChangePassword.Text = "Change Password";
-            this.tsmChangePassword.Click += new System.EventHandler(this.tsmChangePassword_Click);
             // 
             // frmUsers
             // 
@@ -275,6 +275,7 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmUsers";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Users";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
